@@ -1,6 +1,6 @@
 import { AppShell, Box, Container } from "@mantine/core";
 import { Outlet } from "react-router-dom";
-import Nav from "./components/nav";
+import Nav from "./components/Nav";
 
 export default function App() {
   return (
@@ -17,7 +17,7 @@ export default function App() {
           </Container>
         </Box>
       </AppShell.Main>
-      
+
     </AppShell>
   );
 }

@@ -35,19 +35,19 @@ export default function Home() {
             title="Multiplayer Game Server"
             summary="Real-time Rust backend with WebSockets and matchmaking."
             tags={["Rust", "Axum", "Tokio", "React"]}
-            link="#"
+            link="/projects"
           />
           <ProjectCard
             title="AWS OpenSearch Diagnostics Bot"
             summary="Lex + Lambda chatbot for automated cluster health diagnostics."
             tags={["AWS", "Lex", "Lambda", "CloudWatch"]}
-            link="#"
+            link="/projects"
           />
           <ProjectCard
             title="Zebrafish Neural Data Mining"
             summary="Unsupervised clustering and visualization of imaging data."
             tags={["Python", "NumPy", "pandas", "matplotlib"]}
-            link="#"
+            link="/projects"
           />
         </SimpleGrid>
       </Box>
