@@ -1,15 +1,23 @@
-import { AppShell, Container, Group, Anchor, Button, Box } from '@mantine/core';
-import Home from './pages/Home';
+import { AppShell, Box, Container } from "@mantine/core";
+import { Outlet } from "react-router-dom";
+import Nav from "./components/nav";
 
 export default function App() {
   return (
     <AppShell header={{ height: 56 }} padding="md">
-      <AppShell.Header> ...header code... </AppShell.Header>
+
+      <AppShell.Header>
+        <Nav />
+      </AppShell.Header>
+
       <AppShell.Main>
-        <Box style={{ background: 'var(--mantine-color-body)' }}>
-          <Home />
+        <Box style={{ background: "var(--mantine-color-body)" }}>
+          <Container size="lg" py="xl">
+            <Outlet />
+          </Container>
         </Box>
       </AppShell.Main>
+      
     </AppShell>
   );
 }

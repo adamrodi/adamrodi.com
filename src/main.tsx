@@ -1,16 +1,26 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import { MantineProvider } from '@mantine/core';
-import { Notifications } from '@mantine/notifications';
-import App from './App.tsx';
-import '@mantine/core/styles.css';
-import '@mantine/notifications/styles.css';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import { MantineProvider } from "@mantine/core";
+import { Notifications } from "@mantine/notifications";
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import App from "./App";
+import Home from "./pages/Home";
+import "@mantine/core/styles.css";
+import "@mantine/notifications/styles.css";
 
-ReactDOM.createRoot(document.getElementById('root')!).render(
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <App />,
+    children: [{ index: true, element: <Home /> }],
+  },
+]);
+
+ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <MantineProvider defaultColorScheme="dark">
       <Notifications />
-      <App />
+      <RouterProvider router={router} />
     </MantineProvider>
   </React.StrictMode>
 );
