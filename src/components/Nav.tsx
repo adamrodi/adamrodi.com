@@ -6,13 +6,12 @@ type LinkItem = {
   key: keyof typeof navVisibility;
   label: string;
   to: string;
-  usesRouter?: boolean; // false when using regular anchor (e.g., hash on Home)
+  usesRouter?: boolean;
 };
 
 const LINKS: LinkItem[] = [
   { key: "home", label: "Home", to: "/", usesRouter: true },
   { key: "projects", label: "Projects", to: "/projects", usesRouter: true },
-  // Contact is an anchor on the Home page (#contact)
   { key: "contact", label: "Contact", to: "/#contact", usesRouter: false },
   { key: "about", label: "About", to: "/about", usesRouter: true },
 ];
