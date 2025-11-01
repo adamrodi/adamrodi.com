@@ -11,6 +11,7 @@ export default function Nav() {
           <Anchor href="/">Home</Anchor>
           <Anchor href="#projects">Projects</Anchor>
           <Anchor href="#contact">Contact</Anchor>
+          <Anchor href="/about">About</Anchor>
           <Button
             component="a"
             href="/Adam_Rodi_Resume.pdf"
