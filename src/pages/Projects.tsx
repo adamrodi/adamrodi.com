@@ -1,7 +1,7 @@
 import { Title, SimpleGrid, Card, Text, Badge } from "@mantine/core";
 import { Link } from "react-router-dom";
 
-const items = [
+const projects = [
   {
     slug: "multiplayer-game-server",
     title: "Multiplayer Game Server",
@@ -9,8 +9,8 @@ const items = [
     tags: ["Rust", "Axum", "Tokio", "React"],
   },
   {
-    slug: "opensearch-diagnostics-bot",
-    title: "AWS OpenSearch Diagnostics Bot",
+    slug: "opensearch-troubleshooting-bot",
+    title: "AWS OpenSearch Troubleshooting Bot",
     summary: "Lex + Lambda chatbot for automated cluster health diagnostics.",
     tags: ["AWS", "Lex", "Lambda", "CloudWatch"],
   },
@@ -29,24 +29,25 @@ export default function Projects() {
         Projects
       </Title>
       <SimpleGrid cols={{ base: 1, sm: 2, md: 3 }}>
-        {items.map((p) => (
+        {projects.map((project) => (
           <Card
-            key={p.slug}
+            key={project.slug}
             component={Link as any}
-            to={`/projects/${p.slug}`}
+            to={`/projects/${project.slug}`}
             withBorder
             radius="lg"
             shadow="sm"
             p="lg"
+            state ={{ from: "projects" }}
           >
             <Title order={4} mb="xs">
-              {p.title}
+              {project.title}
             </Title>
             <Text c="dimmed" mb="sm">
-              {p.summary}
+              {project.summary}
             </Text>
             <div>
-              {p.tags.map((t) => (
+              {project.tags.map((t) => (
                 <Badge key={t} variant="light" mr={6}>
                   {t}
                 </Badge>

@@ -9,6 +9,7 @@ import {
   Anchor,
   Box,
 } from "@mantine/core";
+import { Link } from "react-router-dom";
 
 export default function Home() {
   return (
@@ -36,18 +37,21 @@ export default function Home() {
             summary="Real-time Rust backend with WebSockets and matchmaking."
             tags={["Rust", "Axum", "Tokio", "React"]}
             link="/projects/multiplayer-game-server"
+            state={{ from: "home" }}
           />
           <ProjectCard
-            title="AWS OpenSearch Diagnostics Bot"
+            title="AWS OpenSearch Troubleshooting Bot"
             summary="Lex + Lambda chatbot for automated cluster health diagnostics."
             tags={["AWS", "Lex", "Lambda", "CloudWatch"]}
-            link="/projects/opensearch-diagnostics-bot"
+            link="/projects/opensearch-troubleshooting-bot"
+            state={{ from: "home" }}
           />
           <ProjectCard
             title="Zebrafish Neural Data Mining"
             summary="Unsupervised clustering and visualization of imaging data."
             tags={["Python", "NumPy", "pandas", "matplotlib"]}
             link="/projects/zebrafish-data-mining"
+            state={{ from: "home" }}
           />
         </SimpleGrid>
       </Box>
@@ -130,11 +134,13 @@ function ProjectCard({
   summary,
   tags,
   link,
+  state,
 }: {
   title: string;
   summary: string;
   tags: string[];
   link: string;
+  state?: any;
 }) {
   return (
     <Card
@@ -142,7 +148,10 @@ function ProjectCard({
       radius="lg"
       shadow="sm"
       p="lg"
-      style={{ textDecoration: "none" }}
+      component={Link as any}
+      to={link}
+      state={state}
+      style={{ textDecoration: "none", cursor: "pointer" }}
     >
       <Title order={4} mb="xs">
         {title}
@@ -157,9 +166,7 @@ function ProjectCard({
           </Badge>
         ))}
       </Group>
-      <Anchor href={link} mt="md">
-        View project →
-      </Anchor>
+      <Text mt="md">View project →</Text>
     </Card>
   );
 }
