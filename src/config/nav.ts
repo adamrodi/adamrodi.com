@@ -5,7 +5,7 @@ export const navVisibility = {
   projects: true,
   blog: false,
   about: true,
-  contact: true,
+  contact: false,
   resume: true,
 } as const;
 

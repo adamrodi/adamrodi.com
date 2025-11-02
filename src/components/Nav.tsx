@@ -82,8 +82,10 @@ export default function Nav() {
 
           {navVisibility.resume && (
             <Button
-              component={Link}
-              to="/resume"
+              component="a"
+              href="/Adam_Rodi_Resume.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
               variant="light"
               size="sm"
               aria-label="Open resume"

@@ -110,8 +110,8 @@ export default function Home() {
         <Card withBorder radius="lg" shadow="sm" p="lg">
           <Text>
             Reach me at{" "}
-            <Anchor href="mailto:adam@adamrodi.com" target="_blank">
-              adam@adamrodi.com
+            <Anchor href="mailto:adamcrodi123@yahoo.com" target="_blank">
+              adamcrodi123@yahoo.com
             </Anchor>
             {" "}or connect on{" "}
             <Anchor href="https://www.linkedin.com/in/adamrodi" target="_blank">
