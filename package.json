@@ -12,6 +12,7 @@
   "dependencies": {
     "@emotion/react": "^11.14.0",
     "@mantine/core": "^8.3.5",
+    "@mantine/emotion": "8.3.5",
     "@mantine/hooks": "^8.3.5",
     "@mantine/notifications": "^8.3.5",
     "react": "^19.1.1",

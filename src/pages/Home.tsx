@@ -4,12 +4,10 @@ import {
   Text,
   Card,
   SimpleGrid,
-  Group,
-  Badge,
   Anchor,
   Box,
 } from "@mantine/core";
-import { Link } from "react-router-dom";
+import ProjectCard from "../components/ProjectCard";
 
 export default function Home() {
   return (
@@ -62,11 +60,22 @@ export default function Home() {
           Experience
         </Title>
         <Card withBorder radius="lg" shadow="sm" p="lg">
-          <Title order={4} mb="xs">AWS Cloud Support Associate Intern (Summer 2025)</Title>
+          <Title order={4} mb="xs">
+            AWS Cloud Support Associate Intern (Summer 2025)
+          </Title>
           <ul style={{ marginTop: 8 }}>
-            <li>Implemented Lex-driven diagnostic flows for OpenSearch yellow states (Lambda, CloudWatch).</li>
-            <li>Built highly available 3-tier app with ALB, EC2, Auto Scaling, multi-AZ; validated failover.</li>
-            <li>Completed AWS Solutions Architect – Associate and AWS AI Practitioner.</li>
+            <li>
+              Implemented Lex-driven diagnostic flows for OpenSearch yellow
+              states (Lambda, CloudWatch).
+            </li>
+            <li>
+              Built highly available 3-tier app with ALB, EC2, Auto Scaling,
+              multi-AZ; validated failover.
+            </li>
+            <li>
+              Completed AWS Solutions Architect – Associate and AWS AI
+              Practitioner.
+            </li>
           </ul>
         </Card>
       </Box>
@@ -77,13 +86,29 @@ export default function Home() {
           Education
         </Title>
         <Card withBorder radius="lg" shadow="sm" p="lg">
-          <Title order={4} mb="xs">Southeastern Louisiana University</Title>
-          <Text>B.S. in Computer Science & Data Science, <b>GPA 4.0</b></Text>
-          <Text c="dimmed" mt={6}>Relevant coursework: Algorithms, Data Mining, Software Engineering, Computer Architecture, Calculus II</Text>
+          <Title order={4} mb="xs">
+            Southeastern Louisiana University
+          </Title>
+          <Text>
+            B.S. in Computer Science & Data Science, <b>GPA 4.0</b>
+          </Text>
+          <Text c="dimmed" mt={6}>
+            Relevant coursework: Algorithms, Data Mining, Software Engineering,
+            Computer Architecture, Calculus II
+          </Text>
           <ul style={{ marginTop: 8 }}>
-            <li>Unsupervised analysis of zebrafish imaging data; clustered brain-region patterns vs controls.</li>
-            <li>Automated chicken-coop controller (Arduino/C++): scheduled feeding, temperature relay.</li>
-            <li>Completed full course loads while serving in the Army National Guard.</li>
+            <li>
+              Unsupervised analysis of zebrafish imaging data; clustered
+              brain-region patterns vs controls.
+            </li>
+            <li>
+              Automated chicken-coop controller (Arduino/C++): scheduled
+              feeding, temperature relay.
+            </li>
+            <li>
+              Completed full course loads while serving in the Army National
+              Guard.
+            </li>
           </ul>
         </Card>
       </Box>
@@ -95,9 +120,11 @@ export default function Home() {
         </Title>
         <Card withBorder radius="lg" shadow="sm" p="lg">
           <Text>
-            I study Computer Science and Data Science at Southeastern Louisiana University. 
-            My work focuses on building reliable, well-structured systems — from web backends and cloud infrastructure to applied data workflows. 
-            I enjoy learning new technologies, solving real problems, and continuously improving the quality of what I build.
+            I study Computer Science and Data Science at Southeastern Louisiana
+            University. My work focuses on building reliable, well-structured
+            systems — from web backends and cloud infrastructure to applied data
+            workflows. I enjoy learning new technologies, solving real problems,
+            and continuously improving the quality of what I build.
           </Text>
         </Card>
       </Box>
@@ -112,8 +139,8 @@ export default function Home() {
             Reach me at{" "}
             <Anchor href="mailto:adamcrodi123@yahoo.com" target="_blank">
               adamcrodi123@yahoo.com
-            </Anchor>
-            {" "}or connect on{" "}
+            </Anchor>{" "}
+            or connect on{" "}
             <Anchor href="https://www.linkedin.com/in/adamrodi" target="_blank">
               LinkedIn
             </Anchor>{" "}
@@ -126,47 +153,5 @@ export default function Home() {
         </Card>
       </Box>
     </Container>
-  );
-}
-
-function ProjectCard({
-  title,
-  summary,
-  tags,
-  link,
-  state,
-}: {
-  title: string;
-  summary: string;
-  tags: string[];
-  link: string;
-  state?: any;
-}) {
-  return (
-    <Card
-      withBorder
-      radius="lg"
-      shadow="sm"
-      p="lg"
-      component={Link as any}
-      to={link}
-      state={state}
-      style={{ textDecoration: "none", cursor: "pointer" }}
-    >
-      <Title order={4} mb="xs">
-        {title}
-      </Title>
-      <Text mb="sm" c="dimmed">
-        {summary}
-      </Text>
-      <Group gap={6}>
-        {tags.map((tag) => (
-          <Badge key={tag} variant="light">
-            {tag}
-          </Badge>
-        ))}
-      </Group>
-      <Text mt="md">View project →</Text>
-    </Card>
   );
 }

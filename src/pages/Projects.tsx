@@ -1,5 +1,5 @@
-import { Title, SimpleGrid, Card, Text, Badge } from "@mantine/core";
-import { Link } from "react-router-dom";
+import { Title, SimpleGrid } from "@mantine/core";
+import ProjectCard from "../components/ProjectCard";
 
 const projects = [
   {
@@ -30,31 +30,14 @@ export default function Projects() {
       </Title>
       <SimpleGrid cols={{ base: 1, sm: 2, md: 3 }}>
         {projects.map((project) => (
-          <Card
+          <ProjectCard
             key={project.slug}
-            component={Link as any}
-            to={`/projects/${project.slug}`}
-            withBorder
-            radius="lg"
-            shadow="sm"
-            p="lg"
-            state ={{ from: "projects" }}
-          >
-            <Title order={4} mb="xs">
-              {project.title}
-            </Title>
-            <Text c="dimmed" mb="sm">
-              {project.summary}
-            </Text>
-            <div>
-              {project.tags.map((t) => (
-                <Badge key={t} variant="light" mr={6}>
-                  {t}
-                </Badge>
-              ))}
-            </div>
-            <Text mt="md">Case study →</Text>
-          </Card>
+            title={project.title}
+            summary={project.summary}
+            tags={project.tags}
+            link={`/projects/${project.slug}`}
+            state={{ from: "projects" }}
+          />
         ))}
       </SimpleGrid>
     </>

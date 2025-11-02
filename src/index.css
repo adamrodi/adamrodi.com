@@ -66,3 +66,28 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+
+/* Smooth scroll for hash links like /#contact (respects reduced motion) */
+html:focus-within {
+  scroll-behavior: smooth;
+}
+@media (prefers-reduced-motion: reduce) {
+  html:focus-within {
+    scroll-behavior: auto;
+  }
+}
+
+/* Accessible, electric focus ring (focus-visible = keyboard users) */
+:focus {
+  outline: none;
+}
+:focus-visible {
+  outline: 2px solid #60a5fa;       /* blue-400-ish */
+  outline-offset: 2px;
+  border-radius: 8px;                /* looks nice on cards/buttons */
+}
+
+a:hover {
+  text-decoration: none;
+  color: #93c5fd; /* lighter electric blue */
+}
