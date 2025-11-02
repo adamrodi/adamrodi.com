@@ -1,5 +1,5 @@
 import { Container, Group, Anchor, Button } from "@mantine/core";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useMatch } from "react-router-dom";
 import { navVisibility } from "../config/nav";
 
 type LinkItem = {
@@ -16,8 +16,32 @@ const LINKS: LinkItem[] = [
   { key: "about", label: "About", to: "/about", usesRouter: true },
 ];
 
+function NavItem({
+  to,
+  label,
+  exact = false,
+}: {
+  to: string;
+  label: string;
+  exact?: boolean;
+}) {
+  const pattern = exact ? to : `${to}/*`;
+  const match = useMatch(pattern);
+  const active = Boolean(match);
+
+  return (
+    <Anchor
+      component={Link}
+      to={to}
+      style={{ opacity: active ? 1 : 0.85 }}
+      title={label}
+    >
+      {label}
+    </Anchor>
+  );
+}
+
 export default function Nav() {
-  const { pathname } = useLocation();
   const visibleLinks = LINKS.filter((l) => navVisibility[l.key]);
 
   return (
@@ -37,26 +61,23 @@ export default function Nav() {
         <Group gap="md">
           {visibleLinks.map((link) => {
             if (link.usesRouter) {
-              const active =
-                link.to === "/"
-                  ? pathname === "/"
-                  : pathname.startsWith(link.to);
+              const exact = link.to === "/";
               return (
-                <Anchor
+                <NavItem
                   key={link.key}
-                  component={Link}
                   to={link.to}
-                  style={{ opacity: active ? 1 : 0.85 }}
-                >
+                  label={link.label}
+                  exact={exact}
+                />
+              );
+            } 
+            else {
+              return (
+                <Anchor key={link.key} href={link.to} title={link.label}>
                   {link.label}
                 </Anchor>
               );
             }
-            return (
-              <Anchor key={link.key} href={link.to} title={link.label}>
-                {link.label}
-              </Anchor>
-            );
           })}
 
           {navVisibility.resume && (
