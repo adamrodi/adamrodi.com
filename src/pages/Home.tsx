@@ -122,7 +122,7 @@ export default function Home() {
           <Text>
             I study Computer Science and Data Science at Southeastern Louisiana
             University. My work focuses on building reliable, well-structured
-            systems — from web backends and cloud infrastructure to applied data
+            systems including web backends, cloud infrastructure, and applied data
             workflows. I enjoy learning new technologies, solving real problems,
             and continuously improving the quality of what I build.
           </Text>
