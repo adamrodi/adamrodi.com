@@ -30,8 +30,37 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
     <MantineProvider
       defaultColorScheme="dark"
       theme={{
-        primaryColor: "blue",
-        primaryShade: 6,
+        primaryColor: "amber",
+        black: "#0b0d10", 
+        white: "#ffffff", 
+
+        colors: {
+          dark: [
+            "#d5d7e0", // dark[0] (rarely used)
+            "#acaebf",
+            "#8c8fa3",
+            "#666980",
+            "#4d4f66",
+            "#34354a",
+            "#25262b",
+            "#1a1b1e",
+            "#141517",
+            "#0b0d10", // darkest background
+          ],
+
+          amber: [
+            "#fff8e1",
+            "#ffefc2",
+            "#fde59c",
+            "#f9da74",
+            "#f5cd4b",
+            "#f0b429",
+            "#d89e1f",
+            "#b78319",
+            "#8f6513",
+            "#66480d",
+          ],
+        },
         fontFamily:
           "Inter, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Helvetica, Arial, Apple Color Emoji, Segoe UI Emoji",
         headings: { fontWeight: "700" },
@@ -43,29 +72,27 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
       }}
     >
       <Global
-        styles={
-          {
-            /* Smooth scroll for hash links like /#contact */
-            "html:focus-within": { scrollBehavior: "smooth" },
-            "@media (prefers-reduced-motion: reduce)": {
-              "html:focus-within": { scrollBehavior: "auto" },
-            },
+        styles={{
+          /* Smooth scroll for hash links like /#contact */
+          "html:focus-within": { scrollBehavior: "smooth" },
+          "@media (prefers-reduced-motion: reduce)": {
+            "html:focus-within": { scrollBehavior: "auto" },
+          },
 
-            /* Electric focus ring for keyboard users */
-            ":focus": { outline: "none" },
-            ":focus-visible": {
-              outline: "2px solid #60a5fa",
-              outlineOffset: "2px",
-              borderRadius: "8px",
-            },
+          /* Electric focus ring for keyboard users */
+          ":focus": { outline: "none" },
+          ":focus-visible": {
+            outline: "2px solid theme.colors.amber[5]",
+            outlineOffset: "2px",
+            borderRadius: "8px",
+          },
 
-            /* Subtle hover color for links */
-            "a:hover": {
-              textDecoration: "none",
-              color: "#93c5fd",
-            },
-          }
-        }
+          /* Subtle hover color for links */
+          "a:hover": {
+            textDecoration: "none",
+            color: "amber.5",
+          },
+        }}
       />
       <Notifications />
       <RouterProvider router={router} />

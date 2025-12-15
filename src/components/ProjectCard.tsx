@@ -17,7 +17,7 @@ export default function ProjectCard({
 }) {
   const theme = useMantineTheme();
   // Semi-transparent brand shadow for hover (uses current theme palette)
-  const hoverShadow = `0 8px 24px ${theme.colors.blue?.[9] ? theme.colors.blue[9] + "33" : "rgba(59,130,246,0.2)"}`;
+  const hoverShadow = `0 8px 24px ${theme.colors.amber?.[9] ? theme.colors.amber[9] + "33" : "rgba(59,130,246,0.2)"}`;
 
   const handleEnter = (e: React.MouseEvent<HTMLDivElement>) => {
     e.currentTarget.style.transform = "translateY(-2px)";

@@ -1,4 +1,4 @@
-import { Container, Group, Anchor, Button } from "@mantine/core";
+import { Container, Group, Anchor, Button, Transition } from "@mantine/core";
 import { Link, useMatch } from "react-router-dom";
 import { navVisibility } from "../config/nav";
 
@@ -33,8 +33,24 @@ function NavItem({
     <Anchor
       component={Link}
       to={to}
-      style={{ opacity: active ? 1 : 0.85 }}
       title={label}
+      style={{
+        color: "var(--mantine-color-white)",
+        opacity: active ? 1 : 0.85,
+        textUnderlineOffset: "6px",
+      }}
+      styles={{
+        root: {
+          textDecorationColor: "transparent",
+          textDecorationThickness: 2,
+          "&:hover": {
+            color: "var(--mantine-color-white)",
+            textDecoration: "underline",
+            textDecorationColor: "var(--mantine-color-amber-5)",
+            textDecorationThickness: 2,
+          },
+        },
+      }}
     >
       {label}
     </Anchor>
@@ -51,11 +67,16 @@ export default function Nav() {
           component={Link}
           to="/"
           fw={700}
-          fz="lg"
+          fz="xl"
           aria-label="Go to home"
           title="Home"
+          style={{
+            color: "var(--mantine-color-white)",
+            hover: { textDecoration: "none" },
+          }}
         >
-          AR
+          Adam
+          <span style={{ color: "var(--mantine-color-amber-5)" }}>. </span>
         </Anchor>
 
         <Group gap="md">
@@ -70,10 +91,30 @@ export default function Nav() {
                   exact={exact}
                 />
               );
-            } 
-            else {
+            } else {
               return (
-                <Anchor key={link.key} href={link.to} title={link.label}>
+                <Anchor
+                  key={link.key}
+                  href={link.to}
+                  title={link.label}
+                  style={{
+                    color: "var(--mantine-color-white)",
+                    opacity: 0.85,
+                    textUnderlineOffset: "6px",
+                  }}
+                  styles={{
+                    root: {
+                      textDecorationColor: "transparent",
+                      textDecorationThickness: 2,
+                      "&:hover": {
+                        color: "var(--mantine-color-white)",
+                        textDecoration: "underline",
+                        textDecorationColor: "var(--mantine-color-amber-5)",
+                        textDecorationThickness: 2,
+                      },
+                    },
+                  }}
+                >
                   {link.label}
                 </Anchor>
               );

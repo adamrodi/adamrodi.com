@@ -4,8 +4,8 @@
   font-weight: 400;
 
   color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  color: #ffffff;
+  background-color: #000000;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -13,14 +13,7 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
-}
+
 
 body {
   margin: 0;
@@ -59,9 +52,6 @@ button:focus-visible {
     color: #213547;
     background-color: #ffffff;
   }
-  a:hover {
-    color: #747bff;
-  }
   button {
     background-color: #f9f9f9;
   }
@@ -82,9 +72,9 @@ html:focus-within {
   outline: none;
 }
 :focus-visible {
-  outline: 2px solid #60a5fa;       /* blue-400-ish */
+  outline: 2px solid #60a5fa; /* blue-400-ish */
   outline-offset: 2px;
-  border-radius: 8px;                /* looks nice on cards/buttons */
+  border-radius: 8px; /* looks nice on cards/buttons */
 }
 
 a:hover {

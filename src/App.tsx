@@ -4,15 +4,15 @@ import Nav from "./components/Nav";
 
 export default function App() {
   return (
-    <AppShell header={{ height: 56 }} padding="md">
+    <AppShell header={{ height: 80 }} padding={0}>
 
       <AppShell.Header>
         <Nav />
       </AppShell.Header>
 
       <AppShell.Main>
-        <Box style={{ background: "var(--mantine-color-body)" }}>
-          <Container size="lg" py="xl">
+        <Box>
+          <Container size="lg">
             <Outlet />
           </Container>
         </Box>
