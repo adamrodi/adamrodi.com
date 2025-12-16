@@ -63,7 +63,7 @@ export default function Nav() {
   const visibleLinks = LINKS.filter((l) => navVisibility[l.key]);
 
   return (
-    <Container size="lg" h="100%">
+    <Container size="lg" h="100%" >
       <Group justify="space-between" align="center" h="100%">
         <Anchor
           component={Link}
@@ -82,7 +82,7 @@ export default function Nav() {
           <span style={{ color: "var(--mantine-color-amber-5)" }}>. </span>
         </Anchor>
 
-        <Group gap="xl">
+        <Group gap="xl" align="center">
           {visibleLinks.map((link) => {
             const exact = link.to === "/";
             return (

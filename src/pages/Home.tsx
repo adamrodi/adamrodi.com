@@ -9,7 +9,6 @@ import {
   Grid,
   Stack,
   Group,
-  Button,
   Image,
 } from "@mantine/core";
 import { IconArrowRight } from "@tabler/icons-react";

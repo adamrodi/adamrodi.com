@@ -32,12 +32,11 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
       theme={{
         primaryColor: "amber",
         primaryShade: 6,
-        black: "#0b0d10", 
-        white: "#ffffff", 
-
+        black: "#0b0d10",
+        white: "#ffffff",
         colors: {
           dark: [
-            "#d5d7e0", // dark[0] (rarely used)
+            "#d5d7e0", // dark[0]
             "#acaebf",
             "#8c8fa3",
             "#666980",
@@ -66,10 +65,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
           "Inter, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Helvetica, Arial, Apple Color Emoji, Segoe UI Emoji",
         headings: { fontWeight: "700" },
         defaultRadius: "lg",
-        shadows: {
-          sm: "0 4px 12px rgba(0,0,0,0.25)",
-          md: "0 8px 24px rgba(0,0,0,0.28)",
-        },
+        
       }}
     >
       <Global
@@ -80,7 +76,6 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
             "html:focus-within": { scrollBehavior: "auto" },
           },
 
-          /* Electric focus ring for keyboard users */
           ":focus": { outline: "none" },
           ":focus-visible": {
             outline: "2px solid theme.colors.amber[5]",
