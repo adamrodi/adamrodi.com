@@ -12,7 +12,10 @@ import {
   Button,
   Image,
 } from "@mantine/core";
+import { IconArrowRight } from "@tabler/icons-react";
 import ProjectCard from "../components/ProjectCard";
+import PrimaryButton from "../components/PrimaryButton";
+import SecondaryButton from "../components/SecondaryButton";
 
 export default function Home() {
   return (
@@ -35,22 +38,19 @@ export default function Home() {
                     Adam Rodi.
                   </Text>
                 </Title>
-                <Text size="xl" >
-                  I am a Computer Science student.
-                </Text>
+                <Text size="xl">I am a Computer Science student.</Text>
 
                 <Group mt="sm">
-                  <Button component="a" href="#projects" size="lg">
-                    View Projects
-                  </Button>
-                  <Button
-                    component="a"
-                    href="/Adam_Rodi_Resume.pdf"
+                  <PrimaryButton
+                    href="#projects"
                     size="lg"
-                    variant="light"
+                    rightSection={<IconArrowRight size={20} />}
                   >
-                    Resume
-                  </Button>
+                    View Projects
+                  </PrimaryButton>
+                  <SecondaryButton href="#contact" size="lg">
+                    Contact
+                  </SecondaryButton>
                 </Group>
               </Stack>
             </Grid.Col>

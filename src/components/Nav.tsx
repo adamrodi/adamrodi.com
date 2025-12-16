@@ -1,7 +1,8 @@
-import { Container, Group, Anchor, Button } from "@mantine/core";
+import { Container, Group, Anchor } from "@mantine/core";
 import { Link, useMatch } from "react-router-dom";
 import { navVisibility } from "../config/nav";
 import { useState } from "react";
+import PrimaryButton from "./PrimaryButton";
 
 type LinkItem = {
   key: keyof typeof navVisibility;
@@ -95,17 +96,7 @@ export default function Nav() {
           })}
 
           {navVisibility.resume && (
-            <Button
-              component="a"
-              href="/Adam_Rodi_Resume.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-              size="sm"
-              aria-label="Open resume"
-              title="Resume"
-            >
-              Resume
-            </Button>
+            <PrimaryButton target="_blank" href="/Adam_Rodi_Resume.pdf">Resume</PrimaryButton>
           )}
         </Group>
       </Group>

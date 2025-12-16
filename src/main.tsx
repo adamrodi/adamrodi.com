@@ -31,6 +31,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
       defaultColorScheme="dark"
       theme={{
         primaryColor: "amber",
+        primaryShade: 6,
         black: "#0b0d10", 
         white: "#ffffff", 
 
