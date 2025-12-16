@@ -30,16 +30,21 @@ export default function Home() {
         <Box w="100%">
           <Grid align="center" gutter={{ base: "xl", md: 48 }}>
             <Grid.Col span={{ base: 12, md: 7 }}>
-              <Stack gap="md">
-                <Title order={1} size="3.5rem" lh={1.1}>
-                  Hey, I'm{" "}
-                  <Text span inherit c="amber.5">
+              <Stack gap={30} align="flex-start">
+                <Stack gap={0}>
+                  <Title order={2}>Hi, my name is</Title>
+                  <Title order={1} c="amber.5" size="4rem">
                     Adam Rodi.
-                  </Text>
-                </Title>
-                <Text size="xl">I am a Computer Science student.</Text>
+                  </Title>
+                </Stack>
 
-                <Group mt="sm">
+                <Text size="xl" c="dimmed" p={0}>
+                  I'm a senior Computer Science and Data Science student at
+                  Southeastern Louisiana University focused on full-stack
+                  development, cloud infrastructure, and applied AI projects.
+                </Text>
+
+                <Group py="lg">
                   <PrimaryButton
                     href="#projects"
                     size="lg"
@@ -47,8 +52,13 @@ export default function Home() {
                   >
                     View Projects
                   </PrimaryButton>
-                  <SecondaryButton href="#contact" size="lg">
-                    Contact
+
+                  <SecondaryButton
+                    href="/Adam_Rodi_Resume.pdf"
+                    size="lg"
+                    target="_blank"
+                  >
+                    Resume
                   </SecondaryButton>
                 </Group>
               </Stack>
@@ -59,9 +69,8 @@ export default function Home() {
                 <Image
                   src="/headshot.jpg"
                   alt="Headshot of Adam Rodi"
-                  radius="md"
                   fit="cover"
-                  height={320}
+                  height={450}
                 />
               </Card>
             </Grid.Col>
