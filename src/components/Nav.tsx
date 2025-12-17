@@ -46,10 +46,9 @@ function NavItem({
         textDecorationColor: "transparent",
         backgroundImage:
           "linear-gradient(var(--mantine-color-amber-5), var(--mantine-color-amber-5))",
-        backgroundSize: active || hover ? "100% 2px" : "0% 2px",
+        backgroundSize: hover ? "100% 2px" : "0% 2px",
         backgroundPosition: "0% 100%",
         backgroundRepeat: "no-repeat",
-        transform: active ? "scale(1.05)" : "scale(1)",
         transition:
           "background-size 200ms ease-in-out, opacity 150ms ease-in-out, transform 150ms ease-in-out",
       }}

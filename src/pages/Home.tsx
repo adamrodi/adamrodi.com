@@ -3,18 +3,19 @@ import {
   Title,
   Text,
   Card,
-  SimpleGrid,
+
   Anchor,
   Box,
   Grid,
   Stack,
   Group,
   Image,
+
 } from "@mantine/core";
 import { IconArrowRight } from "@tabler/icons-react";
-import ProjectCard from "../components/ProjectCard";
 import PrimaryButton from "../components/PrimaryButton";
 import SecondaryButton from "../components/SecondaryButton";
+import CaseStudyCard from "../components/CaseStudyCard";
 
 export default function Home() {
   return (
@@ -79,40 +80,59 @@ export default function Home() {
       </Box>
 
       {/* FEATURED PROJECTS */}
-      <Box
-        id="projects"
-        mih="100vh"
-        py={120}
-        style={{ display: "flex", alignItems: "center" }}
-      >
-        <Box w="100%">
-          <Title order={2} mb="md">
-            Featured Projects
+      <Box id="projects" py={120}>
+        <Stack align="center" gap={14} mb={64}>
+          <Text tt="uppercase" size="sm" fw={700} c="dimmed" lts={1}>
+            My Work
+          </Text>
+
+          <Title order={2} size="3rem" lh={1.1} ta="center">
+            Featured{" "}
+            <Text span inherit c="amber.5">
+              Projects
+            </Text>
           </Title>
 
-          <SimpleGrid cols={{ base: 1, sm: 2, md: 3 }}>
-            <ProjectCard
-              title="Multiplayer Game Server"
-              summary="Real-time Rust backend with WebSockets and matchmaking."
-              tags={["Rust", "Axum", "Tokio", "React"]}
-              link="/projects/multiplayer-game-server"
-              state={{ from: "home" }}
-            />
-            <ProjectCard
-              title="AWS OpenSearch Troubleshooting Bot"
-              summary="Lex + Lambda chatbot for automated cluster health diagnostics."
-              tags={["AWS", "Lex", "Lambda", "CloudWatch"]}
-              link="/projects/opensearch-troubleshooting-bot"
-              state={{ from: "home" }}
-            />
-            <ProjectCard
-              title="Zebrafish Neural Data Mining"
-              summary="Unsupervised clustering and visualization of imaging data."
-              tags={["Python", "NumPy", "pandas", "matplotlib"]}
-              link="/projects/zebrafish-data-mining"
-              state={{ from: "home" }}
-            />
-          </SimpleGrid>
+          <Text ta="center" c="dimmed" maw={720}>
+            A collection of my software development projects.
+            Click a project to read its case study. Each is 
+            a deep dive into the problem, the decisions 
+            behind the solution, and what I learned along 
+            the way.
+          </Text>
+        </Stack>
+
+        <Stack gap={48}>
+          <CaseStudyCard
+            title="Multiplayer Game Server"
+            category="Backend Systems"
+            heroImage="/cargo_games/cargo_games_hero.png"
+            hook="I wanted real-time multiplayer to feel instant, so I designed a Rust WebSocket server with a clean protocol, matchmaking, and concurrency in mind."
+            proof="Designed structured message types and matchmaking flows to support scalable real-time gameplay."
+            link="/projects/multiplayer-game-server"
+          />
+
+          <CaseStudyCard
+            title="AWS OpenSearch Troubleshooting Bot"
+            category="Cloud Automation"
+            heroImage="/opensearch_chatbot/chatbot_hero.png"
+            hook="Diagnosing OpenSearch cluster issues is slow and error-prone, so I built a guided chatbot to automate yellow-state diagnosis."
+            proof="Translated operational runbooks into decision-tree driven Lex flows backed by Lambda."
+            link="/projects/opensearch-troubleshooting-bot"
+          />
+
+          <CaseStudyCard
+            title="Zebrafish Neural Data Mining"
+            category="Applied Machine Learning"
+            heroImage="/zebrafish_project/zebrafish_hero.png"
+            hook="We explored whether unsupervised learning could distinguish neural activity patterns across experimental conditions."
+            proof="Applied clustering and visualization techniques to high-dimensional imaging data."
+            link="/projects/zebrafish-data-mining"
+          />
+        </Stack>
+
+        <Box ta="center" mt={64}>
+          <PrimaryButton href="/projects">View all projects →</PrimaryButton>
         </Box>
       </Box>
 
