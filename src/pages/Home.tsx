@@ -3,14 +3,12 @@ import {
   Title,
   Text,
   Card,
-
   Anchor,
   Box,
   Grid,
   Stack,
   Group,
   Image,
-
 } from "@mantine/core";
 import { IconArrowRight } from "@tabler/icons-react";
 import PrimaryButton from "../components/PrimaryButton";
@@ -94,11 +92,9 @@ export default function Home() {
           </Title>
 
           <Text ta="center" c="dimmed" maw={720}>
-            A collection of my software development projects.
-            Click a project to read its case study. Each is 
-            a deep dive into the problem, the decisions 
-            behind the solution, and what I learned along 
-            the way.
+            A collection of my software development projects. Click a project to
+            read its case study. Each is a deep dive into the problem, the
+            decisions behind the solution, and what I learned along the way.
           </Text>
         </Stack>
 
@@ -261,12 +257,6 @@ export default function Home() {
               <Anchor href="https://github.com/adamrodi" target="_blank">
                 GitHub
               </Anchor>
-              .
-              <Text span c="dimmed">
-                {" "}
-                ·{" "}
-              </Text>
-              <Anchor href="#hero">Back to top</Anchor>
             </Text>
           </Card>
         </Box>
