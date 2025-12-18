@@ -92,9 +92,9 @@ export default function Home() {
           </Title>
 
           <Text ta="center" c="dimmed" maw={720}>
-            A collection of my software development projects. Click a project to
-            read its case study. Each is a deep dive into the problem, the
-            decisions behind the solution, and what I learned along the way.
+            Click a project to read its case study. Each is a deep dive into the
+            problem, the decisions behind the solution, and what I learned along
+            the way.
           </Text>
         </Stack>
 
@@ -132,114 +132,117 @@ export default function Home() {
         </Box>
       </Box>
 
-      {/* EXPERIENCE */}
-      <Box
-        id="experience"
-        mih="100vh"
-        py={120}
-        style={{ display: "flex", alignItems: "center" }}
-      >
-        <Box w="100%">
-          <Title order={2} mb="md">
-            Experience
+      {/* About Me */}
+      <Box id="about" mih="100vh" py={120}>
+        <Stack align="center" gap={14} mb={64}>
+          <Text tt="uppercase" size="sm" fw={700} c="dimmed" lts={1}>
+            My Story
+          </Text>
+
+          <Title order={2} size="3rem" lh={1.1} ta="center">
+            About{" "}
+            <Text span inherit c="amber.5">
+              Me
+            </Text>
           </Title>
-          <Card withBorder radius="lg" shadow="sm" p="lg">
-            <Title order={4} mb="xs">
-              AWS Cloud Support Associate Intern (Summer 2025)
-            </Title>
-            <ul style={{ marginTop: 8 }}>
-              <li>
-                Implemented Lex-driven diagnostic flows for OpenSearch yellow
-                states (Lambda, CloudWatch).
-              </li>
-              <li>
-                Built highly available 3-tier app with ALB, EC2, Auto Scaling,
-                multi-AZ; validated failover.
-              </li>
-              <li>
-                Completed AWS Solutions Architect – Associate and AWS AI
-                Practitioner.
-              </li>
-            </ul>
-          </Card>
+        </Stack>
+
+        <Box w="100%">
+          <Grid align="center" gutter={{ base: "xl", md: 48 }}>
+            <Grid.Col span={{ base: 12, md: 7 }}>
+              <Stack gap={30} align="flex-start">
+                <Stack gap={18}>
+                  <Text>
+                    Hello! I’m Adam and I like building with code. My interest
+                    in programming started in high school (10th grade) when I
+                    took an intro to JavaScript, HTML, and CSS course from{" "}
+                    <Anchor href="https://www.operationspark.org" target="_blank">
+                      Operation Spark
+                    </Anchor>
+                    . During this time, I built 4 web projects and showed them
+                    off on{" "}
+                    <Anchor href="https://adamrodi.github.io" target="_blank">
+                      my first ever (cringe-worthy) portfolio site.
+                    </Anchor>
+                  </Text>
+
+                  <Text>
+                    Fast forward to university, and I have been fortunate to
+                    have supportive professors and mentors who recognize my
+                    curiosity and help me pursue it through{" "}
+                    <Anchor
+                      href="https://www.linkedin.com/posts/adamrodi_i-am-honored-to-be-selected-as-a-recipient-activity-7378447035513094145-zllo?utm_source=share&utm_medium=member_desktop&rcm=ACoAAEW8c_QBKyisDa3TvdmoFMfFTp_crS4y0zU"
+                      target="_blank"
+                    >
+                      scholarships
+                    </Anchor>{" "}
+                    and research opportunities.
+                  </Text>
+
+                  <Text>
+                    My sophomore summer, I had the privilege of interning at{" "}
+                    <Anchor href="https://aws.amazon.com/" target="_blank">
+                      one of the largest technology companies on Earth
+                    </Anchor>
+                    , where peers and mentors raised my standards for my work (
+                    <Anchor
+                      href="https://www.linkedin.com/posts/adamrodi_wrapping-up-my12-week-internship-at-amazon-activity-7369850411421327360-acGz?utm_source=share&utm_medium=member_desktop&rcm=ACoAAEW8c_QBKyisDa3TvdmoFMfFTp_crS4y0zU"
+                      target="_blank"
+                      style={{ fontStyle: "italic" }}
+                    >
+                      internship recap
+                    </Anchor>
+                    ).
+                  </Text>
+
+                  <Text>
+                    Today, I’m a senior Computer Science student most excited by
+                    working on tough and impactful engineering problems
+                    alongside people who challenge me to grow.
+                  </Text>
+                </Stack>
+              </Stack>
+            </Grid.Col>
+
+            <Grid.Col span={{ base: 12, md: 5 }}>
+              <Card radius="xl" shadow="sm" p={0}>
+                <Image
+                  src="/headshot.jpg"
+                  alt="Headshot of Adam Rodi"
+                  fit="cover"
+                  height={450}
+                />
+              </Card>
+            </Grid.Col>
+          </Grid>
         </Box>
       </Box>
 
-      {/* EDUCATION */}
-      <Box
-        id="education"
-        mih="100vh"
-        py={120}
-        style={{ display: "flex", alignItems: "center" }}
-      >
-        <Box w="100%">
-          <Title order={2} mb="md">
-            Education
-          </Title>
-          <Card withBorder radius="lg" shadow="sm" p="lg">
-            <Title order={4} mb="xs">
-              Southeastern Louisiana University
-            </Title>
-            <Text>
-              B.S. in Computer Science & Data Science, <b>GPA 4.0</b>
-            </Text>
-            <Text c="dimmed" mt={6}>
-              Relevant coursework: Algorithms, Data Mining, Software
-              Engineering, Computer Architecture, Calculus II
-            </Text>
-            <ul style={{ marginTop: 8 }}>
-              <li>
-                Unsupervised analysis of zebrafish imaging data; clustered
-                brain-region patterns vs controls.
-              </li>
-              <li>
-                Automated chicken-coop controller (Arduino/C++): scheduled
-                feeding, temperature relay.
-              </li>
-              <li>
-                Completed full course loads while serving in the Army National
-                Guard.
-              </li>
-            </ul>
-          </Card>
-        </Box>
-      </Box>
-
-      {/* ABOUT */}
-      <Box
-        id="about"
-        mih="100vh"
-        py={120}
-        style={{ display: "flex", alignItems: "center" }}
-      >
-        <Box w="100%">
-          <Title order={2} mb="md">
-            About
-          </Title>
-          <Card withBorder radius="lg" shadow="sm" p="lg">
-            <Text>
-              I study Computer Science and Data Science at Southeastern
-              Louisiana University. My work focuses on building reliable,
-              well-structured systems including web backends, cloud
-              infrastructure, and applied data workflows. I enjoy learning new
-              technologies, solving real problems, and continuously improving
-              the quality of what I build.
-            </Text>
-          </Card>
-        </Box>
-      </Box>
 
       {/* CONTACT */}
       <Box
         id="contact"
         mih="100vh"
         py={120}
-        style={{ display: "flex", alignItems: "center" }}
       >
-        <Box w="100%">
-          <Title order={2} mb="md">
-            Contact
+        <Stack align="center" gap={14} mb={64}>
+          <Text tt="uppercase" size="sm" fw={700} c="dimmed" lts={1}>
+            My Inbox
+          </Text>
+
+          <Title order={2} size="3rem" lh={1.1} ta="center">
+            Contact{" "}
+            <Text span inherit c="amber.5">
+              Me
+            </Text>
           </Title>
+
+          <Text ta="center" c="dimmed" maw={720}>
+            Reach out if you want to connect, collaborate on 
+            a project, or just say hi!
+          </Text>
+        </Stack>
+        <Box w="100%">
           <Card withBorder radius="lg" shadow="sm" p="lg">
             <Text>
               Reach me at{" "}
@@ -261,6 +264,8 @@ export default function Home() {
           </Card>
         </Box>
       </Box>
+
+      
     </Container>
   );
 }
