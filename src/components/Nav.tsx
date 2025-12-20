@@ -42,6 +42,7 @@ function NavItem({
       to={!isHashLink ? to : undefined}
       href={isHashLink ? to : undefined}
       title={label}
+      className="underlineLink"
       onClick={(e: { preventDefault: () => void }) => {
         if (!isHashLink) return;
         e.preventDefault();

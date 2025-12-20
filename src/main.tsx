@@ -69,13 +69,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
           Anchor: {
             styles: {
               root: {
-                textDecorationColor: "transparent",
-                backgroundImage:
-                  "linear-gradient(var(--mantine-color-amber-5), var(--mantine-color-amber-5))",
-                backgroundSize: "0% 2px",
-                backgroundPosition: "0% 100%",
-                backgroundRepeat: "no-repeat",
-                transition: "background-size 200ms ease-in-out",
+                textDecoration: "none",
               },
             },
           },
@@ -96,8 +90,37 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
             outlineOffset: "2px",
             borderRadius: "8px",
           },
-          "a:hover": {
-            backgroundSize: "100% 2px !important",
+
+          /* Underline animation only where we opt-in */
+          ".underlineLink": {
+            position: "relative",
+            textDecoration: "none",
+            backgroundImage:
+              "linear-gradient(var(--mantine-color-amber-5), var(--mantine-color-amber-5))",
+            backgroundSize: "0% 2px",
+            backgroundPosition: "0 100%",
+            backgroundRepeat: "no-repeat",
+            transition: "background-size 200ms ease-in-out",
+          },
+          ".underlineLink:hover": {
+            backgroundSize: "100% 2px",
+          },
+
+          /* Footer links: muted -> amber hover, no underline */
+          ".footerLink": {
+            display: "inline-flex",
+            alignItems: "center",
+            gap: "0.5rem",
+            textDecoration: "none",
+            color: "var(--mantine-color-dimmed)",
+            opacity: 0.85,
+            backgroundImage: "none",
+            transition: "color 200ms ease, opacity 200ms ease, transform 200ms ease",
+          },
+          ".footerLink:hover": {
+            color: "var(--mantine-color-amber-5) !important",
+            opacity: 1,
+            transform: "translateY(-1px)",
           },
         })}
       />

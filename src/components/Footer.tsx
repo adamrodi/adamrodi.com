@@ -10,7 +10,12 @@ export default function Footer() {
     <Box component="footer" py={28}>
       <Container size="lg">
         <Group justify="space-between" align="center" wrap="wrap" gap="md">
-          <Anchor size="sm" c="dimmed" href="https://github.com/adamrodi/adamrodi.com" target="_blank">
+          <Anchor
+            c="dimmed"
+            href="https://github.com/adamrodi/adamrodi.com"
+            target="_blank"
+            className="footerLink"
+          >
             Built by Adam Rodi
           </Anchor>
 
@@ -18,6 +23,7 @@ export default function Footer() {
             <Anchor
               href="mailto:adamcrodi123@yahoo.com"
               c="dimmed"
+              className="footerLink"
               style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}
             >
               <IconMail size={16} />
@@ -27,6 +33,7 @@ export default function Footer() {
               href="https://www.linkedin.com/in/adamrodi"
               target="_blank"
               c="dimmed"
+              className="footerLink"
               style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}
             >
               <IconBrandLinkedin size={16} />
@@ -36,6 +43,7 @@ export default function Footer() {
               href="https://github.com/adamrodi"
               target="_blank"
               c="dimmed"
+              className="footerLink"
               style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}
             >
               <IconBrandGithub size={16} />

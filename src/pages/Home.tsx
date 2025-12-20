@@ -10,10 +10,7 @@ import {
   Group,
   Image,
 } from "@mantine/core";
-import {
-  IconMail,
-  IconArrowRight,
-} from "@tabler/icons-react";
+import { IconMail, IconArrowRight } from "@tabler/icons-react";
 import PrimaryButton from "../components/PrimaryButton";
 import SecondaryButton from "../components/SecondaryButton";
 import CaseStudyCard from "../components/CaseStudyCard";
@@ -162,12 +159,13 @@ export default function Home() {
                     <Anchor
                       href="https://www.operationspark.org"
                       target="_blank"
+                      className="underlineLink"
                     >
                       Operation Spark
                     </Anchor>
                     . During this time, I built 4 web projects and showed them
                     off on{" "}
-                    <Anchor href="https://adamrodi.github.io" target="_blank">
+                    <Anchor className="underlineLink" href="https://adamrodi.github.io" target="_blank">
                       my first ever (cringe-worthy) portfolio site.
                     </Anchor>
                   </Text>
@@ -179,6 +177,7 @@ export default function Home() {
                     <Anchor
                       href="https://www.linkedin.com/posts/adamrodi_i-am-honored-to-be-selected-as-a-recipient-activity-7378447035513094145-zllo?utm_source=share&utm_medium=member_desktop&rcm=ACoAAEW8c_QBKyisDa3TvdmoFMfFTp_crS4y0zU"
                       target="_blank"
+                      className="underlineLink"
                     >
                       scholarships
                     </Anchor>{" "}
@@ -187,7 +186,7 @@ export default function Home() {
 
                   <Text>
                     My sophomore summer, I had the privilege of interning at{" "}
-                    <Anchor href="https://aws.amazon.com/" target="_blank">
+                    <Anchor className="underlineLink" href="https://aws.amazon.com/" target="_blank">
                       one of the largest technology companies on Earth
                     </Anchor>
                     , where peers and mentors raised my standards for my work (
@@ -195,6 +194,7 @@ export default function Home() {
                       href="https://www.linkedin.com/posts/adamrodi_wrapping-up-my12-week-internship-at-amazon-activity-7369850411421327360-acGz?utm_source=share&utm_medium=member_desktop&rcm=ACoAAEW8c_QBKyisDa3TvdmoFMfFTp_crS4y0zU"
                       target="_blank"
                       style={{ fontStyle: "italic" }}
+                      className="underlineLink"
                     >
                       internship recap
                     </Anchor>
@@ -240,8 +240,8 @@ export default function Home() {
 
           <Text ta="center" c="dimmed" maw={600}>
             If you have any feedback or would like to discuss potential
-            opportunities, please reach out! I would love to connect and
-            learn about exciting projects and roles.
+            opportunities, please reach out! I would love to connect and learn
+            about exciting projects and roles.
           </Text>
         </Stack>
         <Box w="100%" ta="center">
