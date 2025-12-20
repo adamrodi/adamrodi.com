@@ -78,7 +78,6 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
     >
       <Global
         styles={(theme) => ({
-          /* Smooth scroll for hash links like /#contact */
           "html:focus-within": { scrollBehavior: "smooth" },
           "@media (prefers-reduced-motion: reduce)": {
             "html:focus-within": { scrollBehavior: "auto" },
@@ -91,7 +90,6 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
             borderRadius: "8px",
           },
 
-          /* Underline animation only where we opt-in */
           ".underlineLink": {
             position: "relative",
             textDecoration: "none",
@@ -102,11 +100,10 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
             backgroundRepeat: "no-repeat",
             transition: "background-size 200ms ease-in-out",
           },
-          ".underlineLink:hover": {
+          ".underlineLink:hover, .underlineLink:focus-visible": {
             backgroundSize: "100% 2px",
           },
 
-          /* Footer links: muted -> amber hover, no underline */
           ".footerLink": {
             display: "inline-flex",
             alignItems: "center",
@@ -117,7 +114,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
             backgroundImage: "none",
             transition: "color 200ms ease, opacity 200ms ease, transform 200ms ease",
           },
-          ".footerLink:hover": {
+          ".footerLink:hover, .footerLink:focus-visible": {
             color: "var(--mantine-color-amber-5) !important",
             opacity: 1,
             transform: "translateY(-1px)",
