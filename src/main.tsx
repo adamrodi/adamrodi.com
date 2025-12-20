@@ -65,10 +65,25 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
           "Inter, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Helvetica, Arial, Apple Color Emoji, Segoe UI Emoji",
         headings: { fontWeight: "700" },
         defaultRadius: "lg",
+        components: {
+          Anchor: {
+            styles: {
+              root: {
+                textDecorationColor: "transparent",
+                backgroundImage:
+                  "linear-gradient(var(--mantine-color-amber-5), var(--mantine-color-amber-5))",
+                backgroundSize: "0% 2px",
+                backgroundPosition: "0% 100%",
+                backgroundRepeat: "no-repeat",
+                transition: "background-size 200ms ease-in-out",
+              },
+            },
+          },
+        },
       }}
     >
       <Global
-        styles={{
+        styles={(theme) => ({
           /* Smooth scroll for hash links like /#contact */
           "html:focus-within": { scrollBehavior: "smooth" },
           "@media (prefers-reduced-motion: reduce)": {
@@ -77,11 +92,14 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
 
           ":focus": { outline: "none" },
           ":focus-visible": {
-            outline: "2px solid theme.colors.amber[5]",
+            outline: `2px solid ${theme.colors.amber[5]}`,
             outlineOffset: "2px",
             borderRadius: "8px",
           },
-        }}
+          "a:hover": {
+            backgroundSize: "100% 2px !important",
+          },
+        })}
       />
       <Notifications />
       <RouterProvider router={router} />

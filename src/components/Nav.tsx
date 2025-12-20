@@ -1,5 +1,5 @@
 import { Container, Group, Anchor } from "@mantine/core";
-import { Link, useLocation, useMatch, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { navVisibility } from "../config/nav";
 import { useState } from "react";
 import PrimaryButton from "./PrimaryButton";
@@ -21,27 +21,18 @@ const LINKS: LinkItem[] = [
 function NavItem({
   to,
   label,
-  exact = false,
   usesRouter = true,
 }: {
   to: string;
   label: string;
-  exact?: boolean;
   usesRouter?: boolean;
 }) {
-  const pattern = exact ? to : `${to}/*`;
   const location = useLocation();
   const navigate = useNavigate();
 
   const isHashLink = !usesRouter || to.startsWith("#");
 
   // Hooks must be called unconditionally. For hash links, use a pattern that will never match.
-  const routerPattern = isHashLink ? "/__hash__" : pattern;
-  const match = useMatch(routerPattern);
-
-  const active = isHashLink
-    ? location.pathname === "/" && location.hash === to
-    : Boolean(match);
 
   const [hover, setHover] = useState(false);
 
@@ -51,7 +42,7 @@ function NavItem({
       to={!isHashLink ? to : undefined}
       href={isHashLink ? to : undefined}
       title={label}
-      onClick={(e: { preventDefault: () => void; }) => {
+      onClick={(e: { preventDefault: () => void }) => {
         if (!isHashLink) return;
         e.preventDefault();
 
@@ -77,16 +68,7 @@ function NavItem({
       onMouseLeave={() => setHover(false)}
       style={{
         color: "var(--mantine-color-white)",
-        opacity: active || hover ? 1 : 0.75,
-        // Underline effect
-        textDecorationColor: "transparent",
-        backgroundImage:
-          "linear-gradient(var(--mantine-color-amber-5), var(--mantine-color-amber-5))",
-        backgroundSize: hover ? "100% 2px" : "0% 2px",
-        backgroundPosition: "0% 100%",
-        backgroundRepeat: "no-repeat",
-        transition:
-          "background-size 200ms ease-in-out, opacity 150ms ease-in-out, transform 150ms ease-in-out",
+        opacity: hover ? 1 : 0.8,
       }}
     >
       {label}
@@ -98,7 +80,7 @@ export default function Nav() {
   const visibleLinks = LINKS.filter((l) => navVisibility[l.key]);
 
   return (
-    <Container size="lg" h="100%" >
+    <Container size="lg" h="100%">
       <Group justify="space-between" align="center" h="100%">
         <Anchor
           component={Link}
@@ -119,20 +101,20 @@ export default function Nav() {
 
         <Group gap="xl" align="center">
           {visibleLinks.map((link) => {
-            const exact = link.to === "/";
             return (
               <NavItem
                 key={link.key}
                 to={link.to}
                 label={link.label}
-                exact={exact}
                 usesRouter={link.usesRouter}
               />
             );
           })}
 
           {navVisibility.resume && (
-            <PrimaryButton target="_blank" href="/Adam_Rodi_Resume.pdf">Resume</PrimaryButton>
+            <PrimaryButton target="_blank" href="/Adam_Rodi_Resume.pdf">
+              Resume
+            </PrimaryButton>
           )}
         </Group>
       </Group>
