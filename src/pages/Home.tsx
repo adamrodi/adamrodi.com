@@ -10,7 +10,10 @@ import {
   Group,
   Image,
 } from "@mantine/core";
-import { IconArrowRight } from "@tabler/icons-react";
+import {
+  IconMail,
+  IconArrowRight,
+} from "@tabler/icons-react";
 import PrimaryButton from "../components/PrimaryButton";
 import SecondaryButton from "../components/SecondaryButton";
 import CaseStudyCard from "../components/CaseStudyCard";
@@ -91,7 +94,7 @@ export default function Home() {
             </Text>
           </Title>
 
-          <Text ta="center" c="dimmed" maw={720}>
+          <Text ta="center" c="dimmed" maw={600}>
             Click a project to read its case study. Each is a deep dive into the
             problem, the decisions behind the solution, and what I learned along
             the way.
@@ -156,7 +159,10 @@ export default function Home() {
                     Hello! I’m Adam and I like building with code. My interest
                     in programming started in high school (10th grade) when I
                     took an intro to JavaScript, HTML, and CSS course from{" "}
-                    <Anchor href="https://www.operationspark.org" target="_blank">
+                    <Anchor
+                      href="https://www.operationspark.org"
+                      target="_blank"
+                    >
                       Operation Spark
                     </Anchor>
                     . During this time, I built 4 web projects and showed them
@@ -218,54 +224,39 @@ export default function Home() {
         </Box>
       </Box>
 
-
       {/* CONTACT */}
-      <Box
-        id="contact"
-        mih="100vh"
-        py={120}
-      >
+      <Box id="contact" py={120}>
         <Stack align="center" gap={14} mb={64}>
           <Text tt="uppercase" size="sm" fw={700} c="dimmed" lts={1}>
-            My Inbox
+            Contact Me
           </Text>
 
           <Title order={2} size="3rem" lh={1.1} ta="center">
-            Contact{" "}
+            Let’s{" "}
             <Text span inherit c="amber.5">
-              Me
+              Connect
             </Text>
           </Title>
 
-          <Text ta="center" c="dimmed" maw={720}>
-            Reach out if you want to connect, collaborate on 
-            a project, or just say hi!
+          <Text ta="center" c="dimmed" maw={600}>
+            If you have any feedback or would like to discuss potential
+            opportunities, please reach out! I would love to connect and
+            learn about exciting projects and roles.
           </Text>
         </Stack>
-        <Box w="100%">
-          <Card withBorder radius="lg" shadow="sm" p="lg">
-            <Text>
-              Reach me at{" "}
-              <Anchor href="mailto:adamcrodi123@yahoo.com" target="_blank">
-                adamcrodi123@yahoo.com
-              </Anchor>{" "}
-              or connect on{" "}
-              <Anchor
-                href="https://www.linkedin.com/in/adamrodi"
-                target="_blank"
-              >
-                LinkedIn
-              </Anchor>{" "}
-              and{" "}
-              <Anchor href="https://github.com/adamrodi" target="_blank">
-                GitHub
-              </Anchor>
-            </Text>
-          </Card>
+        <Box w="100%" ta="center">
+          <PrimaryButton
+            justify="center"
+            href="mailto:adamcrodi123@yahoo.com"
+            size="lg"
+          >
+            <Group align="center" gap={8}>
+              <IconMail size={20} />
+              <span>Email Me</span>
+            </Group>
+          </PrimaryButton>
         </Box>
       </Box>
-
-      
     </Container>
   );
 }

@@ -65,7 +65,6 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
           "Inter, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Helvetica, Arial, Apple Color Emoji, Segoe UI Emoji",
         headings: { fontWeight: "700" },
         defaultRadius: "lg",
-        
       }}
     >
       <Global
@@ -81,12 +80,6 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
             outline: "2px solid theme.colors.amber[5]",
             outlineOffset: "2px",
             borderRadius: "8px",
-          },
-
-          /* Subtle hover color for links */
-          "a:hover": {
-            textDecoration: "none",
-            color: "amber.5",
           },
         }}
       />

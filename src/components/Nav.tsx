@@ -1,5 +1,5 @@
 import { Container, Group, Anchor } from "@mantine/core";
-import { Link, useMatch } from "react-router-dom";
+import { Link, useLocation, useMatch, useNavigate } from "react-router-dom";
 import { navVisibility } from "../config/nav";
 import { useState } from "react";
 import PrimaryButton from "./PrimaryButton";
@@ -13,30 +13,66 @@ type LinkItem = {
 
 const LINKS: LinkItem[] = [
   { key: "home", label: "Home", to: "/", usesRouter: true },
-  { key: "projects", label: "Projects", to: "/projects", usesRouter: true },
-  { key: "contact", label: "Contact", to: "/#contact", usesRouter: false },
-  { key: "about", label: "About", to: "/about", usesRouter: true },
+  { key: "projects", label: "Projects", to: "#projects" },
+  { key: "about", label: "About", to: "#about" },
+  { key: "contact", label: "Contact", to: "#contact" },
 ];
 
 function NavItem({
   to,
   label,
   exact = false,
+  usesRouter = true,
 }: {
   to: string;
   label: string;
   exact?: boolean;
+  usesRouter?: boolean;
 }) {
   const pattern = exact ? to : `${to}/*`;
-  const match = useMatch(pattern);
-  const active = Boolean(match);
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  const isHashLink = !usesRouter || to.startsWith("#");
+
+  // Hooks must be called unconditionally. For hash links, use a pattern that will never match.
+  const routerPattern = isHashLink ? "/__hash__" : pattern;
+  const match = useMatch(routerPattern);
+
+  const active = isHashLink
+    ? location.pathname === "/" && location.hash === to
+    : Boolean(match);
+
   const [hover, setHover] = useState(false);
 
   return (
     <Anchor
-      component={Link}
-      to={to}
+      component={isHashLink ? "a" : (Link as any)}
+      to={!isHashLink ? to : undefined}
+      href={isHashLink ? to : undefined}
       title={label}
+      onClick={(e: { preventDefault: () => void; }) => {
+        if (!isHashLink) return;
+        e.preventDefault();
+
+        const hash = to.startsWith("#") ? to : `#${to}`;
+
+        // If we're not on the home route, navigate there first with the hash.
+        if (location.pathname !== "/") {
+          navigate(`/${hash}`);
+          return;
+        }
+
+        // Update the URL hash without a full reload.
+        if (location.hash !== hash) {
+          navigate(hash, { replace: false });
+        }
+
+        const el = document.querySelector(hash);
+        if (el) {
+          el.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+      }}
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
       style={{
@@ -90,6 +126,7 @@ export default function Nav() {
                 to={link.to}
                 label={link.label}
                 exact={exact}
+                usesRouter={link.usesRouter}
               />
             );
           })}
