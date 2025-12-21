@@ -1,6 +1,7 @@
 import { useParams, useLocation, useNavigate } from "react-router-dom";
-import { Title, Text, Anchor, Group, Badge, Divider } from "@mantine/core";
+import { Title, Text, Anchor } from "@mantine/core";
 import { PROJECTS } from "../data/projects";
+import { ProjectMeta } from "../components/ProjectMeta";
 
 export default function ProjectDetail() {
   const { slug } = useParams<{ slug: string }>();
@@ -45,28 +46,18 @@ export default function ProjectDetail() {
       <Text c="dimmed" mt="xs">
         {project.summary}
       </Text>
-      <Group mt="sm">
-        {project.chips.map((c) => (
-          <Badge key={c} variant="light">
-            {c}
-          </Badge>
-        ))}
-      </Group>
-
-      <Group mt="md" gap="lg">
-        {project.links?.demo && (
-          <Anchor href={project.links.demo} target="_blank" rel="noreferrer">
-            Live Demo
-          </Anchor>
-        )}
-        {project.links?.repo && (
-          <Anchor href={project.links.repo} target="_blank" rel="noreferrer">
-            GitHub
-          </Anchor>
-        )}
-      </Group>
-
-      <Divider my="lg" />
+      <ProjectMeta
+        type={project.type}
+        stack={project.stack}
+        links={[
+          ...(project.links?.live_demo
+            ? [{ type: "live" as const, href: project.links.live_demo }]
+            : []),
+          ...(project.links?.repo
+            ? [{ type: "github" as const, href: project.links.repo }]
+            : []),
+        ]}
+      />
 
       {project.sections.map((section) => (
         <section key={section.heading}>

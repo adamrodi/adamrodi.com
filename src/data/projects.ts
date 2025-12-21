@@ -5,8 +5,11 @@ export type ProjectSection = { heading: string; body: string };
 export type Project = {
   title: string;
   summary: string;
-  chips: string[];
-  links?: { demo?: string; repo?: string };
+
+  // ProjectMeta fields
+  type?: string;
+  stack: string[];
+  links?: { live_demo?: string; repo?: string };
   sections: ProjectSection[];
 };
 
@@ -15,8 +18,9 @@ export const PROJECTS: Record<string, Project> = {
     title: "Multiplayer Game Server",
     summary:
       "Real-time Rust backend with matchmaking and WebSockets, deployed on a VM.",
-    chips: ["Rust", "Axum", "Tokio", "React", "TypeScript"],
-    links: { demo: "https://adamrodi.com/game", repo: "#" },
+    type: "Personal Project",
+    stack: ["Rust", "Axum", "Tokio", "React", "TypeScript"],
+    links: { live_demo: "https://adamrodi.com/game", repo: "#" },
     sections: [
       {
         heading: "Problem",
@@ -44,8 +48,9 @@ export const PROJECTS: Record<string, Project> = {
     title: "AWS OpenSearch Troubleshooting Bot",
     summary:
       "Lex + Lambda chatbot to triage and resolve common OpenSearch yellow/red cluster issues.",
-    chips: ["AWS Lex", "Lambda", "CloudWatch", "API Gateway"],
-    links: { demo: "#", repo: "#" },
+    type: "Internship Project",
+    stack: ["AWS Lex", "Lambda", "CloudWatch", "API Gateway"],
+    links: { live_demo: "#", repo: "#" },
     sections: [
       {
         heading: "Problem",
@@ -78,8 +83,9 @@ export const PROJECTS: Record<string, Project> = {
     title: "Zebrafish Neural Data Mining",
     summary:
       "Unsupervised clustering and visualization of zebrafish brain imaging data for stress vs control group differentiation.",
-    chips: ["Python", "NumPy", "pandas", "matplotlib"],
-    links: { demo: "#", repo: "#" },
+    type: "Research Project",
+    stack: ["Python", "NumPy", "pandas", "matplotlib"],
+    links: { live_demo: "#", repo: "#" },
     sections: [
       {
         heading: "Problem",
