@@ -26,7 +26,7 @@ export default function CaseStudyCard({
       radius="xl"
       shadow="sm"
       p={0}
-      onClick={() => navigate(link)}
+      onClick={() => navigate(link, { state: { from: "home" } })}
       style={{
         cursor: "pointer",
         transition: "transform 0.2s ease, box-shadow 0.2s ease",
@@ -43,7 +43,7 @@ export default function CaseStudyCard({
         <Image
           src={heroImage}
           alt={title}
-          height={360}
+          height={500}
           fit="cover"
         />
       </Box>
