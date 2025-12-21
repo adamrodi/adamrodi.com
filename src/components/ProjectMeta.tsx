@@ -1,4 +1,11 @@
-import { Anchor, Group, SimpleGrid, Stack, Text } from "@mantine/core";
+import {
+  Anchor,
+  Group,
+  SimpleGrid,
+  Stack,
+  Text,
+  Card,
+} from "@mantine/core";
 
 export type ProjectLink = {
   type: "live" | "github" | "docs" | "video";
@@ -12,42 +19,38 @@ export type ProjectMetaProps = {
   links?: ProjectLink[];
 };
 
-export function ProjectMeta({
-  type,
-  stack,
-  links,
-}: ProjectMetaProps) {
-  const hasAnyMeta =
-    type || (stack && stack.length) || (links && links.length);
+export function ProjectMeta({ type, stack, links }: ProjectMetaProps) {
+  const hasAnyMeta = type || (stack && stack.length) || (links && links.length);
   if (!hasAnyMeta) return null;
 
   return (
-    <SimpleGrid cols={3} spacing="md" verticalSpacing="md" mt="lg">
-      {type && <MetaCol label="Type">{type}</MetaCol>}
+    <Card px="xl" py="lg" shadow="sm">
+      <SimpleGrid cols={3}>
+        {type && <MetaCol label="Type">{type}</MetaCol>}
 
-      {stack && stack.length > 0 && (
-        <MetaCol label="Stack">
-          <Stack gap={6}>
-            {stack.map((tech) => (
-              <Text key={tech} size="sm">
-                {tech}
-              </Text>
-            ))}
-          </Stack>
-        </MetaCol>
-      )}
+        {stack && stack.length > 0 && (
+          <MetaCol label="Stack">
+            <Stack gap={6}>
+              {stack.map((tech) => (
+                <Text key={tech} size="sm">
+                  {tech}
+                </Text>
+              ))}
+            </Stack>
+          </MetaCol>
+        )}
 
-
-      {links && links.length > 0 && (
-        <MetaCol label="Links">
-          <Stack gap={6}>
-            {links.map((link) => (
-              <LinkRow key={`${link.type}:${link.href}`} link={link} />
-            ))}
-          </Stack>
-        </MetaCol>
-      )}
-    </SimpleGrid>
+        {links && links.length > 0 && (
+          <MetaCol label="Links">
+            <Stack gap={6}>
+              {links.map((link) => (
+                <LinkRow key={`${link.type}:${link.href}`} link={link} />
+              ))}
+            </Stack>
+          </MetaCol>
+        )}
+      </SimpleGrid>
+    </Card>
   );
 }
 
@@ -60,14 +63,10 @@ function MetaCol({
 }) {
   return (
     <Stack gap={10}>
-      <Text size="xs" fw={700} tt="uppercase" c="dimmed" lts={0.6}>
+      <Text size="sm" fw={700} tt="uppercase" lts={0.6}>
         {label}
       </Text>
-      {typeof children === "string" ? (
-        <Text size="sm">{children}</Text>
-      ) : (
-        children
-      )}
+      {children}
     </Stack>
   );
 }
@@ -84,12 +83,12 @@ function LinkRow({ link }: { link: ProjectLink }) {
 
   return (
     <Group gap={6} wrap="nowrap">
-        
       <Anchor
         href={link.href}
         target="_blank"
         rel="noopener noreferrer"
-        fw={600}
+        size="sm"
+        className="underlineLink"
       >
         {label}
       </Anchor>
