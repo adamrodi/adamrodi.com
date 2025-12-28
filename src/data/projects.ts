@@ -1,5 +1,3 @@
-// src/data/projects.ts
-
 export type ProjectSection = { heading: string; body: string };
 
 export type Project = {
@@ -15,32 +13,119 @@ export type Project = {
 
 export const PROJECTS: Record<string, Project> = {
   "multiplayer-game-server": {
-    title: "Multiplayer Game Server",
-    summary:
-      "Real-time Rust backend with matchmaking and WebSockets, deployed on a VM.",
-    type: "Personal Project",
-    stack: ["Rust", "Axum", "Tokio", "React", "TypeScript"],
-    links: { live_demo: "https://adamrodi.com/game", repo: "#" },
+    title: "Real-Time Multiplayer Game & Chat Server",
+    summary: `
+A WebSocket-based multiplayer platform built in Rust to explore **real-time systems**, **concurrency**, and **backend architecture** in a team setting.
+
+Users can create or join game rooms, play multiplayer games, and chat live while playing.
+
+The games themselves are intentionally simple; the technical focus was on building **correct, observable, real-time infrastructure** rather than complex game mechanics.
+`,
+    type: "University Course Project (Team of 4)",
+    stack: ["Rust", "Axum", "Tokio", "WebSockets", "React", "TypeScript"],
+    links: {
+      live_demo: "https://adamrodi.com/game",
+      repo: "https://github.com/arlemoine/CMPS401/tree/main/Project",
+    },
     sections: [
       {
-        heading: "Problem",
-        body: "Enable multiple players to create/join matches by code and keep game state in sync with low latency.",
+        heading: "Context & Goals",
+        body: `
+This project was built for a university course as a collaborative team effort.
+
+I served as the **backend architecture lead** and assigned group leader, with primary responsibility for system design decisions.
+
+The primary goals were:
+- Move beyond request–response backends
+- Gain hands-on experience with **real-time, asynchronous systems**
+- Manage shared state across multiple concurrent clients
+`,
       },
       {
-        heading: "Architecture",
-        body: "Rust (Axum/Tokio) WebSocket server; in-memory session registry; broadcast loop; React client; VM behind reverse proxy.",
+        heading: "Architecture Overview",
+        body: `
+The backend is an **asynchronous Rust WebSocket server** built with Axum and Tokio.
+
+The server is **authoritative**:
+- Clients send intent
+- The server validates actions
+- Game state is mutated centrally
+- Updates are broadcast to the appropriate room
+
+Each game room is isolated, allowing multiple games and chat sessions to run concurrently without shared-state leakage.
+`,
       },
       {
-        heading: "Key Decisions",
-        body: "WebSockets for stateful updates; Axum/Tokio for async; simple JSON protocol for clarity and speed.",
+        heading: "WebSockets & Concurrency Challenges",
+        body: `
+WebSockets required a fundamentally different programming model than request–response systems.
+
+Key challenges included:
+- Managing long-lived connections
+- Coordinating sender and receiver channels
+- Broadcasting messages to many clients
+
+We also had to handle:
+- Unexpected disconnects
+- Invalid client behavior
+- Consistent shared-state updates under concurrency
+`,
       },
       {
-        heading: "Impact",
-        body: "Stable sessions under concurrent play; predictable tick loop; clear separation of transport vs game logic.",
+        heading: "Message Protocol Design",
+        body: `
+I designed and documented the **message protocol** used across games and chat.
+
+All communication flows through a **typed JSON envelope**, with messages defined by intent:
+- Join room
+- Make move
+- Send chat message
+
+Treating the protocol as a living document significantly reduced frontend–backend integration issues and improved team alignment.
+`,
       },
       {
-        heading: "Next",
-        body: "Add Redis for persistence; metrics; reconnect handling; horizontal scaling strategy.",
+        heading: "Game State Management (UNO)",
+        body: `
+While all games shared the same infrastructure, I implemented the **UNO game model**, which required more complex state management.
+
+The server enforces:
+- Turn order
+- Action validation
+- Card effects
+
+After each move:
+- Public state is broadcast to all players
+- Private hand data is sent only to the owning client
+
+This reinforced the importance of an **authoritative backend** in real-time systems.
+`,
+      },
+      {
+        heading: "Deployment & Real-World Behavior",
+        body: `
+I deployed the backend to a **personal VM** and ran the production WebSocket server.
+
+Running the system in production exposed issues that never appeared locally:
+- Malformed messages
+- Network disconnects
+- Timing-related edge cases
+
+These observations grounded the system in real-world behavior.
+`,
+      },
+      {
+        heading: "Key Learnings",
+        body: `
+This project demonstrated how quickly complexity emerges in real-time systems—even with simple domains.
+
+Key takeaways:
+- Clear protocol design is critical
+- State ownership must be disciplined
+- Documentation matters in async systems
+
+Most importantly, it strengthened my ability to **learn outside my comfort zone** and contribute effectively on a backend team.
+`,
       },
     ],
   },
@@ -54,28 +139,44 @@ export const PROJECTS: Record<string, Project> = {
     sections: [
       {
         heading: "Problem",
-        body:
-          "Manual triage of yellow/red state clusters required repetitive checks for node failures, low disk, or JVM pressure. We aimed to automate diagnostics through a conversational interface.",
+        body: `
+Manual triage of yellow/red state clusters required repetitive checks for node failures, low disk, or JVM pressure.
+
+We aimed to automate diagnostics through a conversational interface.
+`,
       },
       {
         heading: "Architecture",
-        body:
-          "AWS Lex chatbot triggers Lambda functions via intents; each Lambda path corresponds to a diagnostic cause. Logs and metrics tracked in CloudWatch; optional API Gateway integration for external triggers.",
+        body: `
+- AWS Lex chatbot triggers Lambda functions via intents
+- Each Lambda path corresponds to a diagnostic cause
+- Logs and metrics tracked in CloudWatch
+- Optional API Gateway integration for external triggers
+`,
       },
       {
         heading: "Key Decisions",
-        body:
-          "Used Lex for guided conversation flow and modular decision trees; designed stateless Lambdas; standardized responses for consistent troubleshooting guidance.",
+        body: `
+- Used Lex for guided conversation flow and modular decision trees
+- Designed stateless Lambdas
+- Standardized responses for consistent troubleshooting guidance
+`,
       },
       {
         heading: "Impact",
-        body:
-          "Reduced triage time for common yellow-cluster incidents; improved reproducibility of diagnostic steps; increased transparency for support engineers.",
+        body: `
+- Reduced triage time for common yellow-cluster incidents
+- Improved reproducibility of diagnostic steps
+- Increased transparency for support engineers
+`,
       },
       {
         heading: "Next",
-        body:
-          "Integrate with incident runbooks; expand coverage to red-cluster states; add feedback metrics for diagnostic accuracy.",
+        body: `
+- Integrate with incident runbooks
+- Expand coverage to red-cluster states
+- Add feedback metrics for diagnostic accuracy
+`,
       },
     ],
   },
@@ -89,28 +190,40 @@ export const PROJECTS: Record<string, Project> = {
     sections: [
       {
         heading: "Problem",
-        body:
-          "Analyze zebrafish brain imaging data to identify differences between stress and control groups without labeled outcomes.",
+        body: `
+Analyze zebrafish brain imaging data to identify differences between stress and control groups without labeled outcomes.
+`,
       },
       {
         heading: "Architecture",
-        body:
-          "Used Python with pandas and NumPy for preprocessing, then applied dimensionality reduction and clustering methods to reveal structure in neural activity data.",
+        body: `
+- Used Python with pandas and NumPy for preprocessing
+- Applied dimensionality reduction and clustering methods
+- Revealed structure in neural activity data
+`,
       },
       {
         heading: "Key Decisions",
-        body:
-          "Selected unsupervised methods due to lack of labels; visualized clusters with matplotlib; tuned preprocessing pipeline for noise reduction and normalization.",
+        body: `
+- Selected unsupervised methods due to lack of labels
+- Visualized clusters with matplotlib
+- Tuned preprocessing pipeline for noise reduction and normalization
+`,
       },
       {
         heading: "Impact",
-        body:
-          "Found distinct neural activation patterns between stress and control groups; visualized clusters that aligned with known biological expectations.",
+        body: `
+- Found distinct neural activation patterns between stress and control groups
+- Visualized clusters that aligned with known biological expectations
+`,
       },
       {
         heading: "Next",
-        body:
-          "Experiment with semi-supervised extensions; integrate temporal dynamics; validate results on larger datasets.",
+        body: `
+- Experiment with semi-supervised extensions
+- Integrate temporal dynamics
+- Validate results on larger datasets
+`,
       },
     ],
   },

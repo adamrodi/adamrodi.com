@@ -2,6 +2,7 @@ import { useParams, useLocation, useNavigate } from "react-router-dom";
 import { Anchor, Box, Container, Stack, Text, Title } from "@mantine/core";
 import { PROJECTS } from "../data/projects";
 import { ProjectMeta } from "../components/ProjectMeta";
+import { Markdown } from "../components/Markdown";
 
 export default function ProjectDetail() {
   const { slug } = useParams<{ slug: string }>();
@@ -59,20 +60,20 @@ export default function ProjectDetail() {
           />
 
 
-        {/* Summary: keep it readable like the screenshot */}
-        <Text c="dimmed" fz="md" lh={1.7}>
-          {project.summary}
-        </Text>
+        {/* Summary (Markdown) */}
+        <Box>
+          <Markdown content={project.summary} />
+        </Box>
 
-        <Stack gap="xl" mt="md">
+        <Stack gap="50px" >
           {project.sections.map((section) => (
             <section key={section.heading}>
-              <Title order={3} fz={22} lh={1.25}>
+              <Title order={2} lh={1.25}>
                 {section.heading}
               </Title>
-              <Text c="dimmed" mt="xs" lh={1.8}>
-                {section.body}
-              </Text>
+              <Box mt="md">
+                <Markdown content={section.body} />
+              </Box>
             </section>
           ))}
         </Stack>
