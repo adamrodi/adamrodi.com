@@ -24,7 +24,7 @@ export function ProjectMeta({ type, stack, links }: ProjectMetaProps) {
   if (!hasAnyMeta) return null;
 
   return (
-    <Card px="xl" py="lg" shadow="sm">
+    <Card px="xl" py="lg" shadow="sm" my="lg">
       <SimpleGrid cols={3}>
         {type && <MetaCol label="Type">{type}</MetaCol>}
 

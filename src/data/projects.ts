@@ -15,13 +15,15 @@ export const PROJECTS: Record<string, Project> = {
   "multiplayer-game-server": {
     title: "Real-Time Multiplayer Game & Chat Server",
     summary: `
-A WebSocket-based multiplayer platform built in Rust to explore **real-time systems**, **concurrency**, and **backend architecture** in a team setting.
+A WebSocket-based multiplayer platform built in Rust to explore real-time systems, concurrency, and backend architecture in a team setting.
 
 Users can create or join game rooms, play multiplayer games, and chat live while playing.
 
-The games themselves are intentionally simple; the technical focus was on building **correct, observable, real-time infrastructure** rather than complex game mechanics.
+The games themselves are intentionally simple; the technical focus was on building multiplayer, real-time infrastructure using the WebSocket protocol rather than complex game mechanics.
+
+![Multiplayer Game Server Demo](/public/cargo_games/cargo_games_hero.png "A game of UNO in progress on the site.")
 `,
-    type: "University Course Project (Team of 4)",
+    type: "University Course Project",
     stack: ["Rust", "Axum", "Tokio", "WebSockets", "React", "TypeScript"],
     links: {
       live_demo: "https://adamrodi.com/game",
@@ -29,22 +31,28 @@ The games themselves are intentionally simple; the technical focus was on buildi
     },
     sections: [
       {
-        heading: "Context & Goals",
+        heading: "Context & My Role",
         body: `
-This project was built for a university course as a collaborative team effort.
+This project was built for a university course as a collaborative team effort. We had four members, with two members focusing on frontend and two on backend development.
 
-I served as the **backend architecture lead** and assigned group leader, with primary responsibility for system design decisions.
+I served as the backend architecture lead and was assigned group leader, with primary ownership over the WebSocket implementation, message protocol design, and deployment.
+I also implemented the UNO and Rock-Paper-Scissors game logic, validation, and state management.
 
-The primary goals were:
-- Move beyond request–response backends
-- Gain hands-on experience with **real-time, asynchronous systems**
-- Manage shared state across multiple concurrent clients
+The project spanned approximately eight weeks, from idea to final presentation.
+`,
+      },
+      {
+        heading: "Why This Project?",
+        body: `
+Most of my prior backend experience was in request–response systems (e.g., REST APIs). For this course, I wanted to push beyond that comfort zone and work on a system that requires long-lived connections, event-driven data flow (rather than transactional), shared state across concurrent clients, and real-time updates.
+
+A real-time multiplayer game and chat server forced us to confront these challenges directly. The goal wasn't to build new or complex games. It was to build robust infrastructure that could support them correctly. With that being said, we did implement a lobby-based chat feature, and three games (UNO, Rock-Paper-Scissors, and Tic-Tac-Toe) to validate our system.
 `,
       },
       {
         heading: "Architecture Overview",
         body: `
-The backend is an **asynchronous Rust WebSocket server** built with Axum and Tokio.
+The backend is written in Rust, using an asynchronous WebSocket model to support concurrent clients and real-time two-way communication between client and server.
 
 The server is **authoritative**:
 - Clients send intent
