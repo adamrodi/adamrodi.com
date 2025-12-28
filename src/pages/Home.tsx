@@ -48,6 +48,7 @@ export default function Home() {
                     href="#projects"
                     size="lg"
                     rightSection={<IconArrowRight size={20} />}
+                    smooth-scroll
                   >
                     View Projects
                   </PrimaryButton>

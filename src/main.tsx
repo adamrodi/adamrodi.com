@@ -76,9 +76,12 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
     >
       <Global
         styles={(theme) => ({
+          html: {
+            scrollBehavior: "smooth",
+          },
           "html:focus-within": { scrollBehavior: "smooth" },
           "@media (prefers-reduced-motion: reduce)": {
-            "html:focus-within": { scrollBehavior: "auto" },
+            "html, html:focus-within": { scrollBehavior: "auto" },
           },
 
           ":focus": { outline: "none" },
