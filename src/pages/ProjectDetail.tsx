@@ -48,7 +48,6 @@ export default function ProjectDetail() {
           />
 
 
-        {/* Summary (Markdown) */}
         <Box>
           <Markdown content={project.summary} />
         </Box>

@@ -21,7 +21,7 @@ Users can create or join game rooms, play multiplayer games, and chat live while
 
 The games themselves are intentionally simple; the technical focus was on building multiplayer, real-time infrastructure using the WebSocket protocol rather than complex game mechanics.
 
-![Multiplayer Game Server Demo](/public/cargo_games/cargo_games_hero.png "A game of UNO in progress on the site.")
+![Multiplayer Game Server Demo](/cargo_games/cargo_games_hero.png "A game of UNO in progress on the site.")
 `,
     type: "University Course Project",
     stack: ["Rust", "Axum", "Tokio", "WebSockets", "React", "TypeScript"],
@@ -44,52 +44,63 @@ The project spanned approximately eight weeks, from idea to final presentation.
       {
         heading: "Why This Project?",
         body: `
-Most of my prior backend experience was in request–response systems (e.g., REST APIs). For this course, I wanted to push beyond that comfort zone and work on a system that requires long-lived connections, event-driven data flow (rather than transactional), shared state across concurrent clients, and real-time updates.
+Most of my prior backend experience was in request–response systems (e.g., REST APIs). For this course, I wanted to push beyond that comfort zone by working on a system that requires:
+- long-lived connections 
+- event-driven data flow (rather than transactional)
+- shared state across concurrent clients
+- real-time updates
 
-A real-time multiplayer game and chat server forced us to confront these challenges directly. The goal wasn't to build new or complex games. It was to build robust infrastructure that could support them correctly. With that being said, we did implement a lobby-based chat feature, and three games (UNO, Rock-Paper-Scissors, and Tic-Tac-Toe) to validate our system.
+A real-time multiplayer game and chat server forced us to confront these challenges directly. The goal wasn't to build new or complex games. It was to build robust infrastructure that could support them. With that being said, we did implement three games (UNO, Rock-Paper-Scissors, and Tic-Tac-Toe) and a lobby-based chat feature to validate our system.
 `,
       },
       {
         heading: "Architecture Overview",
         body: `
-The backend is written in Rust, using an asynchronous WebSocket model to support concurrent clients and real-time two-way communication between client and server.
+The backend is a real-time, asynchronous WebSocket server written in Rust and organized around room-scoped, authoritative state. Clients maintain long-lived connections and send intent-based messages, while the server validates all actions, mutates state, and broadcasts updates to the appropriate room.
 
-The server is **authoritative**:
-- Clients send intent
-- The server validates actions
-- Game state is mutated centrally
-- Updates are broadcast to the appropriate room
+To manage the freedom and complexity of WebSockets, the system is built around a strict, typed message protocol shared across all games and chat. Messages are routed by type and game_id, allowing multiple games and chat sessions to run concurrently without shared-state conflicts.
 
-Each game room is isolated, allowing multiple games and chat sessions to run concurrently without shared-state leakage.
+Key architectural components:
+- **WebSocket Connections**: Each client maintains a persistent WebSocket connection to the server.
+- **Rooms**: Each game or chat session occurs within a room, isolating state and messages.
+- **Message Protocol**: All communication uses a typed JSON envelope which acts as a contract between frontend and backend.
+- **Authoritative Server**: The server is the single source of truth, validating all client actions and managing game state.
+
+Example (UNO):
+The server enforces turn order, validates card plays, applies card effects, and broadcasts public game state to all players, while sending private hand updates only to the owning client. This separation of public vs private state was a core design challenge and reinforced the importance of server authority in multiplayer systems.
+
 `,
       },
       {
-        heading: "WebSockets & Concurrency Challenges",
+        heading: "WebSockets: The Core Challenge",
         body: `
-WebSockets required a fundamentally different programming model than request–response systems.
+The hardest part of this project was adapting to the WebSocket programming model. Unlike request-response systems, WebSockets requires you to think in terms of:
+- two-way communication
+- sender and receiver channels
+- broadcasts vs direct messages
+- partial failures (disconnects, invalid messages, race conditions)
 
-Key challenges included:
-- Managing long-lived connections
-- Coordinating sender and receiver channels
-- Broadcasting messages to many clients
+As a team, this was our first time building anything with this architecture. We quickly learned that the freedom WebSockets provides can become a liability without structure.
 
-We also had to handle:
-- Unexpected disconnects
-- Invalid client behavior
-- Consistent shared-state updates under concurrency
+To address this:
+- We agreed on a message protocol early to standardize communication.
+- We documented every message type and expected behavior.
+- Each backend team member owned specific message types and their handling logic.
+
+This upfront discipline reduced integration issues between frontend and backend and made debugging far more manageable.
 `,
       },
       {
         heading: "Message Protocol Design",
         body: `
-I designed and documented the **message protocol** used across games and chat.
+I designed and documented the [message protocol](https://github.com/arlemoine/CMPS401/blob/main/Project/docs/message_protocol.md) used for Rock-Paper-Scissors and UNO and co-designed the protocol for chat and game room messages.
 
-All communication flows through a **typed JSON envelope**, with messages defined by intent:
-- Join room
-- Make move
-- Send chat message
+Key characteristics:
+- Single JSON envelope with typed message variants
+- Separation of concerns through message types (e.g., game actions vs chat messages)
+- Server generated authoritative responses and broadcasts
 
-Treating the protocol as a living document significantly reduced frontend–backend integration issues and improved team alignment.
+Maintaining the protocol as a living document became critical to team velocity and correctness, especially as new games and features were added.
 `,
       },
       {
@@ -100,39 +111,25 @@ While all games shared the same infrastructure, I implemented the **UNO game mod
 The server enforces:
 - Turn order
 - Action validation
-- Card effects
+- Card effects (e.g., Draw Two, Skip, Reverse)
 
 After each move:
 - Public state is broadcast to all players
 - Private hand data is sent only to the owning client
 
-This reinforced the importance of an **authoritative backend** in real-time systems.
-`,
-      },
-      {
-        heading: "Deployment & Real-World Behavior",
-        body: `
-I deployed the backend to a **personal VM** and ran the production WebSocket server.
-
-Running the system in production exposed issues that never appeared locally:
-- Malformed messages
-- Network disconnects
-- Timing-related edge cases
-
-These observations grounded the system in real-world behavior.
 `,
       },
       {
         heading: "Key Learnings",
         body: `
-This project demonstrated how quickly complexity emerges in real-time systems—even with simple domains.
+This project taught me lessons I wouldn't have learned from request-response systems alone.
 
 Key takeaways:
-- Clear protocol design is critical
+- Clear protocol design is critical for collaboration
 - State ownership must be disciplined
-- Documentation matters in async systems
+- Real-time systems require thinking about data flow differently than traditional APIs
 
-Most importantly, it strengthened my ability to **learn outside my comfort zone** and contribute effectively on a backend team.
+Most importantly, it strengthened my ability to **learn quickly when outside my comfort zone** and own development tasks with unfamiliar technologies.
 `,
       },
     ],

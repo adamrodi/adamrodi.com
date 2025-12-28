@@ -1,6 +1,6 @@
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
-import { Text, Title, List, Image, Code } from "@mantine/core";
+import { Text, Title, List, Image, Code, Anchor } from "@mantine/core";
 
 export function Markdown({ content }: { content: string }) {
   return (
@@ -45,7 +45,7 @@ export function Markdown({ content }: { content: string }) {
         code: ({ children }) => <Code>{children}</Code>,
 
         pre: ({ children }) => (
-          <Code block my="sm">
+          <Code block my="sm" >
             {children}
           </Code>
         ),
@@ -68,6 +68,19 @@ export function Markdown({ content }: { content: string }) {
             ) : null}
           </figure>
         ),
+
+        a: ({ href, children }) => {
+          return (
+            <Anchor
+              href={href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="underlineLink"
+            >
+              {children}
+            </Anchor>
+          );
+        },
       }}
     >
       {content}

@@ -18,7 +18,6 @@ export default function PrimaryButton({
 
   return (
     <Button
-      smooth-scroll
       radius="xl"
       component="a"
       href={href}
