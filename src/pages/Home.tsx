@@ -101,15 +101,15 @@ export default function Home() {
 
         <Stack gap={48}>
           <CaseStudyCard
-            title="Multiplayer Game Server"
+            title="Cargo Games: Real-Time Multiplayer Game & Chat Server"
             category="Backend Systems"
             heroImage="/cargo_games/cargo_games_hero.png"
             hook="I wanted real-time multiplayer to feel instant, so I designed a Rust WebSocket server with a clean protocol, matchmaking, and concurrency in mind."
             proof="Designed structured message types and matchmaking flows to support scalable real-time gameplay."
-            link="/projects/multiplayer-game-server"
+            link="/projects/cargo-games"
           />
 
-          <CaseStudyCard
+          {/* <CaseStudyCard
             title="AWS OpenSearch Troubleshooting Bot"
             category="Cloud Automation"
             heroImage="/opensearch_chatbot/chatbot_hero.png"
@@ -125,12 +125,13 @@ export default function Home() {
             hook="We explored whether unsupervised learning could distinguish neural activity patterns across experimental conditions."
             proof="Applied clustering and visualization techniques to high-dimensional imaging data."
             link="/projects/zebrafish-data-mining"
-          />
+          /> */}
+
         </Stack>
 
-        <Box ta="center" mt={64}>
+        {/* <Box ta="center" mt={64}>
           <PrimaryButton href="/projects">View all projects →</PrimaryButton>
-        </Box>
+        </Box> */}
       </Box>
 
       {/* About Me */}

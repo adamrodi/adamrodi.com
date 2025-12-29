@@ -26,7 +26,7 @@ export default function CaseStudyCard({
       radius="xl"
       shadow="sm"
       p={0}
-      onClick={() => navigate(link, { state: { from: "home" } })}
+      onClick={() => navigate(link)}
       style={{
         cursor: "pointer",
         transition: "transform 0.2s ease, box-shadow 0.2s ease",

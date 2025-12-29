@@ -12,8 +12,8 @@ export type Project = {
 };
 
 export const PROJECTS: Record<string, Project> = {
-  "multiplayer-game-server": {
-    title: "Real-Time Multiplayer Game & Chat Server",
+  "cargo-games": {
+    title: "Cargo Games: Real-Time Multiplayer Game & Chat Server",
     summary: `
 A WebSocket-based multiplayer platform built in Rust to explore real-time systems, concurrency, and backend architecture in a team setting.
 
@@ -35,10 +35,10 @@ The games themselves are intentionally simple; the technical focus was on buildi
         body: `
 This project was built for a university course as a collaborative team effort. We had four members, with two members focusing on frontend and two on backend development.
 
-I served as the backend architecture lead and was assigned group leader, with primary ownership over the WebSocket implementation, message protocol design, and deployment.
+I served as a backend developer and was assigned group leader, with primary ownership over the WebSocket implementation, message protocol design, and VM deployment.
 I also implemented the UNO and Rock-Paper-Scissors game logic, validation, and state management.
 
-The project spanned approximately eight weeks, from idea to final presentation.
+The project spanned approximately 2 months, from idea to final presentation.
 `,
       },
       {
@@ -48,9 +48,11 @@ Most of my prior backend experience was in request–response systems (e.g., RES
 - long-lived connections 
 - event-driven data flow (rather than transactional)
 - shared state across concurrent clients
-- real-time updates
+- and real-time updates
 
-A real-time multiplayer game and chat server forced us to confront these challenges directly. The goal wasn't to build new or complex games. It was to build robust infrastructure that could support them. With that being said, we did implement three games (UNO, Rock-Paper-Scissors, and Tic-Tac-Toe) and a lobby-based chat feature to validate our system.
+A real-time multiplayer game and chat server forced us to confront these challenges directly. The goal wasn't to build new or complex games. It was to build robust infrastructure that could support them. 
+
+With that being said, we did implement three games (UNO, Rock-Paper-Scissors, and Tic-Tac-Toe) and a lobby-based chat feature to validate our system.
 `,
       },
       {
@@ -66,16 +68,26 @@ Key architectural components:
 - **Message Protocol**: All communication uses a typed JSON envelope which acts as a contract between frontend and backend.
 - **Authoritative Server**: The server is the single source of truth, validating all client actions and managing game state.
 
-Example (UNO):
-The server enforces turn order, validates card plays, applies card effects, and broadcasts public game state to all players, while sending private hand updates only to the owning client. This separation of public vs private state was a core design challenge and reinforced the importance of server authority in multiplayer systems.
+#### Example (UNO):
+
+The server:
+- enforces turn order 
+- validates card plays
+- applies card effects
+- broadcasts public game state to all players
+- sends private hand updates only to the owning client 
+
+This separation of public vs private state was a design challenge and reinforced the importance of server authority in our architecture.
+
+![Architecture Diagram](/cargo_games/architecture_diagram_cargo_games.drawio.svg "High-level architecture of the multiplayer game server.")
 
 `,
       },
       {
         heading: "WebSockets: The Core Challenge",
         body: `
-The hardest part of this project was adapting to the WebSocket programming model. Unlike request-response systems, WebSockets requires you to think in terms of:
-- two-way communication
+The biggest mindset shift for this project was adapting to the WebSocket programming model. Unlike request-response systems, WebSockets requires you to think in terms of:
+- two-way continuous communication
 - sender and receiver channels
 - broadcasts vs direct messages
 - partial failures (disconnects, invalid messages, race conditions)
@@ -93,7 +105,7 @@ This upfront discipline reduced integration issues between frontend and backend 
       {
         heading: "Message Protocol Design",
         body: `
-I designed and documented the [message protocol](https://github.com/arlemoine/CMPS401/blob/main/Project/docs/message_protocol.md) used for Rock-Paper-Scissors and UNO and co-designed the protocol for chat and game room messages.
+I designed and documented the [message protocol](https://github.com/arlemoine/CMPS401/blob/main/Project/docs/message_protocol.md) used for Rock-Paper-Scissors and UNO and co-designed the protocol for chat and game room connection messages.
 
 Key characteristics:
 - Single JSON envelope with typed message variants
