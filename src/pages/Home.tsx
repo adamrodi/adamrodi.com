@@ -38,7 +38,7 @@ export default function Home() {
                 </Stack>
 
                 <Text size="xl" c="dimmed" p={0}>
-                  I'm a senior Computer Science and Data Science student at
+                  I'm a junior Computer Science and Data Science student at
                   Southeastern Louisiana University focused on full-stack
                   development, cloud infrastructure, and applied AI projects.
                 </Text>
