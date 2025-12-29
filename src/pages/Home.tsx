@@ -203,7 +203,7 @@ export default function Home() {
                   </Text>
 
                   <Text>
-                    Today, I’m a senior Computer Science student most excited by
+                    Today, I’m a junior Computer Science student most excited by
                     working on tough and impactful engineering problems
                     alongside people who challenge me to grow.
                   </Text>
