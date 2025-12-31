@@ -21,7 +21,9 @@ Users can create or join game rooms, play multiplayer games, and chat live while
 
 The games themselves are intentionally simple; the technical focus was on building multiplayer, real-time infrastructure using the WebSocket protocol rather than complex game mechanics.
 
-![Multiplayer Game Server Demo](/cargo_games/cargo_games_hero.png "A game of UNO in progress on the site.")
+![Cargo Games Landing Page](/cargo_games/hero_light_cargo_games.png "Landing page of Cargo Games showing games.")
+
+![Uno In Progress](/cargo_games/uno_in_progress_light.png "A game of UNO between three legends.")
 `,
     type: "University Course Project",
     stack: ["Rust", "Axum", "Tokio", "WebSockets", "React", "TypeScript"],
@@ -36,7 +38,9 @@ The games themselves are intentionally simple; the technical focus was on buildi
 This project was built for a university course as a collaborative team effort. We had four members, with two members focusing on frontend and two on backend development.
 
 I served as a backend developer and was assigned group leader, with primary ownership over the WebSocket implementation, message protocol design, and VM deployment.
-I also implemented the UNO and Rock-Paper-Scissors game logic, validation, and state management.
+I also implemented the UNO and Rock-Paper-Scissors game logic, validation, and state management. 
+
+This case study focuses on the backend architecture and implementation since my primary contributions were there.
 
 The project spanned approximately 2 months, from idea to final presentation.
 `,
@@ -52,7 +56,9 @@ Most of my prior backend experience was in request–response systems (e.g., RES
 
 A real-time multiplayer game and chat server forced us to confront these challenges directly. The goal wasn't to build new or complex games. It was to build robust infrastructure that could support them. 
 
-With that being said, we did implement three games (UNO, Rock-Paper-Scissors, and Tic-Tac-Toe) and a lobby-based chat feature to validate our system.
+With that being said, we did implement three games: UNO, Rock-Paper-Scissors, and Tic-Tac-Toe; and a lobby-based chat feature to validate our system.
+
+![REST vs WebSockets](/cargo_games/rest_vs_ws_light.svg "Comparison of REST request-response model vs WebSocket continuous connection model.")
 `,
       },
       {

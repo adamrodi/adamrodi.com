@@ -3,6 +3,7 @@ import { Box, Container, Stack, Text, Title } from "@mantine/core";
 import { PROJECTS } from "../data/projects";
 import { ProjectMeta } from "../components/ProjectMeta";
 import { Markdown } from "../components/Markdown";
+import ThanksForReading from "../components/ThanksForReading";
 
 export default function ProjectDetail() {
   const { slug } = useParams<{ slug: string }>();
@@ -64,6 +65,7 @@ export default function ProjectDetail() {
             </section>
           ))}
         </Stack>
+        <ThanksForReading />
       </Stack>
     </Container>
   );

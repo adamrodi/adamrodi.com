@@ -103,7 +103,7 @@ export default function Home() {
           <CaseStudyCard
             title="Cargo Games: Real-Time Multiplayer Game & Chat Server"
             category="Backend Systems"
-            heroImage="/cargo_games/cargo_games_hero.png"
+            heroImage="/cargo_games/hero_light_cargo_games.png"
             hook="I wanted real-time multiplayer to feel instant, so I designed a Rust WebSocket server with a clean protocol, matchmaking, and concurrency in mind."
             proof="Designed structured message types and matchmaking flows to support scalable real-time gameplay."
             link="/projects/cargo-games"
