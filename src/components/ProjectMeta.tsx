@@ -22,10 +22,15 @@ export type ProjectMetaProps = {
 export function ProjectMeta({ type, stack, links }: ProjectMetaProps) {
   const hasAnyMeta = type || (stack && stack.length) || (links && links.length);
   if (!hasAnyMeta) return null;
+  const numCols = [
+    type ? 1 : 0,
+    stack && stack.length ? 1 : 0,
+    links && links.length ? 1 : 0,
+  ].reduce((a, b) => a + b, 0);
 
   return (
     <Card px="xl" py="lg" shadow="sm" my="lg">
-      <SimpleGrid cols={3}>
+      <SimpleGrid cols={numCols} spacing="lg">
         {type && <MetaCol label="Type">{type}</MetaCol>}
 
         {stack && stack.length > 0 && (

@@ -1,6 +1,7 @@
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
-import { Text, Title, List, Image, Code, Anchor } from "@mantine/core";
+import { Text, Title, List, Code, Anchor, } from "@mantine/core";
+import MarkdownClickToFullscreenImage from "./MarkdownClickToFullscreenImage";
 
 export function Markdown({ content }: { content: string }) {
   return (
@@ -54,13 +55,14 @@ export function Markdown({ content }: { content: string }) {
           <figure
             style={{ margin: "50px -200px 0px -200px", textAlign: "center" }}
           >
-            <Image
-              src={src ?? ""}
-              alt={alt ?? ""}
-              radius="lg"
-              maw="1100px"
-              w="100%"
-            />
+            {src ? (
+              <MarkdownClickToFullscreenImage
+                src={src}
+                alt={alt ?? ""}
+                title={title}
+              />
+            ) : null}
+
             {title ? (
               <Text size="sm" c="dimmed" ta="center" mt="xs">
                 {title}

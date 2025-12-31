@@ -108,24 +108,15 @@ export default function Home() {
             proof="Designed structured message types and matchmaking flows to support scalable real-time gameplay."
             link="/projects/cargo-games"
           />
-
-          {/* <CaseStudyCard
-            title="AWS OpenSearch Troubleshooting Bot"
-            category="Cloud Automation"
-            heroImage="/opensearch_chatbot/chatbot_hero.png"
-            hook="Diagnosing OpenSearch cluster issues is slow and error-prone, so I built a guided chatbot to automate yellow-state diagnosis."
-            proof="Translated operational runbooks into decision-tree driven Lex flows backed by Lambda."
-            link="/projects/opensearch-troubleshooting-bot"
+          <CaseStudyCard
+            title="Activ-Ate: Full-Stack Fitness & Nutrition Tracker"
+            category="Full-Stack Development"
+            heroImage="/activ_ate/hero_light_activ-ate.png"
+            hook="Built a comprehensive fitness and nutrition tracker with user authentication, data visualization, and responsive design."
+            proof="Implemented workout logging, nutrition tracking, and progress charts with a seamless user experience."
+            link="/projects/activ-ate"
           />
 
-          <CaseStudyCard
-            title="Zebrafish Neural Data Mining"
-            category="Applied Machine Learning"
-            heroImage="/zebrafish_project/zebrafish_hero.png"
-            hook="We explored whether unsupervised learning could distinguish neural activity patterns across experimental conditions."
-            proof="Applied clustering and visualization techniques to high-dimensional imaging data."
-            link="/projects/zebrafish-data-mining"
-          /> */}
 
         </Stack>
 

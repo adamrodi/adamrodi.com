@@ -152,100 +152,125 @@ Most importantly, it strengthened my ability to **learn quickly when outside my 
       },
     ],
   },
-  "opensearch-troubleshooting-bot": {
-    title: "AWS OpenSearch Troubleshooting Bot",
-    summary:
-      "Lex + Lambda chatbot to triage and resolve common OpenSearch yellow/red cluster issues.",
-    type: "Internship Project",
-    stack: ["AWS Lex", "Lambda", "CloudWatch", "API Gateway"],
-    links: { live_demo: "#", repo: "#" },
-    sections: [
-      {
-        heading: "Problem",
-        body: `
-Manual triage of yellow/red state clusters required repetitive checks for node failures, low disk, or JVM pressure.
 
-We aimed to automate diagnostics through a conversational interface.
+  "activ-ate": {
+    title: "Activ-Ate: Full-Stack Fitness & Nutrition Tracker",
+    summary: `
+A full-stack web application built to track workouts and nutrition logs with persistent user-specific data.
+
+This was a team-based university course project with a complete frontend, backend, and database layer. The source code and deployment are not publicly available due to academic constraints, but the application can be run locally.
 `,
-      },
-      {
-        heading: "Architecture",
-        body: `
-- AWS Lex chatbot triggers Lambda functions via intents
-- Each Lambda path corresponds to a diagnostic cause
-- Logs and metrics tracked in CloudWatch
-- Optional API Gateway integration for external triggers
-`,
-      },
-      {
-        heading: "Key Decisions",
-        body: `
-- Used Lex for guided conversation flow and modular decision trees
-- Designed stateless Lambdas
-- Standardized responses for consistent troubleshooting guidance
-`,
-      },
-      {
-        heading: "Impact",
-        body: `
-- Reduced triage time for common yellow-cluster incidents
-- Improved reproducibility of diagnostic steps
-- Increased transparency for support engineers
-`,
-      },
-      {
-        heading: "Next",
-        body: `
-- Integrate with incident runbooks
-- Expand coverage to red-cluster states
-- Add feedback metrics for diagnostic accuracy
-`,
-      },
-    ],
-  },
-  "zebrafish-data-mining": {
-    title: "Zebrafish Neural Data Mining",
-    summary:
-      "Unsupervised clustering and visualization of zebrafish brain imaging data for stress vs control group differentiation.",
-    type: "Research Project",
-    stack: ["Python", "NumPy", "pandas", "matplotlib"],
-    links: { live_demo: "#", repo: "#" },
+    type: "University Course Group Project",
+    stack: ["C#", "ASP.NET Core", "REST APIs", "React", "TypeScript", "SQL"],
     sections: [
       {
-        heading: "Problem",
+        heading: "Context & My Role",
         body: `
-Analyze zebrafish brain imaging data to identify differences between stress and control groups without labeled outcomes.
+Activ-Ate was built as part of a software engineering course in a small team setting.
+
+My contributions focused on the backend and integration points between layers:
+- Implementing and refining REST endpoints
+- Defining request/response shapes and validation rules
+- Designing and evolving the data model to support logging workflows
+- Collaborating with the frontend to keep API contracts stable during iteration
+
+This case study focuses on system design decisions and lessons learned from shipping an end-to-end app under real constraints (time, scope, and coordination).
 `,
       },
       {
-        heading: "Architecture",
+        heading: "Problem & Scope",
         body: `
-- Used Python with pandas and NumPy for preprocessing
-- Applied dimensionality reduction and clustering methods
-- Revealed structure in neural activity data
+Many beginner fitness apps turn into "feature lists" without clear boundaries. For this project we prioritized a smaller, reliable end-to-end system over breadth.
+
+Core goals:
+- Persist user-specific workout and nutrition entries
+- Provide clean CRUD flows through a consistent API
+- Keep the frontend responsive and state-consistent while data changes
+
+Non-goals (intentionally excluded due to scope):
+- Public hosting
+- Full authentication/authorization
+- Automated testing and CI
 `,
       },
       {
-        heading: "Key Decisions",
+        heading: "Architecture Overview",
         body: `
-- Selected unsupervised methods due to lack of labels
-- Visualized clusters with matplotlib
-- Tuned preprocessing pipeline for noise reduction and normalization
+Activ-Ate follows a classic three-tier web architecture:
+
+- **Frontend (React)**: Presents forms, tables, and progress views.
+- **Backend (ASP.NET Core)**: Owns business rules, validation, and API orchestration.
+- **Database (SQL)**: Persists workouts, meals, and progress-related entities.
+
+The separation between UI, API, and persistence helped us divide work across the team, iterate quickly, and reduce merge conflicts.
 `,
       },
       {
-        heading: "Impact",
+        heading: "Data Modeling",
         body: `
-- Found distinct neural activation patterns between stress and control groups
-- Visualized clusters that aligned with known biological expectations
+A major part of making the app feel "real" was getting the data model right.
+
+We modeled the application around user-owned entries (e.g., workouts and nutrition logs) with timestamps and structured fields to support common workflows:
+- Logging an entry (create)
+- Editing past entries (update)
+- Reviewing history (read)
+- Removing incorrect entries (delete)
+
+As requirements changed, we had to evolve the schema without breaking existing flows — which highlighted how tightly UI assumptions can couple to persistence if you’re not careful.
 `,
       },
       {
-        heading: "Next",
+        heading: "API Design & Validation",
         body: `
-- Experiment with semi-supervised extensions
-- Integrate temporal dynamics
-- Validate results on larger datasets
+Because multiple teammates were working across layers, the API contract mattered as much as the implementation.
+
+Key patterns we leaned on:
+- Consistent JSON shapes and naming
+- Defensive validation for input data (required fields, ranges, and basic sanity checks)
+- Clear separation between "client intent" (requests) and "server truth" (responses)
+
+Keeping endpoints predictable reduced frontend complexity and made debugging integration issues much faster.
+`,
+      },
+      {
+        heading: "Frontend–Backend Integration",
+        body: `
+The most time-consuming issues weren’t individual bugs — they were mismatches between frontend expectations and backend behavior.
+
+To reduce this friction:
+- We agreed on endpoint behavior early (including edge cases)
+- We standardized error responses so the UI could handle failures gracefully
+- We iterated in small vertical slices (UI → API → DB) to keep the app always runnable
+
+This approach made local development smoother and helped the team maintain momentum.
+`,
+      },
+      {
+        heading: "Challenges & What I’d Improve",
+        body: `
+**Challenges we ran into:**
+- Coordinating API changes across a team
+- Keeping UI state consistent as backend responses evolved
+- Making scope decisions under time constraints
+
+**If I revisited Activ-Ate today:**
+- Add authentication/authorization and per-user isolation as a first-class concern
+- Add automated API tests for core flows
+- Introduce better observability (structured logs, clearer error taxonomy)
+- Deploy a minimal hosted version (even if limited) to reduce "local-only" friction
+`,
+      },
+      {
+        heading: "Key Learnings",
+        body: `
+Activ-Ate was my first project where the main goal was not a clever algorithm — it was shipping a reliable, integrated system.
+
+Key takeaways:
+- End-to-end consistency matters more than feature count
+- Stable API contracts speed up teams
+- Data modeling decisions show up everywhere (UI, validation, and future iteration)
+
+This project is a strong baseline for how I approach building product systems: small surface area, clear contracts, and steady iteration.
 `,
       },
     ],
