@@ -111,7 +111,7 @@ export default function Home() {
           <CaseStudyCard
             title="Activ-Ate: Full-Stack Fitness & Nutrition Tracker"
             category="Full-Stack Development"
-            heroImage="/activ_ate/hero_light_activ-ate.png"
+            heroImage="/activ-ate/activ-ate_macros_wide.png"
             hook="Built a comprehensive fitness and nutrition tracker with user authentication, data visualization, and responsive design."
             proof="Implemented workout logging, nutrition tracking, and progress charts with a seamless user experience."
             link="/projects/activ-ate"

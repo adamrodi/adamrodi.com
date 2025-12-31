@@ -159,6 +159,10 @@ Most importantly, it strengthened my ability to **learn quickly when outside my 
 A full-stack web application built to track workouts and nutrition logs with persistent user-specific data.
 
 This was a team-based university course project with a complete frontend, backend, and database layer. The source code and deployment are not publicly available due to academic constraints, but the application can be run locally.
+
+![Activ-Ate Landing Page](/activ-ate/activ-ate_hero.png "Landing page of Activ-Ate.")
+
+![Activ-Ate Macros View](/activ-ate/activ-ate_macros.png "Nutrition tracking page showing one days macro-nutrient breakdown.")
 `,
     type: "University Course Group Project",
     stack: ["C#", "ASP.NET Core", "REST APIs", "React", "TypeScript", "SQL"],
