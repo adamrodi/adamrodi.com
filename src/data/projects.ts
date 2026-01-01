@@ -156,9 +156,7 @@ Most importantly, it strengthened my ability to **learn quickly when outside my 
   "activ-ate": {
     title: "Activ-Ate: Full-Stack Fitness & Nutrition Tracker",
     summary: `
-A full-stack web application built to track workouts and nutrition logs with persistent user-specific data.
-
-This was a team-based university course project with a complete frontend, backend, and database layer. The source code and deployment are not publicly available due to academic constraints, but the application can be run locally.
+A full-stack web application built to track workouts and nutrition with persistent user-specific data.
 
 ![Activ-Ate Landing Page](/activ-ate/activ-ate_hero.png "Landing page of Activ-Ate.")
 
@@ -170,13 +168,16 @@ This was a team-based university course project with a complete frontend, backen
       {
         heading: "Context & My Role",
         body: `
-Activ-Ate was built as part of a software engineering course in a small team setting.
+Activ-Ate was built as part of a lower division software engineering course in a four person team. The goal was to build a full-stack web application with end-to-end functionality.
 
-My contributions focused on the backend and integration points between layers:
-- Implementing and refining REST endpoints
-- Defining request/response shapes and validation rules
-- Designing and evolving the data model to support logging workflows
-- Collaborating with the frontend to keep API contracts stable during iteration
+Specifically, we wanted to design a complete system that includes a relational database layer, backend that exposes a RESTful API, and a frontend client.
+
+My contributions focused on owning the nutrition tracking domain on all layers:
+- Developing backend API endpoints for CRUD operations on nutrition data
+- Implementing frontend components for logging and viewing nutrition information
+- Integrating frontend and backend through consistent API contracts
+
+Additionally, I contributed to the overall data modeling and database schema design.
 
 This case study focuses on system design decisions and lessons learned from shipping an end-to-end app under real constraints (time, scope, and coordination).
 `,
@@ -221,6 +222,8 @@ We modeled the application around user-owned entries (e.g., workouts and nutriti
 - Removing incorrect entries (delete)
 
 As requirements changed, we had to evolve the schema without breaking existing flows — which highlighted how tightly UI assumptions can couple to persistence if you’re not careful.
+
+![Database Schema](/activ-ate/dbdiagram_activ-ate.png "Entity-relationship diagram showing the database schema for Activ-Ate.")
 `,
       },
       {
