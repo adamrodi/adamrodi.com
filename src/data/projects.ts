@@ -156,11 +156,16 @@ Most importantly, it strengthened my ability to **learn quickly when outside my 
   "activ-ate": {
     title: "Activ-Ate: Full-Stack Fitness & Nutrition Tracker",
     summary: `
-A full-stack web application built to track workouts and nutrition with persistent user-specific data.
+Activ-Ate is a full-stack web application built in a lower-division software engineering course to provide my first experience developing a complete, end-to-end software product. The project required coordinating a React frontend, an ASP.NET Core backend, and a relational database so that user data and application state remained consistent across the entire stack.
+
+The application supports logging workouts and nutrition data, viewing historical entries, and tracking progress over time. 
+While the feature set is intentionally general, the primary value of the project was in building real software with multiple layers and teammates working together.
+
+This case study focuses on system integration, data modeling, and API design decisions that emerged from building and connecting all parts of the application into a single working system.
 
 ![Activ-Ate Landing Page](/activ-ate/activ-ate_hero.png "Landing page of Activ-Ate.")
 
-![Activ-Ate Macros View](/activ-ate/activ-ate_macros.png "Nutrition tracking page showing one days macro-nutrient breakdown.")
+![Activ-Ate Macros View](/activ-ate/activ-ate_macros.png "Nutrition tracking page showing one day's macro-nutrient breakdown.")
 `,
     type: "University Course Group Project",
     stack: ["C#", "ASP.NET Core", "REST APIs", "React", "TypeScript", "SQL"],
@@ -168,116 +173,116 @@ A full-stack web application built to track workouts and nutrition with persiste
       {
         heading: "Context & My Role",
         body: `
-Activ-Ate was built as part of a lower division software engineering course in a four person team. The goal was to build a full-stack web application with end-to-end functionality.
+Activ-Ate was built as part of a lower-division software engineering course in a four-person team. 
+The primary objective of the course was to give students hands-on experience building a complete application that resembles a real software product, rather than working on isolated programming assignments.
 
-Specifically, we wanted to design a complete system that includes a relational database layer, backend that exposes a RESTful API, and a frontend client.
+The project required coordinating a frontend, backend, and database so that all parts of the system worked together as a single unit. 
+This meant making design decisions that affected multiple layers and revisiting those decisions as they evolved over the course of development.
 
-My contributions focused on owning the nutrition tracking domain on all layers:
-- Developing backend API endpoints for CRUD operations on nutrition data
-- Implementing frontend components for logging and viewing nutrition information
-- Integrating frontend and backend through consistent API contracts
+My contributions focused on owning the nutrition tracking domain across the stack:
+- Implementing backend REST API endpoints to create, read, update, and delete nutrition data
+- Building frontend components for logging and viewing nutrition information
+- Integrating the frontend and backend through consistent API contracts and data models
 
-Additionally, I contributed to the overall data modeling and database schema design.
+In addition to this vertical ownership, I also contributed to data modeling and database schema design for the entire application. 
 
-This case study focuses on system design decisions and lessons learned from shipping an end-to-end app under real constraints (time, scope, and coordination).
+This role gave me direct exposure to how individual implementation decisions propagate across a full system when multiple people are working on interconnected components.
 `,
       },
       {
         heading: "Problem & Scope",
         body: `
-Many beginner fitness apps turn into "feature lists" without clear boundaries. For this project we prioritized a smaller, reliable end-to-end system over breadth.
+The goal of this project was not to design a highly specialized fitness product, but to build a complete application that exercised the full software stack from user interaction down to data persistence.
 
-Core goals:
-- Persist user-specific workout and nutrition entries
-- Provide clean CRUD flows through a consistent API
-- Keep the frontend responsive and state-consistent while data changes
+At a functional level, the system needed to support a small set of core behaviors:
+- Persisting user-entered workout and nutrition data
+- Allowing users to view and modify historical entries
+- Keeping frontend state consistent with backend data as changes occurred
 
-Non-goals (intentionally excluded due to scope):
-- Public hosting
-- Full authentication/authorization
-- Automated testing and CI
+Because this was an early end-to-end project, the application remained intentionally general in scope. This generality surfaced the complexity involved in coordinating data models, APIs, and UI behavior across multiple layers, which was the primary learning objective of the project rather than feature depth or product differentiation.
 `,
       },
       {
         heading: "Architecture Overview",
         body: `
-Activ-Ate follows a classic three-tier web architecture:
+Activ-Ate uses a three-tier web architecture to separate presentation, application logic, and data persistence.
 
-- **Frontend (React)**: Presents forms, tables, and progress views.
-- **Backend (ASP.NET Core)**: Owns business rules, validation, and API orchestration.
-- **Database (SQL)**: Persists workouts, meals, and progress-related entities.
+- **Frontend (React + TypeScript)**: Responsible for user interaction, form input, and rendering workout and nutrition views.
+- **Backend (ASP.NET Core + C#)**: Exposes REST endpoints, applies validation and business rules, and mediates access to persisted data.
+- **Database (SQL)**: Stores workouts, nutrition logs, and related user-owned records.
 
-The separation between UI, API, and persistence helped us divide work across the team, iterate quickly, and reduce merge conflicts.
+In our course workflow, we built the system in phases: database schema first, then backend endpoints, and finally the frontend UI. Even with this linear progression, the separation between layers helped keep responsibilities clear and made it easier to reason about changes as we connected the full stack.
 `,
       },
       {
         heading: "Data Modeling",
         body: `
-A major part of making the app feel "real" was getting the data model right.
+A key part of building a usable end-to-end system was designing data models that could support common user workflows without tightly coupling the UI to the database.
 
-We modeled the application around user-owned entries (e.g., workouts and nutrition logs) with timestamps and structured fields to support common workflows:
-- Logging an entry (create)
-- Editing past entries (update)
-- Reviewing history (read)
-- Removing incorrect entries (delete)
+We modeled the application around user-owned records (such as food logs and exercise logs) with structured fields to support core behaviors:
+- Logging new entries
+- Editing existing entries
+- Viewing historical data over time
+- Removing incorrect or outdated entries
 
-As requirements changed, we had to evolve the schema without breaking existing flows — which highlighted how tightly UI assumptions can couple to persistence if you’re not careful.
+As development progressed, changes to frontend requirements often required corresponding adjustments to the data model. Working through these changes showed how early modeling decisions impact the API and UI logic, and reinforced the importance of treating data design as a first-class part of the system.
 
 ![Database Schema](/activ-ate/dbdiagram_activ-ate.png "Entity-relationship diagram showing the database schema for Activ-Ate.")
 `,
       },
       {
-        heading: "API Design & Validation",
+        heading: "REST API Design",
         body: `
-Because multiple teammates were working across layers, the API contract mattered as much as the implementation.
+We built Activ-Ate in phases (database → backend → frontend), which meant the API became the bridge between a stable persistence layer and the UI we built later.
 
-Key patterns we leaned on:
-- Consistent JSON shapes and naming
-- Defensive validation for input data (required fields, ranges, and basic sanity checks)
-- Clear separation between "client intent" (requests) and "server truth" (responses)
+The backend exposed a set of REST endpoints that represented clear operations on workouts and nutrition data. Once the frontend started consuming these endpoints, even small API changes could ripple into UI behavior, which reinforced the importance of keeping the API surface stable and predictable.
 
-Keeping endpoints predictable reduced frontend complexity and made debugging integration issues much faster.
+To support this, we focused on a few concrete principles:
+- Using consistent JSON request and response shapes across endpoints
+- Validating input data at the API boundary (required fields, basic ranges, and type checks)
+- Treating server responses as the source of truth for application state
+
+Being deliberate about API design reduced ambiguity between layers and made it easier to debug integration issues when something went wrong.
 `,
       },
       {
         heading: "Frontend–Backend Integration",
         body: `
-The most time-consuming issues weren’t individual bugs — they were mismatches between frontend expectations and backend behavior.
+Integration work accelerated once the frontend was introduced on top of the existing backend. At this stage, many of the most time-consuming issues were not isolated bugs, but mismatches between frontend needs and backend behavior.
 
 To reduce this friction:
-- We agreed on endpoint behavior early (including edge cases)
-- We standardized error responses so the UI could handle failures gracefully
-- We iterated in small vertical slices (UI → API → DB) to keep the app always runnable
+- We refined endpoint behavior as UI requirements became concrete
+- We added endpoints to support missing workflows discovered during frontend development
+- We worked in small vertical slices (UI → API → DB) to keep the application runnable as features were added
 
-This approach made local development smoother and helped the team maintain momentum.
+Working through these integration issues reinforced how closely frontend behavior depends on backend guarantees, and why clear contracts matter even in relatively small systems.
 `,
       },
       {
-        heading: "Challenges & What I’d Improve",
+        heading: "Looking Forward",
         body: `
-**Challenges we ran into:**
-- Coordinating API changes across a team
-- Keeping UI state consistent as backend responses evolved
-- Making scope decisions under time constraints
+Building Activ-Ate provided a concrete reference point for what a complete product system looks like once all layers are connected.
 
-**If I revisited Activ-Ate today:**
-- Add authentication/authorization and per-user isolation as a first-class concern
-- Add automated API tests for core flows
-- Introduce better observability (structured logs, clearer error taxonomy)
-- Deploy a minimal hosted version (even if limited) to reduce "local-only" friction
+If I were to extend this project further, I would focus on strengthening areas that become increasingly important as systems grow:
+- Adding automated tests around core API workflows
+- Improving observability to make system behavior easier to inspect and debug
+- Deploying a minimal hosted version to reduce reliance on local setup
+
+These changes reflect how my thinking about system robustness and maintainability has evolved since completing the project.
 `,
       },
       {
         heading: "Key Learnings",
         body: `
-Activ-Ate was my first project where the main goal was not a clever algorithm — it was shipping a reliable, integrated system.
+Activ-Ate was my first project where the primary goal was not a clever algorithm, but shipping a complete, integrated software project.
 
-Key takeaways:
+Working across the full stack reinforced a few lessons that now guide how I approach product-oriented engineering:
+- Data modeling decisions propagate across every layer and are central to an application
 - End-to-end consistency matters more than feature count
-- Stable API contracts speed up teams
-- Data modeling decisions show up everywhere (UI, validation, and future iteration)
+- Good API design reduces friction between frontend and backend development
 
-This project is a strong baseline for how I approach building product systems: small surface area, clear contracts, and steady iteration.
+
+This project serves as a baseline for how I think about building software, and it directly informed how I approached later, more specialized projects.
 `,
       },
     ],
