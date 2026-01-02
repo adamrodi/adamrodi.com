@@ -6,7 +6,6 @@ import { Notifications } from "@mantine/notifications";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import App from "./App";
 import Home from "./pages/Home";
-import Projects from "./pages/Projects";
 import ProjectDetail from "./pages/ProjectDetail";
 import "@mantine/core/styles.css";
 import "@mantine/notifications/styles.css";
@@ -17,7 +16,6 @@ const router = createBrowserRouter([
     element: <App />,
     children: [
       { index: true, element: <Home /> },
-      { path: "projects", element: <Projects /> },
       { path: "projects/:slug", element: <ProjectDetail /> },
     ],
   },
