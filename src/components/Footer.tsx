@@ -8,7 +8,7 @@ import {
 export default function Footer() {
   return (
     <Box component="footer" py={28}>
-      <Container size="lg">
+      <Container size="lg" px={32}>
         <Group justify="space-between" align="center" wrap="wrap" gap="md">
           <Anchor
             c="dimmed"

@@ -13,16 +13,16 @@ export default function App() {
 
   return (
     <AppShell header={{ height: 80 }} padding={0} >
-      <AppShell.Header bd={0} px="16px">
+      <AppShell.Header bd={0}>
         <Nav />
       </AppShell.Header>
-      <AppShell.Main>
-        <Box style={{ minHeight: "calc(100vh - 80px)", display: "flex", flexDirection: "column" }}>
-          <Box style={{ flex: 1 }}>
-            <Container size="lg">
+      <AppShell.Main px={0}>
+        <Box px={0} style={{ minHeight: "calc(100vh - 80px)", display: "flex", flexDirection: "column" }}>
+
+            <Container size="lg" px={0}>
               <Outlet />
             </Container>
-          </Box>
+
           <Footer />
         </Box>
       </AppShell.Main>

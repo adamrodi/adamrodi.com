@@ -10,20 +10,21 @@ import {
   Group,
   Image,
 } from "@mantine/core";
-import { IconMail, IconArrowRight } from "@tabler/icons-react";
+import { IconArrowRight, IconBrandLinkedin } from "@tabler/icons-react";
 import PrimaryButton from "../components/PrimaryButton";
 import SecondaryButton from "../components/SecondaryButton";
 import CaseStudyCard from "../components/CaseStudyCard";
 
 export default function Home() {
   return (
-    <Container size="lg">
+    <Container size="lg" px={32}>
       {/* HERO */}
       <Box
         id="hero"
         mih="calc(100vh - 80px)"
         pt={0}
         pb={120}
+        px={0}
         style={{ display: "flex", alignItems: "center" }}
       >
         <Box w="100%">
@@ -65,12 +66,13 @@ export default function Home() {
             </Grid.Col>
 
             <Grid.Col span={{ base: 12, md: 5 }}>
-              <Card radius="xl" shadow="sm" p={0}>
+              <Card radius="xl" shadow="sm" p={0} maw={500} mx="auto">
                 <Image
                   src="/headshot.jpg"
                   alt="Headshot of Adam Rodi"
                   fit="cover"
                   height={450}
+                  maw={500}
                 />
               </Card>
             </Grid.Col>
@@ -93,7 +95,7 @@ export default function Home() {
           </Title>
 
           <Text ta="center" c="dimmed" maw={600}>
-            Click a project to read its case study. Each is a deep dive into the
+            Click a project to read its case study. Each is a story about the
             problem, the decisions behind the solution, and what I learned along
             the way.
           </Text>
@@ -116,8 +118,6 @@ export default function Home() {
             proof="Implemented workout logging, nutrition tracking, and progress charts with a seamless user experience."
             link="/projects/activ-ate"
           />
-
-
         </Stack>
 
         {/* <Box ta="center" mt={64}>
@@ -138,6 +138,9 @@ export default function Home() {
               Me
             </Text>
           </Title>
+          <Text ta="center" c="dimmed" maw={600}>
+            A quick story on how I got here.
+          </Text>
         </Stack>
 
         <Box w="100%">
@@ -158,7 +161,11 @@ export default function Home() {
                     </Anchor>
                     . During this time, I built 4 web projects and showed them
                     off on{" "}
-                    <Anchor className="underlineLink" href="https://adamrodi.github.io" target="_blank">
+                    <Anchor
+                      className="underlineLink"
+                      href="https://adamrodi.github.io"
+                      target="_blank"
+                    >
                       my first ever (cringe-worthy) portfolio site.
                     </Anchor>
                   </Text>
@@ -179,7 +186,11 @@ export default function Home() {
 
                   <Text>
                     My sophomore summer, I had the privilege of interning at{" "}
-                    <Anchor className="underlineLink" href="https://aws.amazon.com/" target="_blank">
+                    <Anchor
+                      className="underlineLink"
+                      href="https://aws.amazon.com/"
+                      target="_blank"
+                    >
                       one of the largest technology companies on Earth
                     </Anchor>
                     , where peers and mentors raised my standards for my work (
@@ -204,12 +215,13 @@ export default function Home() {
             </Grid.Col>
 
             <Grid.Col span={{ base: 12, md: 5 }}>
-              <Card radius="xl" shadow="sm" p={0}>
+              <Card radius="xl" shadow="sm" p={0} maw={400} mx="auto">
                 <Image
                   src="/headshot.jpg"
                   alt="Headshot of Adam Rodi"
                   fit="cover"
                   height={450}
+                  maw={400}
                 />
               </Card>
             </Grid.Col>
@@ -218,7 +230,7 @@ export default function Home() {
       </Box>
 
       {/* CONTACT */}
-      <Box id="contact" py={120}>
+      <Box id="contact" pt={120} pb={120}>
         <Stack align="center" gap={14} mb={64}>
           <Text tt="uppercase" size="sm" fw={700} c="dimmed" lts={1}>
             Contact Me
@@ -232,20 +244,20 @@ export default function Home() {
           </Title>
 
           <Text ta="center" c="dimmed" maw={600}>
-            If you have any feedback or would like to discuss potential
-            opportunities, please reach out! I would love to connect and learn
-            about exciting projects and roles.
+            Questions, feedback, or just want to connect? Feel free to reach out
+            on LinkedIn.
           </Text>
         </Stack>
         <Box w="100%" ta="center">
           <PrimaryButton
             justify="center"
-            href="mailto:adamcrodi123@yahoo.com"
+            href="https://www.linkedin.com/in/adamrodi/"
             size="lg"
+            target="_blank"
           >
             <Group align="center" gap={8}>
-              <IconMail size={20} />
-              <span>Email Me</span>
+              <IconBrandLinkedin size={20} />
+              <span>Connect on LinkedIn</span>
             </Group>
           </PrimaryButton>
         </Box>

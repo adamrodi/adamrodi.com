@@ -81,7 +81,7 @@ export default function Nav() {
   const visibleLinks = LINKS.filter((l) => navVisibility[l.key]);
 
   return (
-    <Container size="lg" h="100%">
+    <Container size="lg" h="100%" px={32}>
       <Group justify="space-between" align="center" h="100%">
         <Anchor
           component={Link}
