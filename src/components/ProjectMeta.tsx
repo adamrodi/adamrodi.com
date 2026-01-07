@@ -80,7 +80,7 @@ function LinkRow({ link }: { link: ProjectLink }) {
   const label =
     link.label ??
     {
-      live: "View Site",
+      live: "Live Demo",
       github: "GitHub",
       docs: "Docs",
       video: "Video",
