@@ -7,7 +7,7 @@ import {
 
 export default function Footer() {
   return (
-    <Box component="footer" py={28}>
+    <Box component="footer" py={28} bg="dark.8">
       <Container size="lg" px={32}>
         <Group justify="space-between" align="center" wrap="wrap" gap="md">
           <Anchor

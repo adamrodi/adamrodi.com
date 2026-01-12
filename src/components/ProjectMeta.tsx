@@ -29,7 +29,7 @@ export function ProjectMeta({ type, stack, links }: ProjectMetaProps) {
   ].reduce((a, b) => a + b, 0);
 
   return (
-    <Card px="xl" py="lg" shadow="sm" my="lg">
+    <Card px="xl" py="lg" shadow="sm" my="lg" bg="dark.7">
       <SimpleGrid cols={numCols} spacing="lg">
         {type && <MetaCol label="Type">{type}</MetaCol>}
 

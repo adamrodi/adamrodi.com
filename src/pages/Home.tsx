@@ -13,7 +13,7 @@ import {
 import { IconArrowRight, IconBrandLinkedin } from "@tabler/icons-react";
 import PrimaryButton from "../components/PrimaryButton";
 import SecondaryButton from "../components/SecondaryButton";
-import CaseStudyCard from "../components/CaseStudyCard";
+import ProjectCard from "../components/ProjectCard";
 
 export default function Home() {
   return (
@@ -114,20 +114,20 @@ export default function Home() {
           </Stack>
 
           <Stack gap={48}>
-            <CaseStudyCard
+            <ProjectCard
               title="Cargo Games: Real-Time Multiplayer Game & Chat Server"
               category="Backend Systems"
               heroImage="/cargo_games/hero_light_cargo_games.png"
               hook="I wanted real-time multiplayer to feel instant, so I designed a Rust WebSocket server with a clean protocol, matchmaking, and concurrency in mind."
-              proof="Designed structured message types and matchmaking flows to support scalable real-time gameplay."
+              proof="Designed a typed message protocol, game flows, and state synchronization strategies, then deployed the system on a live VM."
               link="/projects/cargo-games"
             />
-            <CaseStudyCard
+            <ProjectCard
               title="Activ-Ate: Full-Stack Fitness & Nutrition Tracker"
               category="Full-Stack Development"
               heroImage="/activ-ate/activ-ate_macros_wide.png"
-              hook="Built a comprehensive fitness and nutrition tracker with user authentication, data visualization, and responsive design."
-              proof="Implemented workout logging, nutrition tracking, and progress charts with a seamless user experience."
+              hook="I set out to understand how to build a usable software product end-to-end, so I built a fitness and nutrition tracker."
+              proof="Owned nutrition tracking across the full stack, including API design, database schema, and UI implementation."
               link="/projects/activ-ate"
             />
           </Stack>
@@ -251,10 +251,11 @@ export default function Home() {
       {/* CONTACT */}
       <Box
         id="contact"
-        style={{
-          background:
-            "linear-gradient(180deg, var(--mantine-color-dark-8) 0%, var(--mantine-color-dark-7) 100%)",
-        }}
+        // style={{
+        //   background:
+        //     "linear-gradient(180deg, var(--mantine-color-dark-8) 100%, var(--mantine-color-dark-7) 100%)",
+        // }}
+        bg="dark.8"
         py={200}
       >
         <Container size="lg" px={32}>

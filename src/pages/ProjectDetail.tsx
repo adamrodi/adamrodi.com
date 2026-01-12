@@ -12,28 +12,28 @@ export default function ProjectDetail() {
   if (!project) {
     return (
       <Container size="sm" py="xl">
-          <Box>
-            <Title order={1}>Project not found</Title>
-            <Text c="dimmed" mt="xs">
-              This project does not exist yet.
-            </Text>
-          </Box>
+        <Box>
+          <Title order={1}>Project not found</Title>
+          <Text c="dimmed" mt="xs">
+            This project does not exist yet.
+          </Text>
+        </Box>
       </Container>
     );
   }
 
   return (
-    <Container size="750px" py="xl">
-      <Stack gap="50px">
-        <Box>
-          <Text size="sm" c="dimmed" fw={600}>
-            Case Study
-          </Text>
-          <Title order={1} mt={6} fz={40} lh={1.15}>
-            {project.title}
-          </Title>
-        </Box>
-
+    <Box bg="dark.8">
+      <Container size="750px" py="xl">
+        <Stack gap="50px">
+          <Box>
+            <Text size="sm" c="dimmed" fw={600}>
+              Case Study
+            </Text>
+            <Title order={1} mt={6} fz={40} lh={1.15}>
+              {project.title}
+            </Title>
+          </Box>
 
           <ProjectMeta
             type={project.type}
@@ -48,25 +48,25 @@ export default function ProjectDetail() {
             ]}
           />
 
+          <Box>
+            <Markdown content={project.summary} />
+          </Box>
 
-        <Box>
-          <Markdown content={project.summary} />
-        </Box>
-
-        <Stack gap="50px" >
-          {project.sections.map((section) => (
-            <section key={section.heading}>
-              <Title order={2} lh={1.25} mb="md">
-                {section.heading}
-              </Title>
-              <Box>
-                <Markdown content={section.body} />
-              </Box>
-            </section>
-          ))}
+          <Stack gap="50px">
+            {project.sections.map((section) => (
+              <section key={section.heading}>
+                <Title order={2} lh={1.25} mb="md">
+                  {section.heading}
+                </Title>
+                <Box>
+                  <Markdown content={section.body} />
+                </Box>
+              </section>
+            ))}
+          </Stack>
+          <ThanksForReading />
         </Stack>
-        <ThanksForReading />
-      </Stack>
-    </Container>
+      </Container>
+    </Box>
   );
 }
