@@ -1,4 +1,4 @@
-import { Container, Group, Anchor } from "@mantine/core";
+import { Box, Container, Group, Anchor } from "@mantine/core";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { navVisibility } from "../config/nav";
 import { useState } from "react";
@@ -81,44 +81,46 @@ export default function Nav() {
   const visibleLinks = LINKS.filter((l) => navVisibility[l.key]);
 
   return (
-    <Container size="lg" h="100%" px={32}>
-      <Group justify="space-between" align="center" h="100%">
-        <Anchor
-          component={Link}
-          to="/"
-          fw={700}
-          fz="xl"
-          aria-label="Go to home"
-          title="Home"
-          style={{
-            color: "var(--mantine-color-white)",
-            opacity: 1,
-            textDecorationColor: "transparent",
-          }}
-        >
-          Adam
-          <span style={{ color: "var(--mantine-color-amber-5)" }}>. </span>
-        </Anchor>
+    <Box bg="dark.8" h="100%">
+      <Container size="lg" h="100%" px={32}>
+        <Group justify="space-between" align="center" h="100%">
+          <Anchor
+            component={Link}
+            to="/"
+            fw={700}
+            fz="xl"
+            aria-label="Go to home"
+            title="Home"
+            style={{
+              color: "var(--mantine-color-white)",
+              opacity: 1,
+              textDecorationColor: "transparent",
+            }}
+          >
+            Adam
+            <span style={{ color: "var(--mantine-color-amber-5)" }}>. </span>
+          </Anchor>
 
-        <Group gap="xl" align="center">
-          {visibleLinks.map((link) => {
-            return (
-              <NavItem
-                key={link.key}
-                to={link.to}
-                label={link.label}
-                usesRouter={link.usesRouter}
-              />
-            );
-          })}
+          <Group gap="xl" align="center">
+            {visibleLinks.map((link) => {
+              return (
+                <NavItem
+                  key={link.key}
+                  to={link.to}
+                  label={link.label}
+                  usesRouter={link.usesRouter}
+                />
+              );
+            })}
 
-          {navVisibility.resume && (
-            <PrimaryButton target="_blank" href="/Adam_Rodi_Resume.pdf">
-              Resume
-            </PrimaryButton>
-          )}
+            {navVisibility.resume && (
+              <PrimaryButton target="_blank" href="/Adam_Rodi_Resume.pdf">
+                Resume
+              </PrimaryButton>
+            )}
+          </Group>
         </Group>
-      </Group>
-    </Container>
+      </Container>
+    </Box>
   );
 }

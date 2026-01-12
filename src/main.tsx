@@ -33,14 +33,14 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
         colors: {
           dark: [
             "#d5d7e0", // dark[0]
-            "#acaebf",
-            "#8c8fa3",
-            "#666980",
-            "#4d4f66",
-            "#34354a",
-            "#25262b",
-            "#1a1b1e",
-            "#141517",
+            "#acaebf", // dark[1]
+            "#8c8fa3", // dark[2]
+            "#666980", // dark[3]
+            "#4d4f66", // dark[4]
+            "#34354a", // dark[5]
+            "#25262b", // dark[6]
+            "#1a1b1e", // dark[7]
+            "#141517", // dark[8]
             "#0b0d10", // darkest background
           ],
 

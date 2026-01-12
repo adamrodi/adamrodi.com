@@ -1,4 +1,4 @@
-import { AppShell, Box, Container } from "@mantine/core";
+import { AppShell } from "@mantine/core";
 import { Outlet, useLocation } from "react-router-dom";
 import { useEffect } from "react";
 import Nav from "./components/Nav";
@@ -12,19 +12,13 @@ export default function App() {
   }, [pathname]);
 
   return (
-    <AppShell header={{ height: 80 }} padding={0} >
-      <AppShell.Header bd={0}>
+    <AppShell header={{ height: 80 }} padding={0}>
+      <AppShell.Header bd={0} p={0} m={0}>
         <Nav />
       </AppShell.Header>
       <AppShell.Main px={0}>
-        <Box px={0} style={{ minHeight: "calc(100vh - 80px)", display: "flex", flexDirection: "column" }}>
-
-            <Container size="lg" px={0}>
-              <Outlet />
-            </Container>
-
-          <Footer />
-        </Box>
+        <Outlet />
+        <Footer />
       </AppShell.Main>
     </AppShell>
   );
