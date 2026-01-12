@@ -40,8 +40,8 @@ export default function Home() {
 
                 <Text size="xl" c="dimmed" p={0}>
                   I'm a junior Computer Science and Data Science student at
-                  Southeastern Louisiana University focused on full-stack
-                  development, cloud infrastructure, and applied AI projects.
+                  Southeastern Louisiana University focused on software
+                  engineering.
                 </Text>
 
                 <Group py="lg">
@@ -148,10 +148,12 @@ export default function Home() {
             <Grid.Col span={{ base: 12, md: 7 }}>
               <Stack gap={30} align="flex-start">
                 <Stack gap={18}>
+                  <Text>Hello! I’m Adam, and I like building with code.</Text>
                   <Text>
-                    Hello! I’m Adam and I like building with code. My interest
-                    in programming started in high school (10th grade) when I
-                    took an intro to JavaScript, HTML, and CSS course from{" "}
+                    {" "}
+                    My interest in programming started in high school when I 
+                    took an intro to JavaScript, HTML, and CSS
+                    course from{" "}
                     <Anchor
                       href="https://www.operationspark.org"
                       target="_blank"
@@ -166,14 +168,14 @@ export default function Home() {
                       href="https://adamrodi.github.io"
                       target="_blank"
                     >
-                      my first ever (cringe-worthy) portfolio site.
+                      my first ever (rough) portfolio site.
                     </Anchor>
                   </Text>
 
                   <Text>
-                    Fast forward to university, and I have been fortunate to
-                    have supportive professors and mentors who recognize my
-                    curiosity and help me pursue it through{" "}
+                    In university, that curiosity continued to grow. My
+                    professors noticed the questions I kept asking and helped
+                    open doors through {" "}
                     <Anchor
                       href="https://www.linkedin.com/posts/adamrodi_i-am-honored-to-be-selected-as-a-recipient-activity-7378447035513094145-zllo?utm_source=share&utm_medium=member_desktop&rcm=ACoAAEW8c_QBKyisDa3TvdmoFMfFTp_crS4y0zU"
                       target="_blank"
@@ -181,11 +183,12 @@ export default function Home() {
                     >
                       scholarships
                     </Anchor>{" "}
-                    and research opportunities.
+                    and research opportunities, giving me room to explore beyond
+                    the syllabus.
                   </Text>
 
                   <Text>
-                    My sophomore summer, I had the privilege of interning at{" "}
+                    During my sophomore summer, I interned at{" "}
                     <Anchor
                       className="underlineLink"
                       href="https://aws.amazon.com/"
@@ -193,22 +196,30 @@ export default function Home() {
                     >
                       one of the largest technology companies on Earth
                     </Anchor>
-                    , where peers and mentors raised my standards for my work (
+                    . This was easily the most rapid period of learning in my
+                    life so far. The peers and mentors I worked alongside
+                      raised my own standards for my work. (
                     <Anchor
                       href="https://www.linkedin.com/posts/adamrodi_wrapping-up-my12-week-internship-at-amazon-activity-7369850411421327360-acGz?utm_source=share&utm_medium=member_desktop&rcm=ACoAAEW8c_QBKyisDa3TvdmoFMfFTp_crS4y0zU"
                       target="_blank"
                       style={{ fontStyle: "italic" }}
                       className="underlineLink"
                     >
-                      internship recap
+                      internship recap 
                     </Anchor>
                     ).
                   </Text>
 
+                  {/* <Text>
+                    As I've grown as an engineer, I've worked alongside peers
+                    and mentors who have raised my own standards for
+                    my work.
+                  </Text> */}
+
                   <Text>
-                    Today, I’m a junior Computer Science student most excited by
-                    working on tough and impactful engineering problems
-                    alongside people who challenge me to grow.
+                    Today, I’m a junior Computer Science student, most excited by
+                    working on tough, impactful engineering problems
+                    with people who push me to grow.
                   </Text>
                 </Stack>
               </Stack>
