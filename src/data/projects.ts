@@ -66,7 +66,7 @@ With that being said, we did implement three games: UNO, Rock-Paper-Scissors, an
         body: `
 The backend is a real-time, asynchronous WebSocket server written in Rust and organized around room-scoped, authoritative state. Clients maintain long-lived connections and send intent-based messages, while the server validates all actions, mutates state, and broadcasts updates to the appropriate room.
 
-To manage the freedom and complexity of WebSockets, the system is built around a strict, typed message protocol shared across all games and chat. Messages are routed by type and game_id, allowing multiple games and chat sessions to run concurrently without shared-state conflicts.
+To manage the freedom and complexity of WebSockets, the system is built around a strict, typed message protocol. Messages are routed by type and game_id, allowing multiple games and chat sessions to run concurrently without shared-state conflicts.
 
 Key architectural components:
 - **WebSocket Connections**: Each client maintains a persistent WebSocket connection to the server.
@@ -74,7 +74,7 @@ Key architectural components:
 - **Message Protocol**: All communication uses a typed JSON envelope which acts as a contract between frontend and backend.
 - **Authoritative Server**: The server is the single source of truth, validating all client actions and managing game state.
 
-#### Example (UNO):
+#### Example (UNO)
 
 The server:
 - enforces turn order 
@@ -135,6 +135,11 @@ After each move:
 - Public state is broadcast to all players
 - Private hand data is sent only to the owning client
 
+In implementing this model, I really felt and exploited the advantages
+of a WebSocket based system. The server could broadcast room-wide
+updates and maintain private state with ease. I found the ability to send
+updates selectively and at any time a powerful tool for building this kind of system.
+
 `,
       },
       {
@@ -179,7 +184,7 @@ The project required developing a database schema, backend API, and frontend (in
 This meant making design decisions that affected multiple layers and revisiting those decisions as they evolved over the course of development.
 
 My contributions were in two primary areas:
-1. Vertical ownership of the food/nutrition tracking domain across the full stack
+1. Ownership of the food/nutrition tracking domain across the full stack
 2. Contributing to data modeling and database schema design for the entire application
 
 On the food/nutrition side, my specific tasks included:
@@ -270,9 +275,9 @@ To reduce this friction:
 Swagger and browser developer tools became crucial to debugging at this stage.
 We used these tools to inspect requests and responses and narrow down on the root cause of issues more quickly.
 
-Working through integration issues reinforced how closely frontend behavior depends on backend guarantees, and why well thought-out API endpoints matter.
+Working through integration issues reinforced how closely frontend behavior depends on backend guarantees, and why easily predictable API endpoints matter.
 
-The better we understood a user interaction from the frontend perspective, the more effectively we could design backend endpoints to support it.
+I also experienced that the better we understood a user interaction from the frontend perspective, the more effectively we could design backend endpoints to support it.
 `,
       },
       {
@@ -295,7 +300,7 @@ Activ-Ate was my first university project where the primary goal was not a cleve
 
 Working across the full stack reinforced a few lessons that now guide how I approach software engineering:
 - Data modeling decisions propagate across every layer and are central to an application
-- Well designed API's effectively model the domain and provide necessary functionality for user workflows 
+- Well designed API's effectively model the domain and have predictable behavior
 - Good layer abstractions reduce cognitive load and allow each layer to evolve independently
 
 This project built foundational skills in software engineering, and it directly informs how I approach building systems today.
