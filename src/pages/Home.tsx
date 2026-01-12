@@ -217,8 +217,8 @@ export default function Home() {
             <Grid.Col span={{ base: 12, md: 5 }}>
               <Card radius="xl" shadow="sm" p={0} maw={400} mx="auto">
                 <Image
-                  src="/headshot.jpg"
-                  alt="Headshot of Adam Rodi"
+                  src="/about_me2.jpeg"
+                  alt="Adam Rodi working on a laptop in the library"
                   fit="cover"
                   height={450}
                   maw={400}
