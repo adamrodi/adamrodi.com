@@ -10,18 +10,23 @@ import {
   Group,
   Image,
 } from "@mantine/core";
-import { IconArrowRight, IconBrandLinkedin } from "@tabler/icons-react";
+import {
+  IconArrowRight,
+  IconBrandLinkedin,
+} from "@tabler/icons-react";
 import PrimaryButton from "../components/PrimaryButton";
 import SecondaryButton from "../components/SecondaryButton";
 import ProjectCard from "../components/ProjectCard";
+import { useMediaQuery } from "@mantine/hooks";
 
 export default function Home() {
+  const isMobile = useMediaQuery("(max-width: 48em)");
   return (
     <>
       {/* HERO */}
       <Box
         id="hero"
-        pt={0}
+        pt={isMobile ? 30 : 0}
         pb={60}
         style={{
           background:
@@ -41,49 +46,75 @@ export default function Home() {
                 <Grid.Col span={{ base: 12, md: 7 }}>
                   <Stack gap={30} align="flex-start">
                     <Stack gap={0}>
-                      <Title order={2}>Hi, my name is</Title>
-                      <Title order={1} c="amber.5" size="4rem">
+                      <Title order={2}>Hi! 👋 My name is</Title>
+                      <Title
+                        order={1}
+                        c="amber.5"
+                        size={isMobile ? "3rem" : "4rem"}
+                      >
                         Adam Rodi.
                       </Title>
                     </Stack>
 
-                    <Text size="xl" c="dimmed" p={0}>
-                      I'm a junior Computer Science and Data Science student at
-                      Southeastern Louisiana University focused on software
-                      engineering.
+                    <Text size="xl" c="dimmed" p={0} mr={5}>
+                      I'm a junior computer science student at Southeastern
+                      Louisiana University focused on software engineering.
                     </Text>
+                    {!isMobile && (
+                      <Group py="lg">
+                        <PrimaryButton
+                          href="#projects"
+                          size="lg"
+                          rightSection={<IconArrowRight size={20} />}
+                          smooth-scroll
+                        >
+                          View Projects
+                        </PrimaryButton>
 
-                    <Group py="lg">
-                      <PrimaryButton
-                        href="#projects"
-                        size="lg"
-                        rightSection={<IconArrowRight size={20} />}
-                        smooth-scroll
-                      >
-                        View Projects
-                      </PrimaryButton>
-
-                      <SecondaryButton
-                        href="/Adam_Rodi_Resume.pdf"
-                        size="lg"
-                        target="_blank"
-                      >
-                        Resume
-                      </SecondaryButton>
-                    </Group>
+                        <SecondaryButton
+                          href="/Adam_Rodi_Resume.pdf"
+                          size="lg"
+                          target="_blank"
+                        >
+                          Resume
+                        </SecondaryButton>
+                      </Group>
+                    )}
                   </Stack>
                 </Grid.Col>
 
                 <Grid.Col span={{ base: 12, md: 5 }}>
-                  <Card radius="xl" shadow="sm" p={0} maw={500} mx="auto">
-                    <Image
-                      src="/headshot.jpg"
-                      alt="Headshot of Adam Rodi"
-                      fit="cover"
-                      height={450}
+                  <Container py={isMobile ? 30 : 0}>
+                    <Box
                       maw={500}
-                    />
-                  </Card>
+                      mx="auto"
+                      style={{
+                        boxShadow: "0 0 120px rgba(255, 197, 22, 0.22)",
+                        borderRadius: "50%",
+                      }}
+                    >
+                      <Card radius="xl" shadow="sm" p={0} maw={500} mx="auto">
+                        <Image
+                          src="/headshot.jpg"
+                          alt="Headshot of Adam Rodi"
+                          fit="cover"
+                          height={500}
+                          maw={500}
+                        />
+                      </Card>
+                    </Box>
+                  </Container>
+                  {isMobile && (
+                    <Box mt={30} w="100%" ta="center">
+                      <PrimaryButton
+                        href="/Adam_Rodi_Resume.pdf"
+                        size="lg"
+                        target="_blank"
+                      >
+                        View Resume
+                      </PrimaryButton>
+                    </Box>
+                  )}
                 </Grid.Col>
               </Grid>
             </Box>
@@ -131,10 +162,6 @@ export default function Home() {
               link="/projects/activ-ate"
             />
           </Stack>
-
-          {/* <Box ta="center" mt={64}>
-            <PrimaryButton href="/projects">View all projects →</PrimaryButton>
-          </Box> */}
         </Container>
       </Box>
 
@@ -249,15 +276,7 @@ export default function Home() {
       </Box>
 
       {/* CONTACT */}
-      <Box
-        id="contact"
-        // style={{
-        //   background:
-        //     "linear-gradient(180deg, var(--mantine-color-dark-8) 100%, var(--mantine-color-dark-7) 100%)",
-        // }}
-        bg="dark.8"
-        py={200}
-      >
+      <Box id="contact" bg="dark.8" py={200}>
         <Container size="lg" px={32}>
           <Stack align="center" gap={14} mb={64}>
             <Text tt="uppercase" size="sm" fw={700} c="dimmed" lts={1}>

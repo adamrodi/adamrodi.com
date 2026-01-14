@@ -1,7 +1,8 @@
 import { Box, Container, Group, Anchor } from "@mantine/core";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { navVisibility } from "../config/nav";
-import { useState } from "react";
+import { useMemo, useState } from "react";
+import { useMediaQuery } from "@mantine/hooks";
 import PrimaryButton from "./PrimaryButton";
 
 type LinkItem = {
@@ -12,7 +13,6 @@ type LinkItem = {
 };
 
 const LINKS: LinkItem[] = [
-  { key: "home", label: "Home", to: "/", usesRouter: true },
   { key: "projects", label: "Projects", to: "#projects" },
   { key: "about", label: "About", to: "#about" },
   { key: "contact", label: "Contact", to: "#contact" },
@@ -78,7 +78,25 @@ function NavItem({
 }
 
 export default function Nav() {
-  const visibleLinks = LINKS.filter((l) => navVisibility[l.key]);
+  const isMobile = useMediaQuery("(max-width: 48em)");
+
+  // Option B: keep mobile nav extremely short (2 links + CTA)
+  const desktopLinks = useMemo(
+    () => LINKS.filter((l) => navVisibility[l.key]),
+    [
+      /* LINKS is constant; navVisibility is imported config */
+    ]
+  );
+
+  const mobileLinks = useMemo(
+    () =>
+      LINKS.filter((l) => navVisibility[l.key]).filter(
+        (l) => l.key === "projects" || l.key === "contact" || l.key === "about"
+      ),
+    [
+      /* LINKS is constant; navVisibility is imported config */
+    ]
+  );
 
   return (
     <Box bg="dark.8" h="100%">
@@ -88,7 +106,7 @@ export default function Nav() {
             component={Link}
             to="/"
             fw={700}
-            fz="xl"
+            fz={isMobile ? "lg" : "xl"}
             aria-label="Go to home"
             title="Home"
             style={{
@@ -101,8 +119,8 @@ export default function Nav() {
             <span style={{ color: "var(--mantine-color-amber-5)" }}>. </span>
           </Anchor>
 
-          <Group gap="xl" align="center">
-            {visibleLinks.map((link) => {
+          <Group gap={isMobile ? "md" : "xl"} align="center" wrap="nowrap">
+            {(isMobile ? mobileLinks : desktopLinks).map((link) => {
               return (
                 <NavItem
                   key={link.key}
@@ -113,9 +131,9 @@ export default function Nav() {
               );
             })}
 
-            {navVisibility.resume && (
+            {navVisibility.resume && !isMobile && (
               <PrimaryButton target="_blank" href="/Adam_Rodi_Resume.pdf">
-                Resume
+                {isMobile ? "Resume" : "Resume"}
               </PrimaryButton>
             )}
           </Group>

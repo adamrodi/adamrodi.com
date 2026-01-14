@@ -27,7 +27,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
       defaultColorScheme="dark"
       theme={{
         primaryColor: "amber",
-        primaryShade: 6,
+        primaryShade: 7,
         black: "#0b0d10",
         white: "#ffffff",
         colors: {
@@ -74,6 +74,9 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
     >
       <Global
         styles={(theme) => ({
+          "html, body": {
+            backgroundColor: theme.colors.dark[8],
+          },
           html: {
             scrollBehavior: "smooth",
           },

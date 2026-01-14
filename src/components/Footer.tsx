@@ -1,4 +1,5 @@
-import { Box, Container, Group, Anchor} from "@mantine/core";
+import { Box, Container, Group, Anchor } from "@mantine/core";
+import { useMediaQuery } from "@mantine/hooks";
 import {
   IconMail,
   IconBrandLinkedin,
@@ -6,10 +7,17 @@ import {
 } from "@tabler/icons-react";
 
 export default function Footer() {
+  const isMobile = useMediaQuery("(max-width: 48em)");
+
   return (
     <Box component="footer" py={28} bg="dark.8">
       <Container size="lg" px={32}>
-        <Group justify="space-between" align="center" wrap="wrap" gap="md">
+        <Group
+          justify={isMobile ? "center" : "space-between"}
+          align="center"
+          wrap="wrap"
+          gap="md"
+        >
           <Anchor
             c="dimmed"
             href="https://github.com/adamrodi/adamrodi.com"
