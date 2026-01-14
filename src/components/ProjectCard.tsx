@@ -30,8 +30,9 @@ export default function ProjectCard({
       maw={800}
       style={{
         cursor: "pointer",
-        transition:
-          "transform 0.5s ease, box-shadow 0.5s ease, border-color 0.5s ease",
+        transition: isMobile 
+        ? "transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease" 
+        : "transform 0.5s ease, box-shadow 0.5s ease, border-color 0.5s ease",
         overflow: "hidden",
         alignSelf: "center",
       }}
@@ -44,16 +45,26 @@ export default function ProjectCard({
           ".cta-arrow"
         ) as HTMLElement;
         if (arrow) arrow.style.transform = "translateX(5px)";
-        const cornerIcon = e.currentTarget.querySelector(
-          ".corner-icon"
-        ) as HTMLElement;
-        if (cornerIcon) {
-          //cornerIcon.style.transform = "translate(3px, -3px)";
-          cornerIcon.style.backgroundColor = "var(--mantine-color-amber-5)";
-          cornerIcon.style.color = "var(--mantine-color-dark-7)";
-        }
       }}
       onMouseLeave={(e) => {
+        e.currentTarget.style.borderColor = "";
+        e.currentTarget.style.boxShadow = "";
+        const arrow = e.currentTarget.querySelector(
+          ".cta-arrow"
+        ) as HTMLElement;
+        if (arrow) arrow.style.transform = "translateX(0)";
+      }}
+      onTouchStart={(e) => {
+        e.currentTarget.style.transform = "scale(0.99)";
+        e.currentTarget.style.borderColor = "var(--mantine-color-amber-5)";
+        e.currentTarget.style.boxShadow = "0 0 12px rgba(255, 255, 255, 0.08)";
+        const arrow = e.currentTarget.querySelector(
+          ".cta-arrow"
+        ) as HTMLElement;
+        if (arrow) arrow.style.transform = "translateX(5px)";
+      }}
+      onTouchEnd={(e) => {
+        e.currentTarget.style.transform = "scale(1)";
         e.currentTarget.style.borderColor = "";
         e.currentTarget.style.boxShadow = "";
         const img = e.currentTarget.querySelector("img");
@@ -62,14 +73,6 @@ export default function ProjectCard({
           ".cta-arrow"
         ) as HTMLElement;
         if (arrow) arrow.style.transform = "translateX(0)";
-        const cornerIcon = e.currentTarget.querySelector(
-          ".corner-icon"
-        ) as HTMLElement;
-        if (cornerIcon) {
-          cornerIcon.style.transform = "translate(0, 0)";
-          cornerIcon.style.backgroundColor = "";
-          cornerIcon.style.color = "";
-        }
       }}
     >
       {/* HERO IMAGE */}
@@ -97,7 +100,7 @@ export default function ProjectCard({
           {title}
         </Title>
 
-        <Text size={isMobile ? "sm" : "md"} lh="1.6" >
+        <Text size={isMobile ? "sm" : "md"} lh="1.6">
           {hook}
         </Text>
 
@@ -107,17 +110,12 @@ export default function ProjectCard({
           </Text>
         )}
 
-        <Text
-          mt={isMobile ? 6 : 8}
-          size="sm"
-          fw={600}
-          c="amber.5"
-        >
+        <Text mt={isMobile ? 6 : 8} size="sm" fw={600} c="amber.5">
           Read case study{" "}
           <span
             style={{
               display: "inline-block",
-              transition: "transform 0.5s ease",
+              transition: isMobile ? "transform 0.15s ease" : "transform 0.5s ease",
             }}
             className="cta-arrow"
           >
