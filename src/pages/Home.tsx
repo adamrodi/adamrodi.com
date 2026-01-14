@@ -84,7 +84,7 @@ export default function Home() {
                 </Grid.Col>
 
                 <Grid.Col span={{ base: 12, md: 5 }}>
-                  <Container py={isMobile ? 30 : 0}>
+                  <Container py={isMobile ? 30 : 0} px={0}>
                     <Box
                       maw={500}
                       mx="auto"
