@@ -1,10 +1,9 @@
 import { Card, Image, Stack, Text, Title, Box } from "@mantine/core";
-import { Link  } from "react-router-dom";
-import { IconArticle } from "@tabler/icons-react";
+import { Link } from "react-router-dom";
+import { useMediaQuery } from "@mantine/hooks";
 
 interface ProjectCardProps {
   title: string;
-  category: string;
   heroImage: string;
   hook: string;
   proof: string;
@@ -13,13 +12,12 @@ interface ProjectCardProps {
 
 export default function ProjectCard({
   title,
-  category,
   heroImage,
   hook,
   proof,
   link,
 }: ProjectCardProps) {
-
+  const isMobile = useMediaQuery("(max-width: 48em)");
   return (
     <Card
       withBorder
@@ -28,17 +26,20 @@ export default function ProjectCard({
       p={0}
       component={Link}
       to={link}
+      w="100%"
+      maw={800}
       style={{
         cursor: "pointer",
         transition:
           "transform 0.5s ease, box-shadow 0.5s ease, border-color 0.5s ease",
         overflow: "hidden",
+        alignSelf: "center",
       }}
       onMouseEnter={(e) => {
         e.currentTarget.style.borderColor = "var(--mantine-color-amber-5)";
         e.currentTarget.style.boxShadow = "0 0 20px rgba(255, 255, 255, 0.1)";
         const img = e.currentTarget.querySelector("img");
-        if (img) img.style.transform = "scale(1.03)";
+        if (img) img.style.transform = isMobile ? "scale(1.2)" : "scale(1.05)";
         const arrow = e.currentTarget.querySelector(
           ".cta-arrow"
         ) as HTMLElement;
@@ -56,7 +57,7 @@ export default function ProjectCard({
         e.currentTarget.style.borderColor = "";
         e.currentTarget.style.boxShadow = "";
         const img = e.currentTarget.querySelector("img");
-        if (img) img.style.transform = "scale(1)";
+        if (img) img.style.transform = isMobile ? "scale(1.15)" : "scale(1)";
         const arrow = e.currentTarget.querySelector(
           ".cta-arrow"
         ) as HTMLElement;
@@ -76,54 +77,42 @@ export default function ProjectCard({
         <Image
           src={heroImage}
           alt={title}
-          height={700}
+          width="100%"
+          mah={420}
           fit="cover"
           style={{
             transition: "transform 0.5s ease",
+            transform: isMobile ? "scale(1.15)" : "scale(1)",
           }}
         />
       </Box>
 
       {/* STORY TEASER */}
-      <Stack p="lg" gap={10} style={{ position: "relative" }}>
-        {/* Corner Icon */}
-        <Box
-          className="corner-icon"
-          style={{
-            position: "absolute",
-            top: 16,
-            right: 16,
-            width: 36,
-            height: 36,
-            border: "1px solid var(--mantine-color-dark-4)",
-            borderRadius: "50%",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            transition:
-              "transform 0.5s ease, background-color 0.5s ease, color 0.5s ease",
-          }}
-        >
-          <IconArticle size={18} />
-        </Box>
-
-        <Text tt="uppercase" size="xs" fw={700} c="dimmed" lts={1}>
-          {category}
-        </Text>
-
-        <Title order={3} lh={1.2}>
+      <Stack
+        p={isMobile ? "md" : "lg"}
+        gap={isMobile ? 8 : 10}
+        style={{ position: "relative" }}
+      >
+        <Title order={isMobile ? 4 : 3} lh={1.25}>
           {title}
         </Title>
 
-        <Text size="md" lh={1.6}>
+        <Text size={isMobile ? "sm" : "md"} lh="1.6" >
           {hook}
         </Text>
 
-        <Text size="sm" c="dimmed">
-          {proof}
-        </Text> 
+        {!isMobile && (
+          <Text size="sm" c="dimmed">
+            {proof}
+          </Text>
+        )}
 
-        <Text mt={6} size="sm" fw={600} c="amber.5">
+        <Text
+          mt={isMobile ? 6 : 8}
+          size="sm"
+          fw={600}
+          c="amber.5"
+        >
           Read case study{" "}
           <span
             style={{

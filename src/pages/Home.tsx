@@ -125,7 +125,7 @@ export default function Home() {
       {/* FEATURED PROJECTS */}
       <Box id="projects" bg="dark.7" py={200}>
         <Container size="lg" px={32}>
-          <Stack align="center" gap={14} mb={64}>
+          <Stack align="center" gap={14} mb={80}>
             <Text tt="uppercase" size="sm" fw={700} c="dimmed" lts={1}>
               My Work
             </Text>
@@ -144,21 +144,19 @@ export default function Home() {
             </Text>
           </Stack>
 
-          <Stack gap={48}>
+          <Stack gap={64}>
             <ProjectCard
-              title="Cargo Games: Real-Time Multiplayer Game & Chat Server"
-              category="Backend Systems"
+              title="Cargo Games"
               heroImage="/cargo_games/hero_light_cargo_games.png"
-              hook="I wanted real-time multiplayer to feel instant, so I designed a Rust WebSocket server with a clean protocol, matchmaking, and concurrency in mind."
-              proof="Designed a typed message protocol, game flows, and state synchronization strategies, then deployed the system on a live VM."
+              hook="Realtime multiplayer server in Rust, designed for low-latency."
+              proof="Typed message protocol / State synchronization / Deployed on live VM"
               link="/projects/cargo-games"
             />
             <ProjectCard
-              title="Activ-Ate: Full-Stack Fitness & Nutrition Tracker"
-              category="Full-Stack Development"
+              title="Activ-Ate"
               heroImage="/activ-ate/activ-ate_macros_wide.png"
-              hook="I set out to understand how to build a usable software product end-to-end, so I built a fitness and nutrition tracker."
-              proof="Owned nutrition tracking across the full stack, including API design, database schema, and UI implementation."
+              hook="Full-stack fitness and nutrition tracking web app."
+              proof="API design / Relational data model / React UI"
               link="/projects/activ-ate"
             />
           </Stack>
@@ -168,7 +166,7 @@ export default function Home() {
       {/* About Me */}
       <Box id="about" bg="dark.8" mih="100vh" py={200}>
         <Container size="lg" px={32}>
-          <Stack align="center" gap={14} mb={64}>
+          <Stack align="center" gap={14} mb={80}>
             <Text tt="uppercase" size="sm" fw={700} c="dimmed" lts={1}>
               My Story
             </Text>
@@ -278,7 +276,7 @@ export default function Home() {
       {/* CONTACT */}
       <Box id="contact" bg="dark.8" py={200}>
         <Container size="lg" px={32}>
-          <Stack align="center" gap={14} mb={64}>
+          <Stack align="center" gap={14} mb={80}>
             <Text tt="uppercase" size="sm" fw={700} c="dimmed" lts={1}>
               Contact Me
             </Text>
