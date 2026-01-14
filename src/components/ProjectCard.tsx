@@ -53,6 +53,8 @@ export default function ProjectCard({
           ".cta-arrow"
         ) as HTMLElement;
         if (arrow) arrow.style.transform = "translateX(0)";
+        const img = e.currentTarget.querySelector("img");
+        if (img) img.style.transform = isMobile ? "scale(1.15)" : "scale(1)";
       }}
       onTouchStart={(e) => {
         e.currentTarget.style.transform = "scale(0.99)";
@@ -67,8 +69,6 @@ export default function ProjectCard({
         e.currentTarget.style.transform = "scale(1)";
         e.currentTarget.style.borderColor = "";
         e.currentTarget.style.boxShadow = "";
-        const img = e.currentTarget.querySelector("img");
-        if (img) img.style.transform = isMobile ? "scale(1.15)" : "scale(1)";
         const arrow = e.currentTarget.querySelector(
           ".cta-arrow"
         ) as HTMLElement;
