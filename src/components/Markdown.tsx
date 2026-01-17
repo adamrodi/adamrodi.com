@@ -1,9 +1,19 @@
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
-import { Text, Title, List, Code, Anchor, } from "@mantine/core";
+import { Text, Title, List, Code, Anchor } from "@mantine/core";
+import { useMediaQuery } from "@mantine/hooks";
 import MarkdownClickToFullscreenImage from "./MarkdownClickToFullscreenImage";
 
 export function Markdown({ content }: { content: string }) {
+  // Prevent negative margins from causing horizontal scroll on small screens
+  const isMobile = useMediaQuery("(max-width: 48em)");
+  const figureStyle: React.CSSProperties = {
+    margin: isMobile ? "32px 0 0 0" : "50px -200px 0px -200px",
+    textAlign: "center",
+    maxWidth: "100%",
+    overflowX: "hidden",
+  };
+
   return (
     <ReactMarkdown
       remarkPlugins={[remarkGfm]}
@@ -52,9 +62,7 @@ export function Markdown({ content }: { content: string }) {
         ),
 
         img: ({ src, alt, title }) => (
-          <figure
-            style={{ margin: "50px -200px 0px -200px", textAlign: "center" }}
-          >
+          <figure style={figureStyle}>
             {src ? (
               <MarkdownClickToFullscreenImage
                 src={src}
