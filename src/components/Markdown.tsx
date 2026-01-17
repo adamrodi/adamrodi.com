@@ -1,6 +1,6 @@
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
-import { Text, Title, List, Code, Anchor, } from "@mantine/core";
+import { Text, Title, List, Code, Anchor } from "@mantine/core";
 import MarkdownClickToFullscreenImage from "./MarkdownClickToFullscreenImage";
 
 export function Markdown({ content }: { content: string }) {
@@ -46,14 +46,21 @@ export function Markdown({ content }: { content: string }) {
         code: ({ children }) => <Code>{children}</Code>,
 
         pre: ({ children }) => (
-          <Code block my="sm" >
+          <Code block my="sm">
             {children}
           </Code>
         ),
 
         img: ({ src, alt, title }) => (
           <figure
-            style={{ margin: "50px -200px 0px -200px", textAlign: "center" }}
+            style={{
+              margin: "48px 0",
+              position: "relative",
+              left: "50%",
+              transform: "translateX(-50%)",
+              width: "min(1076px, calc(100vw - 32px))", // 16px gutter each side
+              textAlign: "center",
+            }}
           >
             {src ? (
               <MarkdownClickToFullscreenImage
