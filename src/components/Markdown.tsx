@@ -1,7 +1,6 @@
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
-import { Text, Title, List, Code, Anchor } from "@mantine/core";
-import MarkdownClickToFullscreenImage from "./MarkdownClickToFullscreenImage";
+import { Text, Title, List, Code, Anchor, Image, UnstyledButton } from "@mantine/core";
 
 export function Markdown({ content }: { content: string }) {
 
@@ -59,16 +58,24 @@ export function Markdown({ content }: { content: string }) {
               position: "relative",
               left: "50%",
               transform: "translateX(-50%)",
-              width: "min(1076px, calc(100vw - 32px))", // 16px gutter each side
+              width: "min(1076px, calc(100vw - 32px))",
               textAlign: "center",
             }}
           >
             {src ? (
-              <MarkdownClickToFullscreenImage
-                src={src}
-                alt={alt ?? ""}
-                title={title}
-              />
+              <UnstyledButton
+                      style={{ display: "block", width: "100%", cursor: "zoom-in" }}
+                      aria-label="Open image fullscreen"
+                      onClick={() => window.open(src, "_blank")}
+                    >
+                      <Image
+                        src={src}
+                        alt={alt ?? ""}
+                        radius="lg"
+                        maw="1100px"
+                        w="100%"
+                      />
+                    </UnstyledButton>
             ) : null}
 
             {title ? (
