@@ -106,6 +106,19 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
             backgroundSize: "100% 2px",
           },
 
+          ".headerLink": {
+            color: "var(--mantine-color-white)",
+            opacity: 0.85,
+            textDecoration: "none",
+            backgroundImage: "none",
+            transition: "color 200ms ease, opacity 200ms ease, transform 200ms ease",
+          },
+          ".headerLink:hover, .headerLink:focus-visible": {
+            color: "var(--mantine-color-amber-4) !important",
+            opacity: 1,
+            transform: "translateY(-1px)",
+          },
+
           ".footerLink": {
             display: "inline-flex",
             alignItems: "center",

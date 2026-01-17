@@ -1,7 +1,7 @@
 import { Box, Container, Group, Anchor } from "@mantine/core";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { navVisibility } from "../config/nav";
-import { useMemo, useState } from "react";
+import { useMemo } from "react";
 import { useMediaQuery } from "@mantine/hooks";
 import PrimaryButton from "./PrimaryButton";
 
@@ -32,17 +32,13 @@ function NavItem({
 
   const isHashLink = !usesRouter || to.startsWith("#");
 
-  // Hooks must be called unconditionally. For hash links, use a pattern that will never match.
-
-  const [hover, setHover] = useState(false);
-
   return (
     <Anchor
       component={isHashLink ? "a" : (Link as any)}
       to={!isHashLink ? to : undefined}
       href={isHashLink ? to : undefined}
       title={label}
-      className="underlineLink"
+      className="headerLink"
       onClick={(e: { preventDefault: () => void }) => {
         if (!isHashLink) return;
         e.preventDefault();
@@ -65,12 +61,6 @@ function NavItem({
           el.scrollIntoView({ behavior: "smooth", block: "start" });
         }
       }}
-      onMouseEnter={() => setHover(true)}
-      onMouseLeave={() => setHover(false)}
-      style={{
-        color: "var(--mantine-color-white)",
-        opacity: hover ? 1 : 0.8,
-      }}
     >
       {label}
     </Anchor>
@@ -79,6 +69,7 @@ function NavItem({
 
 export default function Nav() {
   const isMobile = useMediaQuery("(max-width: 48em)");
+  const isTinyMobile = useMediaQuery("(max-width: 350px)");
 
   // Option B: keep mobile nav extremely short (2 links + CTA)
   const desktopLinks = useMemo(
@@ -102,6 +93,7 @@ export default function Nav() {
     <Box bg="dark.8" h="100%">
       <Container size="lg" h="100%" px={32}>
         <Group justify="space-between" align="center" h="100%">
+          {!isTinyMobile && (
           <Anchor
             component={Link}
             to="/"
@@ -118,6 +110,7 @@ export default function Nav() {
             Adam
             <span style={{ color: "var(--mantine-color-amber-5)" }}>. </span>
           </Anchor>
+          )}
 
           <Group gap={isMobile ? "md" : "xl"} align="center" wrap="nowrap">
             {(isMobile ? mobileLinks : desktopLinks).map((link) => {
