@@ -87,6 +87,7 @@ export default function ProjectCard({
             transition: "transform 0.5s ease",
             transform: isMobile ? "scale(1.15)" : "scale(1)",
           }}
+          loading="lazy"
         />
       </Box>
 

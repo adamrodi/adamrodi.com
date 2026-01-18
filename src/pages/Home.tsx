@@ -265,7 +265,7 @@ export default function Home() {
                     fit="cover"
                     height={450}
                     maw={400}
-                    fetchPriority="high"
+                    loading="lazy"
                   />
                 </Card>
               </Grid.Col>
