@@ -95,7 +95,7 @@ export default function Home() {
                     >
                       <Card radius="xl" shadow="sm" p={0} maw={500} mx="auto">
                         <Image
-                          src="/headshot.jpg"
+                          src="/hero.webp"
                           alt="Headshot of Adam Rodi"
                           fit="cover"
                           height={500}
@@ -265,6 +265,7 @@ export default function Home() {
                     fit="cover"
                     height={450}
                     maw={400}
+                    fetchPriority="high"
                   />
                 </Card>
               </Grid.Col>
