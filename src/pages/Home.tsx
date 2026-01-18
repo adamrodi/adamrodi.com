@@ -21,12 +21,13 @@ import { useMediaQuery } from "@mantine/hooks";
 
 export default function Home() {
   const isMobile = useMediaQuery("(max-width: 48em)");
+  const isSkinny = useMediaQuery("(max-width: 991px)");
   return (
     <>
       {/* HERO */}
       <Box
         id="hero"
-        pt={isMobile ? 30 : 0}
+        pt={isSkinny ? 30 : 0}
         pb={60}
         style={{
           background:
@@ -58,9 +59,9 @@ export default function Home() {
 
                     <Text size="xl" c="dimmed" p={0} mr={5}>
                       I'm a junior computer science student at Southeastern
-                      Louisiana University focused on software engineering.
+                      Louisiana University, focused on software engineering.
                     </Text>
-                    {!isMobile && (
+                    {!isSkinny && (
                       <Group py="lg">
                         <PrimaryButton
                           href="#projects"
@@ -84,7 +85,7 @@ export default function Home() {
                 </Grid.Col>
 
                 <Grid.Col span={{ base: 12, md: 5 }}>
-                  <Container py={isMobile ? 30 : 0} px={0}>
+                  <Container py={isSkinny ? 30 : 0} px={0}>
                     <Box
                       maw={500}
                       mx="auto"
