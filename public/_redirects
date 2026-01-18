@@ -1,0 +1,5 @@
+/game/*  https://game.adamrodi.com/:splat  301
+/game    https://game.adamrodi.com         301
+
+/assets/*  /assets/:splat  200
+/*         /index.html     200
