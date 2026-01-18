@@ -28,7 +28,7 @@ The games themselves are intentionally simple; the technical focus was on buildi
     type: "University Course Project",
     stack: ["Rust", "Axum", "Tokio", "WebSockets", "React", "TypeScript"],
     links: {
-      live_demo: "https://adamrodi.com/game",
+      live_demo: "https://game.adamrodi.com",
       repo: "https://github.com/arlemoine/CMPS401/tree/main/Project",
     },
     sections: [
