@@ -4,10 +4,23 @@ import { PROJECTS } from "../data/projects";
 import { ProjectMeta } from "../components/ProjectMeta";
 import { Markdown } from "../components/Markdown";
 import ThanksForReading from "../components/ThanksForReading";
+import { usePageMeta } from "../hooks/usePageMeta";
+
+const getProjectName = (title: string) => title.split(":")[0].trim();
 
 export default function ProjectDetail() {
   const { slug } = useParams<{ slug: string }>();
   const project = slug ? PROJECTS[slug] : undefined;
+  const projectName = project ? getProjectName(project.title) : undefined;
+
+  usePageMeta({
+    title: projectName
+      ? `Adam Rodi | ${projectName}`
+      : "Project not found | Adam Rodi",
+    description: project
+      ? `${project.title} case study: architecture, implementation decisions, and lessons learned.`
+      : "Requested project case study was not found.",
+  });
 
   if (!project) {
     return (
