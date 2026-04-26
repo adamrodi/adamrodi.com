@@ -4,6 +4,7 @@ import { navVisibility } from "../config/nav";
 import { useMemo } from "react";
 import { useMediaQuery } from "@mantine/hooks";
 import PrimaryButton from "./PrimaryButton";
+import type { MouseEvent } from "react";
 
 type LinkItem = {
   key: keyof typeof navVisibility;
@@ -32,35 +33,43 @@ function NavItem({
 
   const isHashLink = !usesRouter || to.startsWith("#");
 
+  const handleHashClick = (e: MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+
+    const hash = to.startsWith("#") ? to : `#${to}`;
+
+    // If we're not on the home route, navigate there first with the hash.
+    if (location.pathname !== "/") {
+      navigate(`/${hash}`);
+      return;
+    }
+
+    // Update the URL hash without a full reload.
+    if (location.hash !== hash) {
+      navigate(hash, { replace: false });
+    }
+
+    const el = document.querySelector(hash);
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  };
+
+  if (!isHashLink) {
+    return (
+      <Anchor component={Link} to={to} title={label} className="headerLink">
+        {label}
+      </Anchor>
+    );
+  }
+
   return (
     <Anchor
-      component={isHashLink ? "a" : (Link as any)}
-      to={!isHashLink ? to : undefined}
-      href={isHashLink ? to : undefined}
+      component="a"
+      href={to}
       title={label}
       className="headerLink"
-      onClick={(e: { preventDefault: () => void }) => {
-        if (!isHashLink) return;
-        e.preventDefault();
-
-        const hash = to.startsWith("#") ? to : `#${to}`;
-
-        // If we're not on the home route, navigate there first with the hash.
-        if (location.pathname !== "/") {
-          navigate(`/${hash}`);
-          return;
-        }
-
-        // Update the URL hash without a full reload.
-        if (location.hash !== hash) {
-          navigate(hash, { replace: false });
-        }
-
-        const el = document.querySelector(hash);
-        if (el) {
-          el.scrollIntoView({ behavior: "smooth", block: "start" });
-        }
-      }}
+      onClick={handleHashClick}
     >
       {label}
     </Anchor>

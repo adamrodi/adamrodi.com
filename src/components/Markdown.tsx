@@ -74,6 +74,7 @@ export function Markdown({ content }: { content: string }) {
                         radius="lg"
                         maw="1100px"
                         w="100%"
+                        loading="lazy"
                       />
                     </UnstyledButton>
             ) : null}

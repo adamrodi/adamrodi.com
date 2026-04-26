@@ -18,10 +18,17 @@ import PrimaryButton from "../components/PrimaryButton";
 import SecondaryButton from "../components/SecondaryButton";
 import ProjectCard from "../components/ProjectCard";
 import { useMediaQuery } from "@mantine/hooks";
+import { usePageMeta } from "../hooks/usePageMeta";
 
 export default function Home() {
   const isMobile = useMediaQuery("(max-width: 48em)");
   const isSkinny = useMediaQuery("(max-width: 991px)");
+  usePageMeta({
+    title: "Adam Rodi | Software Engineering Portfolio",
+    description:
+      "Portfolio of Adam Rodi featuring full-stack and real-time systems projects, case studies, and resume.",
+  });
+
   return (
     <>
       {/* HERO */}
