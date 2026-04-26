@@ -22,15 +22,6 @@ export default function ProjectDetail() {
       : "Requested project case study was not found.",
   });
 
-  usePageMeta({
-    title: project
-      ? `${project.title} | Adam Rodi`
-      : "Project not found | Adam Rodi",
-    description: project
-      ? `${project.title} case study: architecture, implementation decisions, and lessons learned.`
-      : "Requested project case study was not found.",
-  });
-
   if (!project) {
     return (
       <Container size="sm" py="xl">
