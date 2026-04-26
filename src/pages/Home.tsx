@@ -24,7 +24,7 @@ export default function Home() {
   const isMobile = useMediaQuery("(max-width: 48em)");
   const isSkinny = useMediaQuery("(max-width: 991px)");
   usePageMeta({
-    title: "Adam Rodi | Software Engineering Portfolio",
+    title: "Adam Rodi",
     description:
       "Portfolio of Adam Rodi featuring full-stack and real-time systems projects, case studies, and resume.",
   });
