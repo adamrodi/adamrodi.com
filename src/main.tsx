@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Suspense, lazy } from "react";
 import ReactDOM from "react-dom/client";
 import { MantineProvider } from "@mantine/core";
 import { Global } from "@mantine/emotion";
@@ -6,9 +6,10 @@ import { Notifications } from "@mantine/notifications";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import App from "./App";
 import Home from "./pages/Home";
-import ProjectDetail from "./pages/ProjectDetail";
 import "@mantine/core/styles.css";
 import "@mantine/notifications/styles.css";
+
+const ProjectDetail = lazy(() => import("./pages/ProjectDetail"));
 
 const router = createBrowserRouter([
   {
@@ -16,7 +17,14 @@ const router = createBrowserRouter([
     element: <App />,
     children: [
       { index: true, element: <Home /> },
-      { path: "projects/:slug", element: <ProjectDetail /> },
+      {
+        path: "projects/:slug",
+        element: (
+          <Suspense fallback={null}>
+            <ProjectDetail />
+          </Suspense>
+        ),
+      },
     ],
   },
 ]);
