@@ -134,7 +134,7 @@ export default function Nav() {
             })}
 
             {navVisibility.resume && !isMobile && (
-              <PrimaryButton target="_blank" href="/Adam_Rodi_Resume.pdf">
+              <PrimaryButton target="_blank" href="/resume">
                 {isMobile ? "Resume" : "Resume"}
               </PrimaryButton>
             )}
