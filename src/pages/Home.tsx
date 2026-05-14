@@ -81,7 +81,7 @@ export default function Home() {
                         </PrimaryButton>
 
                         <SecondaryButton
-                          href="/Adam_Rodi_Resume.pdf"
+                          href="/resume"
                           size="lg"
                           target="_blank"
                         >
@@ -116,7 +116,7 @@ export default function Home() {
                   {isMobile && (
                     <Box mt={30} w="100%" ta="center">
                       <PrimaryButton
-                        href="/Adam_Rodi_Resume.pdf"
+                        href="/resume"
                         size="lg"
                         target="_blank"
                       >
