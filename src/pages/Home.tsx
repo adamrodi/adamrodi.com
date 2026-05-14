@@ -65,8 +65,9 @@ export default function Home() {
                     </Stack>
 
                     <Text size="xl" c="dimmed" p={0} mr={5}>
-                      I'm a junior computer science student at Southeastern
-                      Louisiana University, focused on software engineering.
+                      I'm a senior computer science student at Southeastern
+                      Louisiana University, focused on software engineering,
+                      AI engineering, and cloud infrastructure.
                     </Text>
                     {!isSkinny && (
                       <Group py="lg">
@@ -235,15 +236,9 @@ export default function Home() {
 
                     <Text>
                       During my sophomore summer, I interned at{" "}
-                      <Anchor
-                        className="underlineLink"
-                        href="https://aws.amazon.com/"
-                        target="_blank"
-                      >
-                        one of the largest technology companies on Earth
-                      </Anchor>
-                      . This was easily the most rapid period of learning in my
-                      life so far. The peers and mentors I worked alongside
+                      Amazon Web Services. This was easily the most 
+                      rapid period of learning in my life so far. 
+                      The peers and mentors I worked alongside
                       raised my own standards for my work. (
                       <Anchor
                         href="https://www.linkedin.com/posts/adamrodi_wrapping-up-my12-week-internship-at-amazon-activity-7369850411421327360-acGz?utm_source=share&utm_medium=member_desktop&rcm=ACoAAEW8c_QBKyisDa3TvdmoFMfFTp_crS4y0zU"
@@ -257,8 +252,19 @@ export default function Home() {
                     </Text>
 
                     <Text>
-                      Today, I'm a junior Computer Science student, most excited
-                      by working on tough, impactful engineering problems with
+                      During my junior year, I led backend 
+                      development for my capstone project MedAI, an 
+                      AI coworker for healthcare staff. 
+                      It gave me the chance to apply what I 
+                      had been learning about AWS and AI 
+                      engineering to a real project 
+                      with an external client: DSS Inc.
+                    </Text>
+
+                    <Text>
+                      Today, I'm a senior Computer Science student interning 
+                      at AWS again this summer. I'm most excited by continuing 
+                      to build AI applications on the cloud alongside 
                       people who push me to grow.
                     </Text>
                   </Stack>
