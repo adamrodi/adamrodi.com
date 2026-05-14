@@ -6,6 +6,7 @@ import { Notifications } from "@mantine/notifications";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import App from "./App";
 import Home from "./pages/Home";
+import ResumeRedirect from "./pages/ResumeRedirect";
 import "@mantine/core/styles.css";
 import "@mantine/notifications/styles.css";
 
@@ -17,6 +18,7 @@ const router = createBrowserRouter([
     element: <App />,
     children: [
       { index: true, element: <Home /> },
+      { path: "resume", element: <ResumeRedirect /> },
       {
         path: "projects/:slug",
         element: (

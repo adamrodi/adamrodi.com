@@ -65,7 +65,7 @@ export default function Home() {
                     </Stack>
 
                     <Text size="xl" c="dimmed" p={0} mr={5}>
-                      I'm a junior computer science student at Southeastern
+                      I'm a senior computer science student at Southeastern
                       Louisiana University, focused on software engineering.
                     </Text>
                     {!isSkinny && (
@@ -80,7 +80,7 @@ export default function Home() {
                         </PrimaryButton>
 
                         <SecondaryButton
-                          href="/Adam_Rodi_Resume.pdf"
+                          href="/resume"
                           size="lg"
                           target="_blank"
                         >
@@ -115,7 +115,7 @@ export default function Home() {
                   {isMobile && (
                     <Box mt={30} w="100%" ta="center">
                       <PrimaryButton
-                        href="/Adam_Rodi_Resume.pdf"
+                        href="/resume"
                         size="lg"
                         target="_blank"
                       >
@@ -257,7 +257,7 @@ export default function Home() {
                     </Text>
 
                     <Text>
-                      Today, I'm a junior Computer Science student, most excited
+                      Today, I'm a senior Computer Science student, most excited
                       by working on tough, impactful engineering problems with
                       people who push me to grow.
                     </Text>
