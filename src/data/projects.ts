@@ -28,7 +28,6 @@ The games themselves are intentionally simple; the technical focus was on buildi
     type: "University Course Project",
     stack: ["Rust", "Axum", "Tokio", "WebSockets", "React", "TypeScript"],
     links: {
-      live_demo: "https://game.adamrodi.com",
       repo: "https://github.com/arlemoine/CMPS401/tree/main/Project",
     },
     sections: [
@@ -37,7 +36,7 @@ The games themselves are intentionally simple; the technical focus was on buildi
         body: `
 This project was built for a university course as a collaborative team effort. We had four members, with two members focusing on frontend and two on backend development.
 
-I served as a backend developer and was assigned group leader, with primary ownership over the WebSocket implementation, message protocol design, and VM deployment.
+I served as a backend developer and was assigned group leader, with primary ownership over the WebSocket implementation, message protocol design, and backend architecture.
 I also implemented the UNO and Rock-Paper-Scissors game logic, validation, and state management. 
 
 This case study focuses on the backend architecture and implementation since my primary contributions were there.

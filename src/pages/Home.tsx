@@ -158,7 +158,7 @@ export default function Home() {
               title="Cargo Games"
               heroImage="/cargo_games/hero_light_cargo_games.png"
               hook="Realtime multiplayer server in Rust, designed for low-latency."
-              proof="Typed message protocol / State synchronization / Deployed on live VM"
+              proof="Typed message protocol / State synchronization / Authoritative server"
               link="/projects/cargo-games"
             />
             <ProjectCard
