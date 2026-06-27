@@ -155,6 +155,13 @@ export default function Home() {
 
           <Stack gap={64}>
             <ProjectCard
+              title="MedAI"
+              heroImage="/medai/medai_hero.png"
+              hook="AI coworker for healthcare staff, built for a real client."
+              proof="AI workflow / AWS architecture / Capstone delivery"
+              link="/projects/medai"
+            />
+            <ProjectCard
               title="Cargo Games"
               heroImage="/cargo_games/hero_light_cargo_games.png"
               hook="Realtime multiplayer server in Rust, designed for low-latency."

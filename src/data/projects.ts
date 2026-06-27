@@ -12,6 +12,69 @@ export type Project = {
 };
 
 export const PROJECTS: Record<string, Project> = {
+  medai: {
+    title: "MedAI: AI Coworker for Healthcare Staff",
+    summary: `
+MedAI is an AI coworker for healthcare staff, built as a capstone project with DSS Inc.
+
+This case study should show why the project mattered, how the system worked, and what engineering decisions made it useful for a real healthcare workflow.
+
+![MedAI Hero](/medai/medai_hero.png "Replace with the primary MedAI product screenshot or hero image.")
+`,
+    type: "University Capstone Project",
+    stack: ["AI Engineering", "AWS", "Full-Stack Development"],
+    sections: [
+      {
+        heading: "Context & My Role",
+        body: `
+Use this section to explain the capstone context, the relationship with DSS Inc., the team size, the project timeline, and your specific responsibilities.
+
+Focus especially on what you owned directly: backend, AI workflow, cloud infrastructure, architecture, integrations, or technical leadership.
+`,
+      },
+      {
+        heading: "Problem & Users",
+        body: `
+Describe the healthcare staff workflow this project was designed to support.
+
+Keep the framing concrete: who the user is, what repeated task or bottleneck they face, and why an AI coworker is a better fit than a generic chatbot.
+`,
+      },
+      {
+        heading: "Architecture Overview",
+        body: `
+Explain the major system pieces at a high level: frontend, backend/API layer, AI model or orchestration layer, data sources, AWS services, authentication, and any client-specific integration points.
+
+Add an architecture diagram here once the final image is ready.
+
+![MedAI Architecture Diagram](/medai/medai_architecture.png "Replace with a high-level MedAI architecture diagram.")
+`,
+      },
+      {
+        heading: "AI Workflow",
+        body: `
+Use this section for the most impressive technical story.
+
+Describe how user intent moves through the system, how context is gathered, how the AI response is produced, and what guardrails or validation keep the workflow reliable for healthcare staff.
+`,
+      },
+      {
+        heading: "Engineering Constraints & Tradeoffs",
+        body: `
+Discuss the constraints that made the project real: privacy, reliability, latency, uncertain requirements, limited timeline, client feedback, deployment constraints, or model behavior.
+
+This is a good place to show judgment rather than only listing features.
+`,
+      },
+      {
+        heading: "Outcome & Lessons Learned",
+        body: `
+Close with what the team delivered, what you learned from working with an external client, and how the project changed the way you think about AI engineering and cloud-backed products.
+`,
+      },
+    ],
+  },
+
   "cargo-games": {
     title: "Cargo Games: Real-Time Multiplayer Game & Chat Server",
     summary: `
