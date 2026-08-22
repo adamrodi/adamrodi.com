@@ -15,61 +15,114 @@ export const PROJECTS: Record<string, Project> = {
   medai: {
     title: "MedAI: AI Coworker for Healthcare Staff",
     summary: `
-MedAI is an AI coworker for healthcare staff, built as a capstone project with DSS Inc.
+MedAI is a healthcare information system that solves problems using the same approach a clinician would: clinical documents and patient data.
 
-This case study should show why the project mattered, how the system worked, and what engineering decisions made it useful for a real healthcare workflow.
+We built it over 14 weeks as a five-person university capstone team for DSS Inc.
 
-![MedAI Hero](/medai/medai_hero.png "Replace with the primary MedAI product screenshot or hero image.")
+Under the chat interface, Claude selects the right tools, gathers relevant context, and combines the results to draw conclusions.
+
+My main focus was the orchestration service behind that workflow. I designed the agentic tool loop where the model operates, integrated AWS Bedrock, and later worked through the backend parts that completed the system: streaming, authentication, conversation persistence, authorization, and tests.
+
+![MedAI Landing Page](/medai/medai_landing_page.png "MedAI landing page.")
+
+![MedAI Chat Interface](/medai/medai_hero.png "MedAI answering a healthcare question with tool activity and source citations.")
+
 `,
     type: "University Capstone Project",
-    stack: ["AI Engineering", "AWS", "Full-Stack Development"],
+    stack: ["Python", "AWS", "RAG", "MCP", "PostgreSQL", "Docker", "Terraform"],
     sections: [
       {
         heading: "Context & My Role",
         body: `
-Use this section to explain the capstone context, the relationship with DSS Inc., the team size, the project timeline, and your specific responsibilities.
+MedAI was our university capstone project at Southeastern Louisiana University. We worked with DSS Inc., an external healthcare technology client, from January through May 2026 and took the project from requirements to an AWS deployment within one semester.
 
-Focus especially on what you owned directly: backend, AI workflow, cloud infrastructure, architecture, integrations, or technical leadership.
+Our five-person team divided ownership by component. I served as the **Orchestrator Lead**, which put me in charge of the Python/FastAPI service sitting between the chat UI, the model, and the system's data sources.
+
+My main contributions included:
+- Designing and implementing the agentic tool-use loop that the model uses to reason
+- Integrating Claude through the AWS Bedrock Converse API
+- Building Server-Sent Events (SSE) streaming from the backend to the browser
+- Adding Cognito JWT verification and conversation ownership checks
+- Implementing PostgreSQL to serve as the user database with conversation persistence
+- Implementing automatic conversation title generation
+- Writing system prompts and tool definitions to guide the model's behavior
+
+![My Ownership in the System](/medai/architecture_diagram_my_ownership.png "System map highlighting the orchestrator and backend features I owned directly.")
 `,
       },
       {
         heading: "Problem & Users",
         body: `
-Describe the healthcare staff workflow this project was designed to support.
+Healthcare staff often need information from two very different places. Clinical guidelines and best practices live in documents, while patient-specific data live in structured systems. A question can require both.
 
-Keep the framing concrete: who the user is, what repeated task or bottleneck they face, and why an AI coworker is a better fit than a generic chatbot.
+For example, a staff member might need to find a patient's blood pressure readings over the past 3 years and then compare them with the relevant clinical guidance for high blood pressure intervention. Usually, that means searching separate systems and manually connecting the results.
+
+MedAI explored a more direct workflow: ask the question once and let the system decide which sources it needs.
+
+Calling it an AI coworker is intentional. MedAI can choose from a limited set of read-only tools, retrieve actual information, show where that information came from, and combine multiple results into a useful answer, similar to how a human would approach the problem.
+
 `,
       },
       {
         heading: "Architecture Overview",
         body: `
-Explain the major system pieces at a high level: frontend, backend/API layer, AI model or orchestration layer, data sources, AWS services, authentication, and any client-specific integration points.
+The system uses a service-based architecture, with the orchestrator acting as the control point for each query.
 
-Add an architecture diagram here once the final image is ready.
+Key components include:
+- **Chat UI (React + TypeScript):** UI/UX, question submission, conversation management.
+- **LLM Orchestrator (Python + FastAPI):** model calls, exposes available tools to model, dispatches tool requests, streams the final response to the frontend.
+- **AWS Bedrock:** Hosts Claude for tool selection and response generation.
+- **Bedrock Knowledge Base:** Performs retrieval-augmented generation (RAG) over clinical documents and returns citation-ready chunks.
+- **Patient Data MCP Server:** Exposes 10 scoped, read-only operations over synthetic PostgreSQL patient data.
+- **Cognito + PostgreSQL:** Cognito provides user identity, while PostgreSQL stores users, conversations, messages, and sources.
+- **AWS infrastructure:** The containerized services run on ECS Fargate with RDS PostgreSQL. Terraform keeps the infrastructure explicit and repeatable.
 
-![MedAI Architecture Diagram](/medai/medai_architecture.png "Replace with a high-level MedAI architecture diagram.")
+![MedAI Architecture Diagram](/medai/architecture_diagram.png "High-level architecture showing request flow from the authenticated browser through the orchestrator to the Claude model and the two data sources.")
 `,
       },
       {
-        heading: "AI Workflow",
+        heading: "Agentic Tool Loop",
         body: `
-Use this section for the most impressive technical story.
+The most interesting part of MedAI was giving the model useful choices and keeping control of what happened next.
 
-Describe how user intent moves through the system, how context is gathered, how the AI response is produced, and what guardrails or validation keep the workflow reliable for healthcare staff.
+For each request, the orchestrator:
+1. Loads the authenticated user's conversation history
+2. Sends Claude the conversation, routing instructions, and available tool definitions
+3. Receives either a final response or one or more structured tool requests
+4. Runs independent tool calls in parallel and feeds their results back to Claude
+5. Repeats until Claude decides it has enough context to answer, with an iteration cap
+6. Streams the response and citations to the browser
+
+I chose Bedrock's native tool-use flow instead of putting a manual classifier in front of the model. A hard-coded classifier creates an extra decision layer and gets awkward when a question needs both documents and patient data. By exposing document search as a peer tool alongside the clinical data tools, Claude can choose RAG, structured data, or both within the same loop.
+
+One subtle requirement was preserving all of Claude's internal reasoning. Saving only the visible text breaks the next iteration because the model loses the context from the request it just made. That bug made the importance of message history very concrete.
+
 `,
       },
       {
         heading: "Engineering Constraints & Tradeoffs",
         body: `
-Discuss the constraints that made the project real: privacy, reliability, latency, uncertain requirements, limited timeline, client feedback, deployment constraints, or model behavior.
 
-This is a good place to show judgment rather than only listing features.
+Some of the tradeoffs I worked through:
+- **Streaming vs. no streaming:** Responses stream through SSE so the user sees progress immediately. In our testing, this reduced time to first token significantly and gave the application much lower perceived latency.
+- **Flexible AI vs. bounded execution:** Claude can choose and combine tools, but only from a scoped, read-only list. The loop stops after five iterations so a confused model cannot call tools forever.
+- **Authentication vs. application identity:** Cognito verifies the user, then the backend maps the Cognito subject to an internal PostgreSQL user. A transaction-level lock prevents duplicate records when first-time requests arrive concurrently.
+
+I added detailed logging and monitoring in Amazon CloudWatch, making it easier to trace model behavior, inspect tool-selection decisions, and optimize latency.
+
+I also wrote 118 unit and integration tests for the routing layer. Model responses can vary, but tool contracts, authorization, persistence, and failure handling still need to behave predictably.
+
 `,
       },
       {
         heading: "Outcome & Lessons Learned",
         body: `
-Close with what the team delivered, what you learned from working with an external client, and how the project changed the way you think about AI engineering and cloud-backed products.
+By the end of the 14-week capstone, we had a working system deployed on AWS and demo'ed it to our client DSS Inc. The final product could search clinical documents, query synthetic patient records through 10 scoped tools, combine both kinds of context, stream an answer with sources, and preserve authenticated conversation history per user.
+
+The project changed how I think about AI engineering. The model was important, but so was everything around it: defining tools, managing context, validating identity, handling partial failures, measuring behavior, and testing the boundaries.
+
+Working with an external client also made scope and communication more real. We had a fixed semester, unfamiliar technology, and multiple components to integrate. Owning a central service meant I had to explain tradeoffs, define interfaces, and help different components come together without losing sight of the user's workflow.
+
 `,
       },
     ],
