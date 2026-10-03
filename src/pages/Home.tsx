@@ -66,8 +66,8 @@ export default function Home() {
 
                     <Text size="xl" c="dimmed" p={0} mr={5}>
                       I'm a senior computer science student at Southeastern
-                      Louisiana University, focused on software engineering,
-                      AI engineering, and cloud infrastructure.
+                      Louisiana University and an AI software engineer
+                      intern at DSS Inc.
                     </Text>
                     {!isSkinny && (
                       <Group py="lg">
@@ -227,26 +227,21 @@ export default function Home() {
                     </Text>
 
                     <Text>
-                      In university, that curiosity continued to grow. My
-                      professors noticed the questions I kept asking and helped
-                      open doors through{" "}
+                      In university, I kept building{" "}
                       <Anchor
-                        href="https://www.linkedin.com/posts/adamrodi_i-am-honored-to-be-selected-as-a-recipient-activity-7378447035513094145-zllo?utm_source=share&utm_medium=member_desktop&rcm=ACoAAEW8c_QBKyisDa3TvdmoFMfFTp_crS4y0zU"
-                        target="_blank"
+                        href="#projects"
                         className="underlineLink"
                       >
-                        scholarships
+                        projects
                       </Anchor>{" "}
-                      and research opportunities, giving me room to explore
-                      beyond the syllabus.
+                      to explore new technologies and push my skills further.
                     </Text>
 
                     <Text>
                       During my sophomore summer, I interned at{" "}
-                      Amazon Web Services. This was easily the most 
-                      rapid period of learning in my life so far. 
-                      The peers and mentors I worked alongside
-                      raised my own standards for my work. (
+                      AWS, where
+                      the peers and mentors I worked with
+                      raised my own standards for my work (
                       <Anchor
                         href="https://www.linkedin.com/posts/adamrodi_wrapping-up-my12-week-internship-at-amazon-activity-7369850411421327360-acGz?utm_source=share&utm_medium=member_desktop&rcm=ACoAAEW8c_QBKyisDa3TvdmoFMfFTp_crS4y0zU"
                         target="_blank"
@@ -259,20 +254,48 @@ export default function Home() {
                     </Text>
 
                     <Text>
-                      During my junior year, I led backend 
-                      development for my capstone project MedAI, an 
-                      AI coworker for healthcare staff. 
+                      During my junior year, I led backend
+                      development for{" "}
+                      <Anchor
+                        href="https://adamrodi.com/projects/medai"
+                        target="_blank"
+                        className="underlineLink"
+                      >
+                        MedAI
+                      </Anchor>
+                      , an AI coworker for healthcare staff.
                       It gave me the chance to apply what I 
                       had been learning about AWS and AI 
                       engineering to a real project 
-                      with an external client: DSS Inc.
+                      with an external client:{" "}
+                      <Anchor
+                        href="https://www.dssinc.com/"
+                        target="_blank"
+                        className="underlineLink"
+                      >
+                        DSS Inc.
+                      </Anchor>
                     </Text>
 
                     <Text>
-                      Today, I'm a senior Computer Science student interning 
-                      at AWS again this summer. I'm most excited by continuing 
-                      to build AI applications on the cloud alongside 
-                      people who push me to grow.
+                      The following summer, I returned to AWS and built an internal
+                      service monitoring platform that tracked uptime and average
+                      and P95 response times (
+                        <Anchor
+                          href="https://www.linkedin.com/posts/adamrodi_and-just-like-that-my-second-summer-at-amazon-activity-7492596799975878656-cvSF?utm_source=social_share_send&utm_medium=member_desktop_web&rcm=ACoAAEW8c_QBKyisDa3TvdmoFMfFTp_crS4y0zU"
+                          target="_blank"
+                          className="underlineLink"
+                        >
+                          recap
+                        </Anchor>
+                      ).
+                    </Text>
+
+                    <Text>
+                      Now, I'm finishing my senior year while working as a software
+                      engineer intern on the AI team at DSS Inc. I currently own the
+                      development of an MCP server deployed for internal developers
+                      that gives coding agents better code context for fewer tokens.
                     </Text>
                   </Stack>
                 </Stack>
